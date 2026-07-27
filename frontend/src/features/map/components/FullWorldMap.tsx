@@ -1,6 +1,5 @@
 import { Card } from "@/components/ui/card";
-
-import WorldMap from "./WorldMap";
+import EarthquakeWorldMap from "@/features/earthquakes/components/EarthquakeWorldMap";
 
 export function FullWorldMap() {
 
@@ -10,7 +9,7 @@ export function FullWorldMap() {
 
             <div className="h-[650px]">
 
-                <WorldMap />
+                <EarthquakeWorldMap className="h-[650px]" />
 
             </div>
 

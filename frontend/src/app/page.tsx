@@ -1,9 +1,9 @@
-import WorldMapLoader from "@/features/map/components/WorldMapLoader";
+import EarthquakeWorldMap from "@/features/earthquakes/components/EarthquakeWorldMap";
 
 export default function HomePage() {
   return (
     <main>
-      <WorldMapLoader />
+      <EarthquakeWorldMap className="h-[650px]"/>
     </main>
   );
 }

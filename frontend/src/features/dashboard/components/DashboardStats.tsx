@@ -5,7 +5,7 @@ import {
     Wind,
 } from "lucide-react";
 
-import { DashboardStatCard } from "./DashboardStatCard";
+import { StatCard } from "@/components/common/StatCard";
 
 export function DashboardStats() {
 
@@ -15,36 +15,32 @@ export function DashboardStats() {
 
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
 
-                <DashboardStatCard
+                <StatCard
                     title="Earthquakes"
-                    value="28"
-                    description="Today's Earthquakes"
-                    icon={<Mountain className="h-7 w-7 text-orange-600" />}
-                    iconBackgroundClassName="bg-orange-100"
+                    value={126}
+                    icon={Mountain}
+                    variant="earthquake"
                 />
 
-                <DashboardStatCard
+                <StatCard
                     title="Weather Alerts"
-                    value="6"
-                    description="Active Alerts"
-                    icon={<CloudSun className="h-7 w-7 text-sky-600" />}
-                    iconBackgroundClassName="bg-sky-100"
+                    value={8}
+                    icon={CloudSun}
+                    variant="weather"
                 />
 
-                <DashboardStatCard
+                <StatCard
                     title="Wildfires"
-                    value="2"
-                    description="Active Fires"
-                    icon={<Flame className="h-7 w-7 text-red-600" />}
-                    iconBackgroundClassName="bg-red-100"
+                    value={15}
+                    icon={Flame}
+                    variant="wildfire"
                 />
 
-                <DashboardStatCard
+                <StatCard
                     title="Air Quality"
-                    value="12"
-                    description="Monitoring Stations"
-                    icon={<Wind className="h-7 w-7 text-emerald-600" />}
-                    iconBackgroundClassName="bg-emerald-100"
+                    value={12}
+                    icon={Wind}
+                    variant="air"
                 />
 
             </div>

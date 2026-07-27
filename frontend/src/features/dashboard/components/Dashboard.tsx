@@ -1,5 +1,4 @@
 import { WeatherContainer } from "@/features/weather/components/WeatherContainer";
-import WorldMapLoader from "@/features/map/components/WorldMapLoader";
 import { LatestEarthquakeContainer } from "@/features/earthquakes/components/LatestEarthquakeContainer";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -10,6 +9,7 @@ import { Globe2 } from "lucide-react";
 import { MapLegend } from "@/features/map/components/MapLegend";
 //import { DashboardGreeting } from "@/components/dashboard/DashboardGreeting";
 import { RecentActivityCard } from "./RecentActivityCard";
+import EarthquakeWorldMap from "@/features/earthquakes/components/EarthquakeWorldMap";
 
 export function Dashboard() {
 
@@ -57,7 +57,7 @@ export function Dashboard() {
                 <MapLegend />
 
                 <div className="mt-4">
-                    <WorldMapLoader />
+                    <EarthquakeWorldMap className="h-[650px]"/>
                 </div>
             </section>
 

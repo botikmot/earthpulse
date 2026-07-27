@@ -3,42 +3,36 @@
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { defaultMarkerIcon } from "./markerIcon";
-import { useEarthquakes } from "@/hooks/useEarthquakes";
-import { Loading } from "@/components/ui/Loading";
-import { ErrorMessage } from "@/components/ui/ErrorMessage";
 import { EarthquakePopup } from "@/features/earthquakes/components/EarthquakePopup";
+import type { Earthquake } from "@/types/earthquake";
+import { cn } from "@/lib/utils";
 
-export default function WorldMap() {
+type WorldMapProps = {
+    markers: Earthquake[];
+    height?: string;
+    center?: [number, number];
+    zoom?: number;
+    className?: string;
+};
 
-  const {
-    earthquakes,
-    loading,
-    error
-  } = useEarthquakes();
-
-  if (loading) {
-      return <Loading text="Loading earthquakes data..." />;
-  }
-
-  if (error) {
-    return (
-        <ErrorMessage
-            message={error}
-        />
-    );
-}
-
+export default function WorldMap({
+  markers,
+  className,
+}: WorldMapProps) {
   
   return (
     <MapContainer
-        center={[12.8797, 121.7740]}
-        zoom={6}
-        className="h-[600px] w-full"
-        >
+      center={[12.8797, 121.7740]}
+      zoom={6}
+      className={cn(
+          "w-full",
+          className
+      )}
+    >
 
         <TileLayer attribution="&copy; OpenStreetMap contributors" url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-        {earthquakes.map((earthquake) => (
+        {markers.map((earthquake) => (
           <Marker
             key={earthquake.id}
             position={earthquake.position}
