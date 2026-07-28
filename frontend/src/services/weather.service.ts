@@ -32,9 +32,30 @@ function mapWeatherResponse(
 ): Weather {
     return {
         temperature: response.current.temperature_2m,
-        condition: mapWeatherCode(response.current.weather_code),
+        feelsLike: response.current.apparent_temperature,
         humidity: response.current.relative_humidity_2m,
         windSpeed: response.current.wind_speed_10m,
+        pressure: response.current.surface_pressure,
+        visibility: response.current.visibility,
+        condition:
+            mapWeatherCode(
+                response.current.weather_code
+            ),
+        latitude: response.latitude,
+        longitude: response.longitude,
+        sunrise: response.daily.sunrise[0],
+        sunset: response.daily.sunset[0],
+        forecast: response.daily.time.map((date, index) => ({
+            date,
+            maxTemperature:
+                response.daily.temperature_2m_max[index],
+            minTemperature:
+                response.daily.temperature_2m_min[index],
+            condition:
+                mapWeatherCode(
+                    response.daily.weather_code[index]
+                ),
+        })),
     };
 }
 
@@ -42,10 +63,9 @@ export async function fetchWeather(latitude: number,
     longitude: number): Promise<Weather> {
     try {
         
-        const url = `${WEATHER_API_URL}?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code`;
+        const url = `${WEATHER_API_URL}?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,surface_pressure,visibility,weather_code&daily=sunrise,sunset,temperature_2m_max,temperature_2m_min,weather_code&timezone=auto`;
 
         const response = await fetch(url);
-        //console.log('weather data:', response.json())
         if (!response.ok) {
             throw new Error("Failed to fetch weather.");
         }

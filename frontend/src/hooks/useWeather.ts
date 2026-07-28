@@ -1,36 +1,76 @@
-import { useEffect, useState } from "react";
-import type { Weather } from "@/types/weather";
+import { useEffect } from "react";
+import { useWeatherStore } from "@/stores/weather.store";
 import { fetchWeather } from "@/services/weather.service";
 
-export function useWeather(latitude: number, longitude: number) {
-    const [weather, setWeather] = useState<Weather | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+type UseWeatherOptions = {
+    latitude?: number;
+    longitude?: number;
+    enabled?: boolean;
+};
+
+export function useWeather({
+    latitude,
+    longitude,
+    enabled = true,
+}: UseWeatherOptions) {
+    
+    const {
+        weather,
+        loading,
+        error,
+        lastUpdated,
+        setWeather,
+        setLoading,
+        setError,
+    } = useWeatherStore();
+
+    const loadWeather = async () => {
+
+        const TEN_MINUTES = 10 * 60 * 1000;
+
+        if (
+            weather &&
+            lastUpdated &&
+            Date.now() - lastUpdated < TEN_MINUTES
+            ) {
+                return;
+        }
+
+        try {
+            setLoading(true);
+            setError(null);
+
+            if (
+                latitude === undefined ||
+                longitude === undefined
+            ) {
+                return;
+            }
+
+            const data = await fetchWeather(
+                latitude,
+                longitude
+            );
+            setWeather(data);
+        } catch {
+            setError("Failed to load weather.");
+        } finally {
+            setLoading(false);
+        }
+    }
 
     useEffect(() => {
 
-        async function loadWeather() {
+        if (!enabled) return;
 
-            try {
-                setLoading(true);
-                setError(null);
-                const data = await fetchWeather(latitude, longitude);
-                setWeather(data);
-            } catch {
-                setError("Failed to load weather.");
-            } finally {
-                setLoading(false);
-            }
-            
-        }
+        void loadWeather();
 
-        loadWeather();
-
-    }, [latitude, longitude]);
+    }, [latitude, longitude, enabled]);
 
     return {
         weather,
         loading,
         error,
+        refetch: loadWeather,
     };
 }

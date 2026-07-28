@@ -3,6 +3,7 @@ import "leaflet/dist/leaflet.css";
 import type { Earthquake } from "@/types/earthquake";
 import { cn } from "@/lib/utils";
 import { MapFocusController } from "./MapFocusController";
+//import { MapClickController } from "./MapClickController";
 import { EarthquakeMarker } from "./EarthquakeMarker";
 
 type WorldMapProps = {
@@ -12,6 +13,15 @@ type WorldMapProps = {
     zoom?: number;
     className?: string;
     selectedEarthquake?: Earthquake | null;
+    layer:
+        | "earthquake"
+        | "weather";
+    onEarthquakeSelect?: (earthquake: Earthquake)=>void;
+    onMapClick?:
+        (
+            latitude:number,
+            longitude:number,
+        )=>void;
 };
 
 export default function WorldMap({
@@ -19,7 +29,7 @@ export default function WorldMap({
   center,
   className,
   zoom,
-  selectedEarthquake
+  selectedEarthquake,
 }: WorldMapProps) {
   
   return (
@@ -37,6 +47,7 @@ export default function WorldMap({
         <MapFocusController
             earthquake={selectedEarthquake ?? null}
         />
+        {/* <MapClickController onMapClick={loadWeather} /> */}
 
         {markers.map((earthquake) => (
           <EarthquakeMarker

@@ -1,17 +1,23 @@
-import { WeatherContainer } from "@/features/weather/components/WeatherContainer";
+"use client";
+
+import { WeatherCardContainer } from "@/features/weather/components/WeatherCardContainer";
 import { LatestEarthquakeContainer } from "@/features/earthquakes/components/LatestEarthquakeContainer";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { DEFAULT_LOCATION } from "@/constants/defaultLocation";
 import { SectionHeader } from "@/components/layout/SectionHeader";
 import { DashboardStats } from "./DashboardStats";
 import { Globe2 } from "lucide-react";
 import { MapLegend } from "@/features/map/components/MapLegend";
-//import { DashboardGreeting } from "@/components/dashboard/DashboardGreeting";
 import { RecentActivityCard } from "./RecentActivityCard";
 import EarthquakeWorldMap from "@/features/earthquakes/components/EarthquakeWorldMap";
+import { useLocationStore } from "@/stores/location.store";
 
 export function Dashboard() {
+
+    const location =
+            useLocationStore(
+                (state) => state.location
+            );
 
     return (
 
@@ -36,9 +42,9 @@ export function Dashboard() {
             <DashboardStats />
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                <WeatherContainer
-                    latitude={DEFAULT_LOCATION.latitude}
-                    longitude={DEFAULT_LOCATION.longitude}
+                <WeatherCardContainer
+                    latitude={location?.latitude}
+                    longitude={location?.longitude}
                 />
                 <LatestEarthquakeContainer />
             </div>

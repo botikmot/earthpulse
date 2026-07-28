@@ -1,11 +1,13 @@
 type WeatherHeroProps = {
-    condition: string;
     temperature: number;
+    condition: string;
+    location?: string;
 };
 
 export function WeatherHero({
-    condition,
     temperature,
+    condition,
+    location,
 }: WeatherHeroProps) {
 
     return (
@@ -17,15 +19,19 @@ export function WeatherHero({
             </div>
 
             <p className="text-lg font-medium text-muted-foreground">
-                {condition}
+                Current Temperature
             </p>
 
             <h2 className="mt-2 text-6xl font-bold tracking-tight">
                 {temperature.toFixed(1)}°
             </h2>
 
+            <p className="mt-2 text-lg font-medium">
+                {condition}
+            </p>
+
             <p className="text-sm text-muted-foreground">
-                Celsius
+                {location}
             </p>
 
         </div>

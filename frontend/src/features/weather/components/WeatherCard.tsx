@@ -31,6 +31,11 @@ export function WeatherCard({
                     label="Wind Speed"
                     value={`${weather.windSpeed} km/h`}
                 />
+
+                <WeatherDetailRow
+                    label="Pressure"
+                    value={`${weather.pressure} hPa`}
+                />
             </div>
         </BaseCard>
     );

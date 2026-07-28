@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 
 import { EarthquakeStats } from "@/features/earthquakes/components/EarthquakeStats";
 import { EarthquakeTable } from "@/features/earthquakes/components/EarthquakeTable";
-import { EarthquakeMapPreview } from "@/features/earthquakes/components/EarthquakeMapPreview";
+//import { EarthquakeMapPreview } from "@/features/earthquakes/components/EarthquakeMapPreview";
 import { useEarthquakes } from "@/hooks/useEarthquakes";
 import { Loading } from "@/components/ui/Loading";
 import { ErrorMessage } from "@/components/ui/ErrorMessage";

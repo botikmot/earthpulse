@@ -6,11 +6,11 @@ import { ErrorMessage } from "@/components/ui/ErrorMessage";
 import { WeatherCard } from "./WeatherCard";
 
 type WeatherContainerProps = {
-    latitude: number;
-    longitude: number;
+    latitude?: number;
+    longitude?: number;
 }
 
-export function WeatherContainer({
+export function WeatherCardContainer({
     latitude,
     longitude
 }: WeatherContainerProps) {
@@ -19,7 +19,10 @@ export function WeatherContainer({
         weather,
         loading,
         error,
-    } = useWeather(latitude, longitude);
+    } = useWeather({
+        latitude,
+        longitude,
+    });
 
     if (loading) {
         return <Loading text="Loading weather data..." />;
