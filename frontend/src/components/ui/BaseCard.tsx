@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 type BaseCardProps = {
-    title: string;
+    title?: string;
     children: ReactNode;
     className?: string;
 }

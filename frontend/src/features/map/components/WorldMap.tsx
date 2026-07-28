@@ -1,11 +1,9 @@
-"use client";
-
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { defaultMarkerIcon } from "./markerIcon";
-import { EarthquakePopup } from "@/features/earthquakes/components/EarthquakePopup";
 import type { Earthquake } from "@/types/earthquake";
 import { cn } from "@/lib/utils";
+import { MapFocusController } from "./MapFocusController";
+import { EarthquakeMarker } from "./EarthquakeMarker";
 
 type WorldMapProps = {
     markers: Earthquake[];
@@ -13,17 +11,21 @@ type WorldMapProps = {
     center?: [number, number];
     zoom?: number;
     className?: string;
+    selectedEarthquake?: Earthquake | null;
 };
 
 export default function WorldMap({
   markers,
+  center,
   className,
+  zoom,
+  selectedEarthquake
 }: WorldMapProps) {
   
   return (
     <MapContainer
-      center={[12.8797, 121.7740]}
-      zoom={6}
+      center={center ?? [12.8797, 121.7740]}
+      zoom={zoom ?? 6}
       className={cn(
           "w-full",
           className
@@ -32,14 +34,18 @@ export default function WorldMap({
 
         <TileLayer attribution="&copy; OpenStreetMap contributors" url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
+        <MapFocusController
+            earthquake={selectedEarthquake ?? null}
+        />
+
         {markers.map((earthquake) => (
-          <Marker
-            key={earthquake.id}
-            position={earthquake.position}
-            icon={defaultMarkerIcon}
-          >
-            <EarthquakePopup earthquake={earthquake} />
-          </Marker>
+          <EarthquakeMarker
+              key={earthquake.id}
+              earthquake={earthquake}
+              selected={
+                  earthquake.id === selectedEarthquake?.id
+              }
+          />
         ))}
 
     </MapContainer>

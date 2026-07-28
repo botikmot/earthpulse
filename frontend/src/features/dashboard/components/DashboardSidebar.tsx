@@ -8,7 +8,7 @@ export default function DashboardSidebar() {
   return (
       <div className="flex h-full flex-col">
 
-        <nav className="flex-1 px-3 py-4">
+        <nav className="flex-1 px-3 py-6">
           <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Main
           </p>
@@ -22,7 +22,7 @@ export default function DashboardSidebar() {
           </div>
         </nav>
 
-        <div className="border-t p-4">
+        <div className="sticky bottom-0 border-t bg-background p-4">
           <p className="text-xs text-muted-foreground">
               EarthPulse v1.0.0
           </p>

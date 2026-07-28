@@ -4,8 +4,8 @@ import { Globe2 } from "lucide-react";
 
 export default function MissionHeader() {
     return (
-        <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur">
-            <div className="flex h-18 items-center justify-between px-6">
+        <header className="sticky top-0 z-50 h-[72px] border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+            <div className="mx-auto flex h-full items-center justify-between px-6">
 
                 {/* Left */}
 

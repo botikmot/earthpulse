@@ -1,9 +1,17 @@
+import { Badge } from "@/components/ui/badge";
+
 type EarthquakeHeroProps = {
     magnitude: number;
+    location?: string;
+    severity?: string;
+    subtitle?: string;
 };
 
 export function EarthquakeHero({
     magnitude,
+    location,
+    severity,
+    subtitle = "Latest Recorded Event",
 }: EarthquakeHeroProps) {
 
     return (
@@ -22,8 +30,20 @@ export function EarthquakeHero({
                 {magnitude.toFixed(1)}
             </h2>
 
-            <p className="text-sm text-muted-foreground">
-                Latest Recorded Event
+            {severity && (
+                <Badge className="mt-3">
+                    {severity}
+                </Badge>
+            )}
+
+            {location && (
+                <p className="mt-4 text-lg font-medium">
+                    {location}
+                </p>
+            )}
+
+            <p className="mt-2 text-sm text-muted-foreground">
+                {subtitle}
             </p>
 
         </div>

@@ -1,38 +1,74 @@
-import { Mountain, Activity, Globe2, Gauge } from "lucide-react";
+import type { Earthquake } from "@/types/earthquake";
+import {
+    Activity,
+    TriangleAlert,
+    Waves,
+    Gauge,
+} from "lucide-react";
+
 import { StatCard } from "@/components/common/StatCard";
 
-export function EarthquakeStats() {
-    return (
-        <section className="mb-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+type Props = {
+    earthquakes: Earthquake[];
+};
 
-            <StatCard
-                title="Today's Earthquakes"
-                value={127}
+export function EarthquakeStats({
+    earthquakes,
+}: Props) {
+
+    const total = earthquakes.length;
+
+    const strong =
+        earthquakes.filter(
+            (e) => e.magnitude >= 6
+        ).length;
+
+    const moderate =
+        earthquakes.filter(
+            (e) => e.magnitude >= 5
+        ).length;
+
+    const average =
+        total === 0
+            ? 0
+            : earthquakes.reduce(
+                (sum, e) => sum + e.magnitude,
+                0
+            ) / total;
+
+    return (
+
+        <div className="mb-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+
+             <StatCard
+                title="Total Earthquakes"
+                value={total}
                 icon={Activity}
                 variant="earthquake"
             />
 
             <StatCard
-                title="Strongest"
-                value="M7.4"
-                icon={Mountain}
+                title="Strong (M6+)"
+                value={strong}
+                icon={TriangleAlert}
+                variant="earthquake"
+            />
+
+            <StatCard
+                title="Moderate (M5+)"
+                value={moderate}
+                icon={Waves}
                 variant="earthquake"
             />
 
             <StatCard
                 title="Average Magnitude"
-                value="M3.8"
+                value={`M${average.toFixed(1)}`}
                 icon={Gauge}
                 variant="earthquake"
             />
 
-            <StatCard
-                title="Affected Countries"
-                value={34}
-                icon={Globe2}
-                variant="earthquake"
-            />
+        </div>
 
-        </section>
     );
 }

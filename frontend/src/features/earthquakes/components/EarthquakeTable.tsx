@@ -1,5 +1,3 @@
-"use client";
-
 import {
     Table,
     TableBody,
@@ -15,38 +13,33 @@ import { BaseCard } from "@/components/ui/BaseCard";
 import { useState } from "react";
 import type { Earthquake } from "@/types/earthquake";
 import { EarthquakeSheet } from "./EarthquakeSheet";
-import { useEarthquakes } from "@/hooks/useEarthquakes";
-import { Loading } from "@/components/ui/Loading";
-import { ErrorMessage } from "@/components/ui/ErrorMessage";
 import { EarthquakePagination } from "./EarthquakePagination";
 import { DEFAULT_PAGE_SIZE } from "@/constants/pagination";
 import { EarthquakeToolbar } from "./EarthquakeToolbar";
+import { useEarthquakeStore } from "../store/earthquake.store";
+import { MapPin } from "lucide-react";
+import { formatEarthquakeTime } from "@/utils/earthquake";
 
-export function EarthquakeTable() {
-    const [selectedEarthquake, setSelectedEarthquake] = useState<Earthquake | null>(null);
+type Props = {
+    earthquakes: Earthquake[];
+    refetch: () => void;
+};
+
+export function EarthquakeTable({
+    earthquakes,
+    refetch,
+}: Props) {
+    //const [selectedEarthquake, setSelectedEarthquake] = useState<Earthquake | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
     const [magnitudeFilter, setMagnitudeFilter] = useState("all");
     const [sortBy, setSortBy] = useState("newest");
 
     const {
-        earthquakes,
-        loading,
-        error,
-        refetch,
-    } = useEarthquakes();
-
-    if (loading) {
-        return <Loading text="Loading earthquakes data..." />;
-    }
-
-    if (error) {
-        return (
-            <ErrorMessage
-                message={error}
-            />
-        );
-    }
+        selectedEarthquake,
+        setSelectedEarthquake,
+        clearSelectedEarthquake,
+    } = useEarthquakeStore();
 
     function getSeverity(magnitude:number){
         if(magnitude>=7){
@@ -150,8 +143,8 @@ export function EarthquakeTable() {
                                 M{earthquake.magnitude}
                             </TableCell>
 
-                            <TableCell>
-                                {earthquake.location}
+                            <TableCell className="flex items-center gap-2">
+                                <MapPin className="h-4 w-4 text-muted-foreground" /> {earthquake.location}
                             </TableCell>
 
                             <TableCell>
@@ -159,7 +152,7 @@ export function EarthquakeTable() {
                             </TableCell>
 
                             <TableCell>
-                                {earthquake.time}
+                                {formatEarthquakeTime(earthquake.time)}
                             </TableCell>
 
                             <TableCell>
@@ -203,7 +196,8 @@ export function EarthquakeTable() {
                 open={!!selectedEarthquake}
                 onOpenChange={(open)=>{
                     if(!open){
-                        setSelectedEarthquake(null);
+                        //setSelectedEarthquake(null);
+                        clearSelectedEarthquake()
                     }
                 }}
             />

@@ -1,13 +1,17 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
-
 import { PageHeader } from "@/components/layout/PageHeader";
-
+import { useSearchParams } from "next/navigation";
 import { FullWorldMap } from "@/features/map/components/FullWorldMap";
 import { LiveMapLegend } from "@/features/map/components/LiveMapLegend";
 import { LiveMapControls } from "@/features/map/components/LiveMapControls";
 import { RecentMapEvents } from "@/features/map/components/RecentMapEvents";
 
 export default function LiveMapPage() {
+
+    const searchParams = useSearchParams();
+    const selectedEarthquakeId = searchParams.get("earthquake");
 
     return (
 
@@ -25,7 +29,7 @@ export default function LiveMapPage() {
 
             <LiveMapLegend />
 
-            <FullWorldMap />
+            <FullWorldMap selectedEarthquakeId={selectedEarthquakeId}/>
 
             <LiveMapControls />
 

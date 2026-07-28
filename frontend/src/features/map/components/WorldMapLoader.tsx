@@ -7,6 +7,7 @@ import type { Earthquake } from "@/types/earthquake";
 type WorldMapLoaderProps = {
     markers: Earthquake[];
     className?: string;
+    selectedEarthquake?: Earthquake | null;
 };
 
 const WorldMap = dynamic(
@@ -21,7 +22,8 @@ const WorldMap = dynamic(
 
 export default function WorldMapLoader({
   markers,
-  className
+  className,
+  selectedEarthquake
 }: WorldMapLoaderProps) {
-  return <WorldMap markers={markers} className={className} />;
+  return <WorldMap markers={markers} className={className} selectedEarthquake={selectedEarthquake} />;
 }
