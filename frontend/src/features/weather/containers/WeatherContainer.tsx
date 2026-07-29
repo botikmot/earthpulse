@@ -74,7 +74,6 @@ export function WeatherContainer() {
                 <div className="mb-3 flex items-center justify-end">
                     <p className="text-xs text-muted-foreground">
                         {refreshing ? (
-
                         <>
                             <span className="animate-spin">
                                 🔄
@@ -82,16 +81,13 @@ export function WeatherContainer() {
 
                             Updating...
                         </>
-
                     ) : (
-
                         <>
                             Updated{" "}
                             <RelativeTime
                                 timestamp={lastUpdated}
                             />
                         </>
-
                     )}
                     </p>
                 </div>

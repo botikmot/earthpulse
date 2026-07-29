@@ -7,7 +7,6 @@ import { PageHeader } from "@/components/layout/PageHeader";
 
 import { EarthquakeStats } from "@/features/earthquakes/components/EarthquakeStats";
 import { EarthquakeTable } from "@/features/earthquakes/components/EarthquakeTable";
-//import { EarthquakeMapPreview } from "@/features/earthquakes/components/EarthquakeMapPreview";
 import { useEarthquakes } from "@/hooks/useEarthquakes";
 import { Loading } from "@/components/ui/Loading";
 import { ErrorMessage } from "@/components/ui/ErrorMessage";
@@ -19,6 +18,7 @@ export default function EarthquakePage() {
     const {
         earthquakes,
         loading,
+        refreshing,
         error,
         refetch,
     } = useEarthquakes();
@@ -47,13 +47,24 @@ export default function EarthquakePage() {
 
                 badge={
 
-                    <Badge variant="destructive">
+                    <div className="flex items-center gap-3">
 
-                        LIVE
+                        <Badge variant="destructive">
 
-                    </Badge>
+                            LIVE
 
-                }
+                        </Badge>
+
+                            {refreshing && (
+                                <span className="text-xs text-muted-foreground flex items-center gap-2">
+                                    <span className="animate-spin">
+                                        🔄
+                                    </span>
+                                    Updating...
+                                </span>
+                            )}
+                        </div>
+                    }
 
             />
 

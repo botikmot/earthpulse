@@ -1,6 +1,9 @@
 import { Card } from "@/components/ui/card";
-import EarthquakeWorldMap from "@/features/earthquakes/components/EarthquakeWorldMap";
 import { useEarthquakes } from "@/hooks/useEarthquakes";
+import WorldMapLoader from "./WorldMapLoader";
+import { useWeather } from "@/hooks/useWeather";
+import { useLocationStore } from "@/stores/location.store";
+import { useLiveMapStore } from "@/stores/liveMap.store";
 
 type Props = {
     selectedEarthquakeId?: string | null;
@@ -9,6 +12,20 @@ type Props = {
 export function FullWorldMap({
     selectedEarthquakeId
 }: Props) {
+
+    const location = useLocationStore((state) => state.location)
+
+    const layers = useLiveMapStore(
+        (state) => state.layers
+    );
+
+    const {
+        weather,
+    } = useWeather({
+        latitude: location?.latitude,
+        longitude: location?.longitude,
+        enabled: !!location,
+    });
 
     const {
         earthquakes,
@@ -23,13 +40,29 @@ export function FullWorldMap({
 
         ) ?? null;
 
+    const weatherMarker =
+            weather && location
+                ? {
+                    latitude: location.latitude,
+                    longitude: location.longitude,
+                    city: location.city,
+                    temperature: weather.temperature,
+                    weatherCode: weather.weatherCode,
+                } : undefined;
+
     return (
 
         <Card className="overflow-hidden">
 
             <div className="h-[650px]">
 
-                <EarthquakeWorldMap className="h-[650px]" selectedEarthquake={selectedEarthquake}/>
+                <WorldMapLoader
+                    markers={earthquakes}
+                    weather={weatherMarker}
+                    selectedEarthquake={selectedEarthquake}
+                    className="h-[650px]"
+                    layers={layers}
+                />
 
             </div>
 

@@ -4,7 +4,6 @@ import {
     Map,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
     Select,
@@ -13,8 +12,21 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
+import { useLiveMapStore } from "@/stores/liveMap.store";
+
 
 export function LiveMapControls() {
+
+    const {
+        layers,
+        toggleLayer,
+    } = useLiveMapStore();
 
     return (
 
@@ -61,13 +73,88 @@ export function LiveMapControls() {
 
             </Select>
 
-            <Button
-                variant="outline"
-                className="gap-2"
-            >
-                <Layers3 className="h-4 w-4" />
-                Layers
-            </Button>
+            <Popover>
+
+                <PopoverTrigger className="inline-flex items-center text-sm">
+                    <Layers3 className="mr-2 h-4 w-4" />
+                    Layers
+                </PopoverTrigger>
+
+                <PopoverContent
+                    className="w-52"
+                >
+
+                    <div className="space-y-4">
+
+                        <div className="flex items-center justify-between">
+
+                            <span>Earthquakes</span>
+
+                            <Checkbox
+
+                                checked={layers.earthquake}
+
+                                onCheckedChange={() =>
+                                    toggleLayer("earthquake")
+                                }
+
+                            />
+
+                        </div>
+
+                        <div className="flex items-center justify-between">
+
+                            <span>Weather</span>
+
+                            <Checkbox
+
+                                checked={layers.weather}
+
+                                onCheckedChange={() =>
+                                    toggleLayer("weather")
+                                }
+
+                            />
+
+                        </div>
+
+                        <div className="flex items-center justify-between">
+
+                            <span>Volcanoes</span>
+
+                            <Checkbox
+
+                                checked={layers.volcano}
+
+                                onCheckedChange={() =>
+                                    toggleLayer("volcano")
+                                }
+
+                            />
+
+                        </div>
+
+                        <div className="flex items-center justify-between">
+
+                            <span>Wildfires</span>
+
+                            <Checkbox
+
+                                checked={layers.wildfire}
+
+                                onCheckedChange={() =>
+                                    toggleLayer("wildfire")
+                                }
+
+                            />
+
+                        </div>
+
+                    </div>
+
+                </PopoverContent>
+
+            </Popover>
 
         </div>
 

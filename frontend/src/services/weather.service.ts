@@ -56,6 +56,7 @@ function mapWeatherResponse(
                     response.daily.weather_code[index]
                 ),
         })),
+        weatherCode: response.current.weather_code,
     };
 }
 

@@ -18,4 +18,5 @@ export interface Weather {
     sunrise: string;
     sunset: string;
     forecast: WeatherForecast[];
+    weatherCode: number;
 }

@@ -3,7 +3,6 @@
 import { Badge } from "@/components/ui/badge";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { useSearchParams } from "next/navigation";
-//import { LiveMapContainer } from "@/features/map/containers/LiveMapContainer";
 import { FullWorldMap } from "@/features/map/components/FullWorldMap";
 import { LiveMapLegend } from "@/features/map/components/LiveMapLegend";
 import { LiveMapControls } from "@/features/map/components/LiveMapControls";

@@ -3,19 +3,29 @@ import "leaflet/dist/leaflet.css";
 import type { Earthquake } from "@/types/earthquake";
 import { cn } from "@/lib/utils";
 import { MapFocusController } from "./MapFocusController";
-//import { MapClickController } from "./MapClickController";
-import { EarthquakeMarker } from "./EarthquakeMarker";
+import { EarthquakeLayer } from "./EarthquakeLayer";
+import { WeatherLayer } from "./WeatherLayer";
 
 type WorldMapProps = {
-    markers: Earthquake[];
+    earthquakes?: Earthquake[];
+    weather?: {
+        latitude: number;
+        longitude: number;
+        city: string;
+        temperature: number;
+        weatherCode: number;
+    };
     height?: string;
     center?: [number, number];
     zoom?: number;
     className?: string;
     selectedEarthquake?: Earthquake | null;
-    layer:
-        | "earthquake"
-        | "weather";
+    layers: {
+        earthquake: boolean;
+        weather: boolean;
+        volcano: boolean;
+        wildfire: boolean;
+    };
     onEarthquakeSelect?: (earthquake: Earthquake)=>void;
     onMapClick?:
         (
@@ -25,13 +35,17 @@ type WorldMapProps = {
 };
 
 export default function WorldMap({
-  markers,
+  earthquakes,
+  weather,
   center,
   className,
   zoom,
   selectedEarthquake,
+  layers,
 }: WorldMapProps) {
   
+    console.log('layer:',layers);
+
   return (
     <MapContainer
       center={center ?? [12.8797, 121.7740]}
@@ -47,17 +61,23 @@ export default function WorldMap({
         <MapFocusController
             earthquake={selectedEarthquake ?? null}
         />
-        {/* <MapClickController onMapClick={loadWeather} /> */}
+        
+        {layers.earthquake && earthquakes && (
+            <EarthquakeLayer
+                markers={earthquakes}
+                selectedEarthquake={selectedEarthquake}
+            />
+        )}
 
-        {markers.map((earthquake) => (
-          <EarthquakeMarker
-              key={earthquake.id}
-              earthquake={earthquake}
-              selected={
-                  earthquake.id === selectedEarthquake?.id
-              }
-          />
-        ))}
+        {layers.weather && weather && (
+            <WeatherLayer
+                latitude={weather.latitude}
+                longitude={weather.longitude}
+                city={weather.city}
+                temperature={weather.temperature}
+                weatherCode={weather.weatherCode}
+            />
+        )}
 
     </MapContainer>
   );
