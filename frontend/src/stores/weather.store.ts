@@ -7,10 +7,12 @@ type WeatherState = {
     error: string | null;
 
     lastUpdated: number | null;
+    refreshing: boolean;
 
     setWeather: (weather: Weather) => void;
     setLoading: (loading: boolean) => void;
     setError: (error: string | null) => void;
+    setRefreshing: (refreshing:boolean) => void;
 };
 
 export const useWeatherStore =
@@ -20,6 +22,12 @@ create<WeatherState>((set) => ({
     loading: true,
     error: null,
     lastUpdated: null,
+    refreshing: false,
+
+    setRefreshing: (refreshing) =>
+        set({
+            refreshing,
+        }),
 
     setWeather: (weather) =>
         set({

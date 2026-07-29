@@ -10,13 +10,18 @@ import { WeatherInsights } from "../components/WeatherInsights";
 import { WeatherSunCard } from "../components/WeatherSunCard";
 import { useLocationStore } from "@/stores/location.store";
 import { useWeatherStore } from "@/stores/weather.store";
-import { formatRelativeTime } from "@/lib/date";
+import { RelativeTime } from "@/components/common/RelativeTime";
 
 export function WeatherContainer() {
 
     const lastUpdated =
         useWeatherStore(
             (state) => state.lastUpdated
+        );
+
+    const refreshing =
+        useWeatherStore(
+            (state) => state.refreshing
         );
 
     const location =
@@ -68,10 +73,26 @@ export function WeatherContainer() {
             <div className="mt-6">
                 <div className="mb-3 flex items-center justify-end">
                     <p className="text-xs text-muted-foreground">
-                        Updated{" "}
-                        {lastUpdated
-                            ? formatRelativeTime(lastUpdated)
-                            : "—"}
+                        {refreshing ? (
+
+                        <>
+                            <span className="animate-spin">
+                                🔄
+                            </span>
+
+                            Updating...
+                        </>
+
+                    ) : (
+
+                        <>
+                            Updated{" "}
+                            <RelativeTime
+                                timestamp={lastUpdated}
+                            />
+                        </>
+
+                    )}
                     </p>
                 </div>
 

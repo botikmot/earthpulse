@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useWeatherStore } from "@/stores/weather.store";
 import { fetchWeather } from "@/services/weather.service";
+import { useAutoRefresh } from "./useAutoRefresh";
+import { CACHE } from "@/constants/cache";
 
 type UseWeatherOptions = {
     latitude?: number;
@@ -17,33 +19,40 @@ export function useWeather({
     const {
         weather,
         loading,
+        //refreshing,
         error,
         lastUpdated,
         setWeather,
         setLoading,
+        setRefreshing,
         setError,
     } = useWeatherStore();
 
-    const loadWeather = async () => {
-
-        const TEN_MINUTES = 10 * 60 * 1000;
+    const loadWeather = useCallback(
+        async (force = false) => {
 
         if (
+            !force &&
             weather &&
             lastUpdated &&
-            Date.now() - lastUpdated < TEN_MINUTES
+            Date.now() - lastUpdated < CACHE.WEATHER
             ) {
                 return;
         }
 
         try {
-            setLoading(true);
+            if (weather) {
+                setRefreshing(true);
+            } else {
+                setLoading(true);
+            }
             setError(null);
 
             if (
                 latitude === undefined ||
                 longitude === undefined
             ) {
+                setError("Location unavailable.");
                 return;
             }
 
@@ -56,16 +65,41 @@ export function useWeather({
             setError("Failed to load weather.");
         } finally {
             setLoading(false);
+            setRefreshing(false);
         }
-    }
+    },
+    [
+        latitude,
+        longitude,
+        weather,
+        lastUpdated,
+        setWeather,
+        setLoading,
+        setRefreshing,
+        setError,
+    ])
+
+    const refreshWeather = useCallback(() => {
+        console.log('updating..')
+        void loadWeather(true);
+
+    }, [loadWeather]);
 
     useEffect(() => {
 
         if (!enabled) return;
-
         void loadWeather();
 
-    }, [latitude, longitude, enabled]);
+    }, [
+        enabled,
+        loadWeather,
+    ]);
+
+    useAutoRefresh({
+        enabled,
+        interval: CACHE.WEATHER,
+        callback: refreshWeather,
+    });
 
     return {
         weather,
