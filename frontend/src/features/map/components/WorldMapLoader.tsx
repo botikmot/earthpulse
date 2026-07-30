@@ -3,11 +3,14 @@
 import dynamic from "next/dynamic";
 import { Loading } from "@/components/ui/Loading";
 import type { Earthquake } from "@/types/earthquake";
+import type { Wildfire } from "@/types/wildfire";
 
 type WorldMapLoaderProps = {
     markers?: Earthquake[];
+    wildfires?: Wildfire[];
     className?: string;
     selectedEarthquake?: Earthquake | null;
+    selectedWildfire?: Wildfire | null;
     layers: {
         earthquake: boolean;
         weather: boolean;
@@ -37,14 +40,18 @@ export default function WorldMapLoader({
   markers,
   className,
   selectedEarthquake,
+  selectedWildfire,
   layers,
   weather,
+  wildfires,
 }: WorldMapLoaderProps) {
   return <WorldMap 
             earthquakes={markers}
+            wildfires={wildfires}
             weather={weather}
             className={className} 
-            selectedEarthquake={selectedEarthquake} 
+            selectedEarthquake={selectedEarthquake}
+            selectedWildfire={selectedWildfire}
             layers={layers}
           />;
 }

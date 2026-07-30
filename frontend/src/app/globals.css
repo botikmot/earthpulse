@@ -186,3 +186,40 @@ body {
   }
 
 }
+
+.wildfire-marker {
+    position: relative;
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wildfire-marker.selected::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -6px;
+
+    border-radius: 9999px;
+
+    background: rgb(239 68 68 / .35);
+
+    animation: earthquakePulse 1.5s infinite;
+
+    z-index: 0;
+}
+
+.wildfire-marker svg {
+    position: relative;
+    z-index: 2;
+}
+
+.wildfire-cluster svg{
+    width:20px;
+    height:20px;
+    flex-shrink:0;
+}

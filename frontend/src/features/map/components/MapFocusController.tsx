@@ -1,23 +1,27 @@
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
-import type { Earthquake } from "@/types/earthquake";
+
+type Position = {
+    latitude: number;
+    longitude: number;
+};
 
 type Props = {
-    earthquake: Earthquake | null;
+    position: Position | null;
 };
 
 export function MapFocusController({
-    earthquake,
+    position,
 }: Props) {
 
     const map = useMap();
 
     useEffect(() => {
 
-        if (!earthquake) return;
+        if (!position) return;
 
         map.flyTo(
-            earthquake.position,
+            [position.latitude, position.longitude],
             8,
             {
                 animate: true,
@@ -25,7 +29,7 @@ export function MapFocusController({
             }
         );
 
-    }, [earthquake, map]);
+    }, [position, map]);
 
     return null;
 }

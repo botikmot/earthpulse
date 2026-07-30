@@ -72,7 +72,13 @@ export function LiveMapLegend() {
                         ? "default"
                         : "outline"
                 }
-                className={`gap-2 ${
+                className={`
+                    gap-2 
+                    cursor-pointer
+                    transition-all
+                    duration-200
+                    hover:scale-105
+                    ${
                     !layers.wildfire
                         ? "opacity-40"
                         : ""

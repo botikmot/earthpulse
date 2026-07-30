@@ -20,7 +20,7 @@ export const useLiveMapStore = create<LiveMapStore>((set) => ({
         earthquake: true,
         weather: true,
         volcano: false,
-        wildfire: false,
+        wildfire: true,
     },
 
     toggleLayer: (layer) =>

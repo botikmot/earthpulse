@@ -12,6 +12,7 @@ export default function LiveMapPage() {
 
     const searchParams = useSearchParams();
     const selectedEarthquakeId = searchParams.get("earthquake");
+    const selectedWildfireId = searchParams.get("wildfire");
 
     return (
 
@@ -29,7 +30,10 @@ export default function LiveMapPage() {
 
             <LiveMapLegend />
 
-            <FullWorldMap selectedEarthquakeId={selectedEarthquakeId}/>
+            <FullWorldMap 
+                selectedEarthquakeId={selectedEarthquakeId}
+                selectedWildfireId={selectedWildfireId}
+            />
 
             <LiveMapControls />
 

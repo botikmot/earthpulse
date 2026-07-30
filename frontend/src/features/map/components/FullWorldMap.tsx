@@ -4,13 +4,16 @@ import WorldMapLoader from "./WorldMapLoader";
 import { useWeather } from "@/hooks/useWeather";
 import { useLocationStore } from "@/stores/location.store";
 import { useLiveMapStore } from "@/stores/liveMap.store";
+import { useWildfires } from "@/hooks/useWildfires";
 
 type Props = {
     selectedEarthquakeId?: string | null;
+    selectedWildfireId?: string | null;
 };
 
 export function FullWorldMap({
-    selectedEarthquakeId
+    selectedEarthquakeId,
+    selectedWildfireId,
 }: Props) {
 
     const location = useLocationStore((state) => state.location)
@@ -31,13 +34,22 @@ export function FullWorldMap({
         earthquakes,
     } = useEarthquakes();
 
+    const {
+        wildfires,
+    } = useWildfires();
+
     const selectedEarthquake =
         earthquakes.find(
-
             earthquake =>
                 earthquake.id ===
                 selectedEarthquakeId
+        ) ?? null;
 
+    const selectedWildfire =
+        wildfires.find(
+            wildfire =>
+                wildfire.id ===
+                selectedWildfireId
         ) ?? null;
 
     const weatherMarker =
@@ -59,7 +71,9 @@ export function FullWorldMap({
                 <WorldMapLoader
                     markers={earthquakes}
                     weather={weatherMarker}
+                    wildfires={wildfires}
                     selectedEarthquake={selectedEarthquake}
+                    selectedWildfire={selectedWildfire}
                     className="h-[650px]"
                     layers={layers}
                 />

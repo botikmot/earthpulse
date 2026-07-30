@@ -1,13 +1,16 @@
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import type { Earthquake } from "@/types/earthquake";
+import type { Wildfire } from "@/types/wildfire";
 import { cn } from "@/lib/utils";
 import { MapFocusController } from "./MapFocusController";
 import { EarthquakeLayer } from "./EarthquakeLayer";
 import { WeatherLayer } from "./WeatherLayer";
+import { WildfireLayer } from "@/features/wildfires/components/WildfireLayer";
 
 type WorldMapProps = {
     earthquakes?: Earthquake[];
+    wildfires?: Wildfire[];
     weather?: {
         latitude: number;
         longitude: number;
@@ -20,6 +23,7 @@ type WorldMapProps = {
     zoom?: number;
     className?: string;
     selectedEarthquake?: Earthquake | null;
+    selectedWildfire?: Wildfire | null;
     layers: {
         earthquake: boolean;
         weather: boolean;
@@ -36,16 +40,16 @@ type WorldMapProps = {
 
 export default function WorldMap({
   earthquakes,
+  wildfires,
   weather,
   center,
   className,
   zoom,
   selectedEarthquake,
+  selectedWildfire,
   layers,
 }: WorldMapProps) {
   
-    console.log('layer:',layers);
-
   return (
     <MapContainer
       center={center ?? [12.8797, 121.7740]}
@@ -59,7 +63,24 @@ export default function WorldMap({
         <TileLayer attribution="&copy; OpenStreetMap contributors" url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         <MapFocusController
-            earthquake={selectedEarthquake ?? null}
+            position={
+                selectedEarthquake
+                    ? {
+                        latitude: selectedEarthquake.position[0],
+                        longitude: selectedEarthquake.position[1],
+                    }
+                    : selectedWildfire
+                    ? {
+                        latitude: selectedWildfire.latitude,
+                        longitude: selectedWildfire.longitude,
+                    }
+                    : weather
+                    ? {
+                        latitude: weather.latitude,
+                        longitude: weather.longitude,
+                    }
+                    : null
+            }
         />
         
         {layers.earthquake && earthquakes && (
@@ -76,6 +97,13 @@ export default function WorldMap({
                 city={weather.city}
                 temperature={weather.temperature}
                 weatherCode={weather.weatherCode}
+            />
+        )}
+
+        {layers.wildfire && wildfires && (
+            <WildfireLayer
+                markers={wildfires}
+                selectedWildfire={selectedWildfire}
             />
         )}
 
