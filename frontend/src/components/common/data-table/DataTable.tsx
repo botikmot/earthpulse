@@ -22,7 +22,7 @@ import {
 
 import { DataTablePagination } from "./DataTablePagination";
 import { DataTableToolbar } from "./DataTableToolbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Props<TData> = {
     columns: ColumnDef<TData>[];
@@ -63,6 +63,58 @@ export function DataTable<TData>({
         },
     });
 
+    const handleSortChange = (value: string) => {
+
+        switch (value) {
+            case "latest":
+                setSorting([
+                    {
+                        id: "date",
+                        desc: true,
+                    },
+                ]);
+                break;
+
+            case "oldest":
+                setSorting([
+                    {
+                        id: "date",
+                        desc: false,
+                    },
+                ]);
+                break;
+
+            case "largest":
+                setSorting([
+                    {
+                        id: "area",
+                        desc: true,
+                    },
+                ]);
+                break;
+
+            case "smallest":
+                setSorting([
+                    {
+                        id: "area",
+                        desc: false,
+                    },
+                ]);
+                break;
+
+            case "alphabetical":
+                setSorting([
+                    {
+                        id: "title",
+                        desc: false,
+                    },
+                ]);
+                break;
+
+        }
+
+    };
+
     return (
 
         <div className="space-y-4 mt-6">
@@ -72,6 +124,10 @@ export function DataTable<TData>({
                 onSearchChange={
                     setGlobalFilter
                 }
+                sort={
+                    sorting[0]?.id ?? "latest"
+                }
+                onSortChange={handleSortChange}
                 onRefresh={onRefresh}
                 placeholder={searchPlaceholder}
             />

@@ -63,6 +63,22 @@ export function StatCard({
                         {value}
                     </div>
 
+                    {subtitle && (
+
+                        <p className="mt-1 text-xs text-muted-foreground">
+                            {subtitle}
+                        </p>
+
+                    )}
+
+                    {trend && (
+
+                        <div className="mt-2">
+                            {trend}
+                        </div>
+
+                    )}
+
                 </div>
 
                 <div
