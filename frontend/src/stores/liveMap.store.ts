@@ -3,7 +3,7 @@ import { create } from "zustand";
 type LiveMapLayers = {
     earthquake: boolean;
     weather: boolean;
-    volcano: boolean;
+    airQuality: boolean;
     wildfire: boolean;
 };
 
@@ -19,7 +19,7 @@ export const useLiveMapStore = create<LiveMapStore>((set) => ({
     layers: {
         earthquake: true,
         weather: true,
-        volcano: false,
+        airQuality: true,
         wildfire: true,
     },
 

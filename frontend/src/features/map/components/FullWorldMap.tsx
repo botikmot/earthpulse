@@ -5,6 +5,7 @@ import { useWeather } from "@/hooks/useWeather";
 import { useLocationStore } from "@/stores/location.store";
 import { useLiveMapStore } from "@/stores/liveMap.store";
 import { useWildfires } from "@/hooks/useWildfires";
+import { useAirQuality } from "@/hooks/useAirQuality";
 
 type Props = {
     selectedEarthquakeId?: string | null;
@@ -27,6 +28,16 @@ export function FullWorldMap({
     } = useWeather({
         latitude: location?.latitude,
         longitude: location?.longitude,
+        enabled: !!location,
+    });
+
+    const {
+        airQuality,
+    } = useAirQuality({
+        latitude: location?.latitude,
+        longitude: location?.longitude,
+        city: location?.city,
+        country: location?.country,
         enabled: !!location,
     });
 
@@ -72,6 +83,7 @@ export function FullWorldMap({
                     markers={earthquakes}
                     weather={weatherMarker}
                     wildfires={wildfires}
+                    airQuality={airQuality}
                     selectedEarthquake={selectedEarthquake}
                     selectedWildfire={selectedWildfire}
                     className="h-[650px]"

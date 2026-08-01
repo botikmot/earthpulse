@@ -223,3 +223,20 @@ body {
     height:20px;
     flex-shrink:0;
 }
+
+.air-marker{
+    width:18px;
+    height:18px;
+    border-radius:9999px;
+    border:3px solid white;
+    box-shadow:0 4px 12px rgb(0 0 0 /.35);
+}
+
+.air-marker.selected::before{
+    content:"";
+    position:absolute;
+    inset:-8px;
+    border-radius:9999px;
+    background:rgb(59 130 246 /.30);
+    animation:earthquakePulse 1.5s infinite;
+}

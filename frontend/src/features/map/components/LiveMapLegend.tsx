@@ -92,8 +92,25 @@ export function LiveMapLegend() {
             </Badge>
             
             <Badge
-                variant="secondary"
-                className="gap-2 opacity-40"
+                variant={
+                    layers.airQuality
+                        ? "default"
+                        : "outline"
+                }
+                className={`
+                    gap-2 
+                    cursor-pointer
+                    transition-all
+                    duration-200
+                    hover:scale-105
+                    ${
+                    !layers.airQuality
+                        ? "opacity-40"
+                        : ""
+                }`}
+                onClick={() =>
+                    toggleLayer("airQuality")
+                }
             >
                 <span className="h-3 w-3 rounded-full bg-green-500" />
                 Air Quality
