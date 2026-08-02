@@ -6,15 +6,18 @@ import { useLocationStore } from "@/stores/location.store";
 import { useLiveMapStore } from "@/stores/liveMap.store";
 import { useWildfires } from "@/hooks/useWildfires";
 import { useAirQuality } from "@/hooks/useAirQuality";
+import { useISS } from "@/hooks/useISS";
 
 type Props = {
     selectedEarthquakeId?: string | null;
     selectedWildfireId?: string | null;
+    focusISS?: boolean;
 };
 
 export function FullWorldMap({
     selectedEarthquakeId,
     selectedWildfireId,
+    focusISS,
 }: Props) {
 
     const location = useLocationStore((state) => state.location)
@@ -48,6 +51,10 @@ export function FullWorldMap({
     const {
         wildfires,
     } = useWildfires();
+
+    const {
+        iss,
+    } = useISS();
 
     const selectedEarthquake =
         earthquakes.find(
@@ -84,8 +91,10 @@ export function FullWorldMap({
                     weather={weatherMarker}
                     wildfires={wildfires}
                     airQuality={airQuality}
+                    iss={iss}
                     selectedEarthquake={selectedEarthquake}
                     selectedWildfire={selectedWildfire}
+                    focusISS={focusISS}
                     className="h-[650px]"
                     layers={layers}
                 />

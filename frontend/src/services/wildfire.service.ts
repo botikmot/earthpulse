@@ -81,8 +81,6 @@ export async function fetchWildfires(): Promise<Wildfire[]> {
     }
 
     const data: EonetResponse = await response.json();
-    console.log('wildfire:', data);
-    console.log(data.events.slice(0, 3));
 
     return mapWildfires(data);
 

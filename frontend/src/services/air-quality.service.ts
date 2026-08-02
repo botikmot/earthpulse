@@ -99,8 +99,7 @@ export async function fetchAirQuality(
     }
 
     const data: OpenWeatherAirResponse = await response.json();
-    console.log('air-quality:', data)
-
+    
     return mapAirQuality(
         data,
         city,

@@ -8,12 +8,15 @@ import { MapFocusController } from "./MapFocusController";
 import { EarthquakeLayer } from "./EarthquakeLayer";
 import { LocationLayer } from "./LocationLayer";
 import { WildfireLayer } from "@/features/wildfires/components/WildfireLayer";
-//import { AirQualityLayer } from "@/features/air-quality/components/AirQualityLayer";
+import type { ISS } from "@/types/iss";
+import { ISSLayer } from "@/features/iss/components/ISSLayer";
 
 type WorldMapProps = {
     earthquakes?: Earthquake[];
     wildfires?: Wildfire[];
     airQuality?: AirQuality | null;
+    iss?: ISS | null;
+    focusISS?: boolean;
     weather?: {
         latitude: number;
         longitude: number;
@@ -32,6 +35,7 @@ type WorldMapProps = {
         weather: boolean;
         airQuality: boolean;
         wildfire: boolean;
+        iss: boolean;
     };
     onEarthquakeSelect?: (earthquake: Earthquake)=>void;
     onMapClick?:
@@ -46,6 +50,8 @@ export default function WorldMap({
   wildfires,
   airQuality,
   weather,
+  iss,
+  focusISS,
   center,
   className,
   zoom,
@@ -65,6 +71,11 @@ const focusPosition =
               latitude: selectedWildfire.latitude,
               longitude: selectedWildfire.longitude,
           }
+        : focusISS && iss
+        ? {
+            latitude: iss.latitude,
+            longitude: iss.longitude,
+        }
         : weather
         ? {
               latitude: weather.latitude,
@@ -118,11 +129,11 @@ const focusPosition =
             />
         )}
 
-        {/* {layers.airQuality && airQuality && (
-            <AirQualityLayer
-                airQuality={airQuality}
+        {layers.iss && iss && (
+            <ISSLayer
+                iss={iss}
             />
-        )} */}
+        )}
 
     </MapContainer>
   );

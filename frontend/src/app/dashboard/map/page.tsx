@@ -13,6 +13,7 @@ export default function LiveMapPage() {
     const searchParams = useSearchParams();
     const selectedEarthquakeId = searchParams.get("earthquake");
     const selectedWildfireId = searchParams.get("wildfire");
+    const focusISS = searchParams.get("iss") === "true";
 
     return (
 
@@ -33,6 +34,7 @@ export default function LiveMapPage() {
             <FullWorldMap 
                 selectedEarthquakeId={selectedEarthquakeId}
                 selectedWildfireId={selectedWildfireId}
+                focusISS={focusISS}
             />
 
             <LiveMapControls />

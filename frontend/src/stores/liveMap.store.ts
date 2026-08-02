@@ -5,6 +5,7 @@ type LiveMapLayers = {
     weather: boolean;
     airQuality: boolean;
     wildfire: boolean;
+    iss: boolean;
 };
 
 type LiveMapStore = {
@@ -21,6 +22,7 @@ export const useLiveMapStore = create<LiveMapStore>((set) => ({
         weather: true,
         airQuality: true,
         wildfire: true,
+        iss: true,
     },
 
     toggleLayer: (layer) =>
