@@ -55,6 +55,7 @@ function mapWeatherResponse(
                 mapWeatherCode(
                     response.daily.weather_code[index]
                 ),
+            weatherCode: response.daily.weather_code[index],
         })),
         weatherCode: response.current.weather_code,
     };
@@ -72,6 +73,7 @@ export async function fetchWeather(latitude: number,
         }
 
         const data: WeatherResponse = await response.json();
+        console.log('weather:',data)
         
         return mapWeatherResponse(data)
 

@@ -6,8 +6,16 @@ import {
 } from "lucide-react";
 
 import { StatCard } from "@/components/common/StatCard";
+import { useDashboardStats } from "@/hooks/useDashboardStats";
 
 export function DashboardStats() {
+
+    const {
+        earthquakesCount,
+        weatherAlerts,
+        wildfiresCount,
+        airQualityIndex,
+    } = useDashboardStats();
 
     return (
 
@@ -17,28 +25,32 @@ export function DashboardStats() {
 
                 <StatCard
                     title="Earthquakes"
-                    value={126}
+                    value={earthquakesCount}
+                    subtitle="Recorded Events"
                     icon={Mountain}
                     variant="earthquake"
                 />
 
                 <StatCard
                     title="Weather Alerts"
-                    value={8}
+                    value={weatherAlerts}
+                    subtitle="Active Alerts"
                     icon={CloudSun}
                     variant="weather"
                 />
 
                 <StatCard
                     title="Wildfires"
-                    value={15}
+                    value={wildfiresCount}
+                    subtitle="Active Fires"
                     icon={Flame}
                     variant="wildfire"
                 />
 
                 <StatCard
                     title="Air Quality"
-                    value={12}
+                    value={airQualityIndex}
+                    subtitle="Current AQI"
                     icon={Wind}
                     variant="air"
                 />

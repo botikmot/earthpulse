@@ -240,3 +240,18 @@ body {
     background:rgb(59 130 246 /.30);
     animation:earthquakePulse 1.5s infinite;
 }
+
+.animate-dash {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: dash 2s linear infinite;
+}
+
+
+@keyframes dash {
+
+    to {
+        stroke-dashoffset: 0;
+    }
+
+}

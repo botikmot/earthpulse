@@ -5,8 +5,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { useSearchParams } from "next/navigation";
 import { FullWorldMap } from "@/features/map/components/FullWorldMap";
 import { LiveMapLegend } from "@/features/map/components/LiveMapLegend";
-import { LiveMapControls } from "@/features/map/components/LiveMapControls";
-import { RecentMapEvents } from "@/features/map/components/RecentMapEvents";
+import { PageContainer } from "@/components/layout/PageContainer";
 
 export default function LiveMapPage() {
 
@@ -17,15 +16,18 @@ export default function LiveMapPage() {
 
     return (
 
-        <div className="p-8 space-y-8">
+        <PageContainer>
 
             <PageHeader
-                title="Live Map"
-                description="Explore real-time earthquakes, weather, wildfires and environmental events."
+                title="Live Earth Monitoring"
+                description="Monitor earthquakes, weather, air quality, wildfires, and the International Space Station in real time."
                 badge={
-                    <Badge variant="destructive">
-                        LIVE
-                    </Badge>
+                    <div className="flex items-center gap-2 rounded-full bg-green-50 px-3 py-1">
+                        <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-xs font-semibold text-green-700">
+                            LIVE
+                        </span>
+                    </div>
                 }
             />
 
@@ -36,12 +38,8 @@ export default function LiveMapPage() {
                 selectedWildfireId={selectedWildfireId}
                 focusISS={focusISS}
             />
-
-            <LiveMapControls />
-
-            <RecentMapEvents />
-
-        </div>
+        
+       </PageContainer>
 
     );
 

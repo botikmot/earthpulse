@@ -8,11 +8,13 @@ import { WeatherCard } from "./WeatherCard";
 type WeatherContainerProps = {
     latitude?: number;
     longitude?: number;
+    city?: string;
 }
 
 export function WeatherCardContainer({
     latitude,
-    longitude
+    longitude,
+    city,
 }: WeatherContainerProps) {
 
     const {
@@ -41,7 +43,7 @@ export function WeatherCardContainer({
     }
 
     return (
-        <WeatherCard weather={weather}/>
+        <WeatherCard weather={weather} city={city}/>
     );
 
 }

@@ -16,7 +16,7 @@ import { EarthquakeSheet } from "./EarthquakeSheet";
 import { EarthquakePagination } from "./EarthquakePagination";
 import { DEFAULT_PAGE_SIZE } from "@/constants/pagination";
 import { EarthquakeToolbar } from "./EarthquakeToolbar";
-import { useEarthquakeStore } from "../store/earthquake.store";
+import { useEarthquakeStore } from "@/stores/earthquake.store";
 import { MapPin } from "lucide-react";
 import { formatEarthquakeTime } from "@/utils/earthquake";
 

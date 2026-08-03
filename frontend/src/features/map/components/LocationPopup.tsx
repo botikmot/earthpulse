@@ -2,6 +2,8 @@
 
 import { Badge } from "@/components/ui/badge";
 import type { AirQuality } from "@/types/air-quality";
+import { getWeatherIcon } from "@/utils/weatherIcon";
+import { createElement } from "react";
 
 type Props = {
     city: string;
@@ -25,6 +27,9 @@ export function LocationPopup({
     weatherCode,
     airQuality,
 }: Props) {
+
+
+    const icon = getWeatherIcon(weatherCode);
 
     return (
 
@@ -50,10 +55,23 @@ export function LocationPopup({
                         {Math.round(temperature)}°
                     </span>
 
-                    <span className="text-3xl">
-                        {/* later ato ni ilisan ug icon */}
-                        🌤️
-                    </span>
+                    <div
+                        className="
+                            rounded-full
+                            bg-sky-100
+                            p-2
+                            dark:bg-sky-950
+                        "
+                    >
+                        {createElement(icon, {
+                            className: `
+                                h-8
+                                w-8
+                                text-sky-600
+                                dark:text-sky-400
+                            `,
+                        })}
+                    </div>
                 </div>
 
             </div>

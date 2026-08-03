@@ -1,7 +1,7 @@
 //import type { Earthquake } from "@/types/earthquake";
 import { useEffect, useCallback } from "react";
 import { fetchEarthquakes } from "@/services/earthquake.service";
-import { useEarthquakeStore } from "@/features/earthquakes/store/earthquake.store";
+import { useEarthquakeStore } from "@/stores/earthquake.store";
 import { useAutoRefresh } from "./useAutoRefresh";
 import { CACHE } from "@/constants/cache";
 

@@ -3,6 +3,7 @@ export interface WeatherForecast {
     maxTemperature: number;
     minTemperature: number;
     condition: string;
+    weatherCode: number;
 }
 
 export interface Weather {

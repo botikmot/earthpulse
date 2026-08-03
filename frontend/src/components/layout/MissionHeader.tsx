@@ -1,6 +1,6 @@
 "use client";
 
-import { Globe2 } from "lucide-react";
+import Image from "next/image";
 
 export default function MissionHeader() {
     return (
@@ -11,9 +11,14 @@ export default function MissionHeader() {
 
                 <div className="flex items-center gap-3">
 
-                    <div className="rounded-lg bg-primary p-2 text-primary-foreground">
+                    <div className="rounded-lg text-primary-foreground">
 
-                        <Globe2 className="h-5 w-5" />
+                        <Image
+                            src="/images/earthpulse_logo2.png"
+                            alt="EarthPulse"
+                            width={54}
+                            height={54}
+                        />
 
                     </div>
 
@@ -24,7 +29,7 @@ export default function MissionHeader() {
                         </h1>
 
                         <p className="text-xs text-muted-foreground">
-                            Real-Time Earth Monitoring Platform
+                            Monitor. Inform. Protect.{/* Real-Time Earth Monitoring Platform */}
                         </p>
 
                     </div>
@@ -35,7 +40,7 @@ export default function MissionHeader() {
 
                 <div className="text-xs text-muted-foreground">
 
-                    EarthPulse v1.0.0
+                    Build 1.0.0
 
                 </div>
 

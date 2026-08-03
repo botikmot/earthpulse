@@ -5,10 +5,12 @@ import { WeatherHero } from "./WeatherHero";
 
 type WeatherCardProps = {
     weather: Weather;
+    city?: string;
 };
 
 export function WeatherCard({
-    weather
+    weather,
+    city
 }: WeatherCardProps) {
 
     return (
@@ -19,6 +21,8 @@ export function WeatherCard({
             <WeatherHero
                 condition={weather.condition}
                 temperature={weather.temperature}
+                weatherCode={weather.weatherCode}
+                location={city}
             />
 
             <div className="space-y-3">

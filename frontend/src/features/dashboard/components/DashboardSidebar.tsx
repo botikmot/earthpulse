@@ -10,7 +10,7 @@ export default function DashboardSidebar() {
 
         <nav className="flex-1 px-3 py-6">
           <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Main
+              Navigation
           </p>
           <div className="space-y-1">
             {navigationItems.map((item) => (
@@ -24,7 +24,7 @@ export default function DashboardSidebar() {
 
         <div className="sticky bottom-0 border-t bg-background p-4">
           <p className="text-xs text-muted-foreground">
-              EarthPulse v1.0.0
+              Build 1.0.0
           </p>
         </div>
 

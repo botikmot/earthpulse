@@ -21,6 +21,7 @@ export function WeatherSummaryBanner({
                 temperature={weather.temperature}
                 condition={weather.condition}
                 location={location}
+                weatherCode={weather.weatherCode}
             />
 
             <div className="flex justify-center">

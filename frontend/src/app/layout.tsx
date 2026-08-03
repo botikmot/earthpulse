@@ -12,6 +12,9 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "EarthPulse",
   description: "real-time Earth Monitoring Platform",
+  icons: {
+    icon: "/images/earthpulse_favicon3.png", // or /favicon.png
+  },
 };
 
 export default function RootLayout({

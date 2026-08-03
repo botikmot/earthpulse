@@ -33,7 +33,7 @@ export function WeatherForecast({
                     min={item.minTemperature}
 
                     condition={item.condition}
-
+                    weatherCode={item.weatherCode}
                 />
 
             ))}

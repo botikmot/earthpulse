@@ -26,6 +26,7 @@ export function WeatherForecastSection({
                         max={item.maxTemperature}
                         min={item.minTemperature}
                         condition={item.condition}
+                        weatherCode={item.weatherCode}
                     />
                 ))}
 

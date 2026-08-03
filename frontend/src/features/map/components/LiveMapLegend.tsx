@@ -10,7 +10,7 @@ export function LiveMapLegend() {
 
     return (
 
-        <div className="flex flex-wrap gap-3 rounded-lg border bg-card p-4">
+        <div className="flex flex-wrap gap-3 rounded-lg border bg-card p-4 mb-4">
 
             <Badge
                 variant={
@@ -91,7 +91,7 @@ export function LiveMapLegend() {
                 Wildfires
             </Badge>
             
-            <Badge
+            {/* <Badge
                 variant={
                     layers.airQuality
                         ? "default"
@@ -114,7 +114,7 @@ export function LiveMapLegend() {
             >
                 <span className="h-3 w-3 rounded-full bg-green-500" />
                 Air Quality
-            </Badge>
+            </Badge> */}
 
         </div>
 

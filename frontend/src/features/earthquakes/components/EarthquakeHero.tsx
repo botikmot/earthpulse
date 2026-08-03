@@ -1,4 +1,11 @@
 import { Badge } from "@/components/ui/badge";
+import {
+    getSeverityLabel,
+    getSeverityVariant,
+    getEarthquakeSeverityIcon,
+} from "@/utils/earthquakeSeverity";
+import { MapPin } from "lucide-react";
+import { createElement } from "react";
 
 type EarthquakeHeroProps = {
     magnitude: number;
@@ -14,12 +21,29 @@ export function EarthquakeHero({
     subtitle = "Latest Recorded Event",
 }: EarthquakeHeroProps) {
 
+    const icon = getEarthquakeSeverityIcon(magnitude);
+
     return (
 
         <div className="mb-8 flex flex-col items-center text-center">
 
-            <div className="mb-3 text-6xl">
-                🌍
+           <div className="
+                mb-4
+                rounded-full
+                bg-orange-100
+                p-5
+                dark:bg-orange-950
+            ">
+
+                {createElement(icon, {
+                    className: `
+                        h-12
+                        w-12
+                        text-sky-600
+                        dark:text-sky-400
+                    `,
+                })}
+
             </div>
 
             <p className="text-lg font-medium text-muted-foreground">
@@ -31,15 +55,28 @@ export function EarthquakeHero({
             </h2>
 
             {severity && (
-                <Badge className="mt-3">
-                    {severity}
+                <Badge
+                    variant={
+                        getSeverityVariant(
+                            magnitude
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        ) as any
+                    }
+                    className="mt-3"
+                >
+
+                    {getSeverityLabel(
+                        magnitude
+                    )}
+
                 </Badge>
             )}
 
             {location && (
-                <p className="mt-4 text-lg font-medium">
+                <div className="mt-3 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                    <MapPin className="h-4 w-4"/>
                     {location}
-                </p>
+                </div>
             )}
 
             <p className="mt-2 text-sm text-muted-foreground">

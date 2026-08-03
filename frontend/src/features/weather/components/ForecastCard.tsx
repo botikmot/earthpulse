@@ -1,35 +1,25 @@
 import { Card } from "@/components/ui/card";
-import { Cloud, CloudRain, CloudSnow, Sun } from "lucide-react";
+import { createElement } from "react";
+import { getWeatherIcon } from "@/utils/weatherIcon";
 
 type Props = {
     day: string;
     max: number;
     min: number;
     condition: string;
+    weatherCode: number;
 };
-
-function getWeatherIcon(condition: string) {
-    if (condition.toLowerCase().includes("rain")) {
-        return <CloudRain className="h-8 w-8 text-blue-500" />;
-    }
-
-    if (condition.toLowerCase().includes("snow")) {
-        return <CloudSnow className="h-8 w-8 text-cyan-500" />;
-    }
-
-    if (condition.toLowerCase().includes("cloud")) {
-        return <Cloud className="h-8 w-8 text-slate-500" />;
-    }
-
-    return <Sun className="h-8 w-8 text-yellow-500" />;
-}
 
 export function ForecastCard({
     day,
     max,
     min,
     condition,
+    weatherCode,
 }: Props) {
+
+    const icon = getWeatherIcon(weatherCode);
+
     return (
         <Card className="p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
 
@@ -38,7 +28,14 @@ export function ForecastCard({
             </p>
 
             <div className="my-4 flex justify-center">
-                {getWeatherIcon(condition)}
+                {createElement(icon, {
+                    className: `
+                        h-10
+                        w-10
+                        text-sky-600
+                        dark:text-sky-400
+                    `,
+                })}
             </div>
 
             <div className="space-y-1">

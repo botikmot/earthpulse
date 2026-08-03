@@ -3,6 +3,8 @@ import L from "leaflet";
 import { getWeatherIcon } from "@/utils/weatherIcon";
 import type { AirQuality } from "@/types/air-quality";
 import { LocationPopup } from "./LocationPopup";
+import { renderToStaticMarkup } from "react-dom/server";
+import React from "react";
 
 type LocationLayerProps = {
     latitude: number;
@@ -22,6 +24,8 @@ export function LocationLayer({
     airQuality,
 }: LocationLayerProps) {
 
+    console.log('weatherCode::',weatherCode)
+
     const icon = new L.DivIcon({
         className: "weather-marker",
 
@@ -37,9 +41,17 @@ export function LocationLayer({
                     box-shadow:0 3px 10px rgba(0,0,0,.35);
                     white-space:nowrap;
                     border:2px solid white;
+                    display:flex;
+                    align-items:center;
+                    gap:4px;
                 "
             >
-                ${getWeatherIcon(weatherCode)}
+                ${renderToStaticMarkup(
+                    React.createElement(getWeatherIcon(weatherCode), {
+                        size: 18,
+                        strokeWidth: 2.5,
+                    })
+                )}
                 ${Math.round(temperature)}°
             </div>
         `,
