@@ -120,22 +120,6 @@ export function LiveMapControls() {
 
                         <div className="flex items-center justify-between">
 
-                            <span>Volcanoes</span>
-
-                            <Checkbox
-
-                                checked={layers.volcano}
-
-                                onCheckedChange={() =>
-                                    toggleLayer("volcano")
-                                }
-
-                            />
-
-                        </div>
-
-                        <div className="flex items-center justify-between">
-
                             <span>Wildfires</span>
 
                             <Checkbox

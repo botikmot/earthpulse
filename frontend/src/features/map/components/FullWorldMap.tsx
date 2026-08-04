@@ -1,60 +1,44 @@
 import { Card } from "@/components/ui/card";
-import { useEarthquakes } from "@/hooks/useEarthquakes";
 import WorldMapLoader from "./WorldMapLoader";
-import { useWeather } from "@/hooks/useWeather";
-import { useLocationStore } from "@/stores/location.store";
+import type { Earthquake } from "@/types/earthquake";
+import type { Wildfire } from "@/types/wildfire";
+import type { AirQuality } from "@/types/air-quality";
+import type { ISS } from "@/types/iss";
 import { useLiveMapStore } from "@/stores/liveMap.store";
-import { useWildfires } from "@/hooks/useWildfires";
-import { useAirQuality } from "@/hooks/useAirQuality";
-import { useISS } from "@/hooks/useISS";
+import { MapToolbar } from "./MapToolbar";
 
 type Props = {
+    earthquakes: Earthquake[];
+    wildfires: Wildfire[];
+    airQuality: AirQuality | null;
+    weather?: {
+        latitude:number;
+        longitude:number;
+        city:string;
+        temperature:number;
+        weatherCode:number;
+    };
+    iss: ISS | null;
     selectedEarthquakeId?: string | null;
     selectedWildfireId?: string | null;
     focusISS?: boolean;
 };
 
 export function FullWorldMap({
+    earthquakes,
+    wildfires,
+    weather,
+    airQuality,
+    iss,
     selectedEarthquakeId,
     selectedWildfireId,
     focusISS,
 }: Props) {
 
-    const location = useLocationStore((state) => state.location)
-
-    const layers = useLiveMapStore(
-        (state) => state.layers
-    );
-
-    const {
-        weather,
-    } = useWeather({
-        latitude: location?.latitude,
-        longitude: location?.longitude,
-        enabled: !!location,
-    });
-
-    const {
-        airQuality,
-    } = useAirQuality({
-        latitude: location?.latitude,
-        longitude: location?.longitude,
-        city: location?.city,
-        country: location?.country,
-        enabled: !!location,
-    });
-
-    const {
-        earthquakes,
-    } = useEarthquakes();
-
-    const {
-        wildfires,
-    } = useWildfires();
-
-    const {
-        iss,
-    } = useISS();
+    const layers =
+        useLiveMapStore(
+            (state) => state.layers
+        );
 
     const selectedEarthquake =
         earthquakes.find(
@@ -70,25 +54,17 @@ export function FullWorldMap({
                 selectedWildfireId
         ) ?? null;
 
-    const weatherMarker =
-            weather && location
-                ? {
-                    latitude: location.latitude,
-                    longitude: location.longitude,
-                    city: location.city,
-                    temperature: weather.temperature,
-                    weatherCode: weather.weatherCode,
-                } : undefined;
-
     return (
 
         <Card className="overflow-hidden">
 
-            <div className="h-[650px]">
+            <div className="relative h-[650px]">
+
+                <MapToolbar />
 
                 <WorldMapLoader
                     markers={earthquakes}
-                    weather={weatherMarker}
+                    weather={weather}
                     wildfires={wildfires}
                     airQuality={airQuality}
                     iss={iss}

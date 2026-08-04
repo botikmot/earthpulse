@@ -28,7 +28,7 @@ export function SidebarItem({
                 text-sm font-medium transition-all duration-200
                 ${
                     isActive
-                        ? "bg-muted text-foreground"
+                        ? "bg-gradient-to-r from-blue-600/30 via-green-500/30 to-transparent"
                         : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 }
             `}

@@ -57,6 +57,47 @@ export function EarthquakeTable({
         return "Light";
     }
 
+    function getSeverityClass(magnitude:number){
+
+        if(magnitude>=7){
+            return `
+                bg-red-100
+                text-red-700
+                border-red-200
+                dark:bg-red-950/40
+                dark:text-red-300
+            `;
+        }
+
+        if(magnitude>=6){
+            return `
+                bg-orange-100
+                text-orange-700
+                border-orange-200
+                dark:bg-orange-950/40
+                dark:text-orange-300
+            `;
+        }
+
+        if(magnitude>=5){
+            return `
+                bg-yellow-100
+                text-yellow-700
+                border-yellow-200
+                dark:bg-yellow-950/40
+                dark:text-yellow-300
+            `;
+        }
+
+        return `
+            bg-green-100
+            text-green-700
+            border-green-200
+            dark:bg-green-950/40
+            dark:text-green-300
+        `;
+    }
+
     const filteredEarthquakes = earthquakes.filter((earthquake) =>
         earthquake.location
             .toLowerCase()
@@ -157,8 +198,15 @@ export function EarthquakeTable({
 
                             <TableCell>
 
-                                <Badge>
-                                    {getSeverity(earthquake.magnitude)}
+                                <Badge
+                                    variant="outline"
+                                    className={getSeverityClass(
+                                        earthquake.magnitude
+                                    )}
+                                >
+                                    {getSeverity(
+                                        earthquake.magnitude
+                                    )}
                                 </Badge>
 
                             </TableCell>
@@ -166,6 +214,7 @@ export function EarthquakeTable({
                             <TableCell>
 
                                 <Button
+                                    className="cursor-pointer"
                                     variant="outline"
                                     size="sm"
                                     onClick={()=> setSelectedEarthquake(earthquake)}
@@ -196,7 +245,6 @@ export function EarthquakeTable({
                 open={!!selectedEarthquake}
                 onOpenChange={(open)=>{
                     if(!open){
-                        //setSelectedEarthquake(null);
                         clearSelectedEarthquake()
                     }
                 }}

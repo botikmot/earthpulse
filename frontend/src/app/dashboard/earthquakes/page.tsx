@@ -10,8 +10,8 @@ import { EarthquakeTable } from "@/features/earthquakes/components/EarthquakeTab
 import { useEarthquakes } from "@/hooks/useEarthquakes";
 import { Loading } from "@/components/ui/Loading";
 import { ErrorMessage } from "@/components/ui/ErrorMessage";
-import { EarthquakeInsights } from "@/features/earthquakes/components/EarthquakeInsights";
 import { EarthquakeSummaryBanner } from "@/features/earthquakes/components/EarthquakeSummaryBanner";
+import { EarthquakePageHero } from "@/features/earthquakes/components/EarthquakePageHero";
 
 export default function EarthquakePage() {
 
@@ -40,21 +40,13 @@ export default function EarthquakePage() {
         <PageContainer>
 
             <PageHeader
-
                 title="Earthquakes"
-
                 description="Monitor the latest seismic activity around the world."
-
                 badge={
-
                     <div className="flex items-center gap-3">
-
                         <Badge variant="destructive">
-
                             LIVE
-
                         </Badge>
-
                             {refreshing && (
                                 <span className="text-xs text-muted-foreground flex items-center gap-2">
                                     <span className="animate-spin">
@@ -65,18 +57,15 @@ export default function EarthquakePage() {
                             )}
                         </div>
                     }
-
             />
+
+            <EarthquakePageHero />
 
             <EarthquakeStats earthquakes={earthquakes} />
 
             <EarthquakeSummaryBanner earthquakes={earthquakes}/>
 
-            <EarthquakeInsights earthquakes={earthquakes}/>
-
             <EarthquakeTable earthquakes={earthquakes} refetch={refetch}/>
-
-            {/* <EarthquakeMapPreview /> */}
 
         </PageContainer>
 

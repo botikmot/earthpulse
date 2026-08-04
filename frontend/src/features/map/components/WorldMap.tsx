@@ -10,6 +10,8 @@ import { LocationLayer } from "./LocationLayer";
 import { WildfireLayer } from "@/features/wildfires/components/WildfireLayer";
 import type { ISS } from "@/types/iss";
 import { ISSLayer } from "@/features/iss/components/ISSLayer";
+import { MAP_TILES } from "@/constants/map-tiles";
+import { useMapStyleStore } from "@/stores/map-style.store";
 
 type WorldMapProps = {
     earthquakes?: Earthquake[];
@@ -60,6 +62,12 @@ export default function WorldMap({
   layers,
 }: WorldMapProps) {
 
+const mapStyle = useMapStyleStore(
+        (state) => state.style
+    );
+
+const currentTile = MAP_TILES[mapStyle];
+
 const focusPosition =
     selectedEarthquake
         ? {
@@ -76,29 +84,30 @@ const focusPosition =
             latitude: iss.latitude,
             longitude: iss.longitude,
         }
-        : weather
-        ? {
-              latitude: weather.latitude,
-              longitude: weather.longitude,
-          }
-        : airQuality
-        ? {
-              latitude: airQuality.latitude,
-              longitude: airQuality.longitude,
-          }
         : null;
+
+    const DEFAULT_CENTER: [number, number] = [
+            12.8797,
+            121.7740,
+        ];
   
   return (
     <MapContainer
-      center={center ?? [12.8797, 121.7740]}
+      center={center ?? DEFAULT_CENTER}
       zoom={zoom ?? 6}
       className={cn(
           "w-full",
           className
       )}
+      scrollWheelZoom
+      zoomControl={false}
+      preferCanvas
     >
 
-        <TileLayer attribution="&copy; OpenStreetMap contributors" url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <TileLayer
+            attribution={currentTile.attribution}
+            url={currentTile.url}
+        />
 
         <MapFocusController
             position={focusPosition}

@@ -144,8 +144,10 @@ body {
   width: 18px;
   height: 18px;
   border-radius: 9999px;
-  border: 3px solid white;
-  box-shadow: 0 4px 12px rgb(0 0 0 / .35);
+  border: 2px solid white;
+  box-shadow:
+    0 2px 8px rgb(0 0 0 /.35),
+    0 0 10px rgb(255 255 255 /.15);
 }
 
 .earthquake-marker.green {
@@ -169,8 +171,24 @@ body {
   position: absolute;
   inset: -8px;
   border-radius: 9999px;
-  background: rgb(239 68 68 / .35);
+  background: rgb(239 68 68 / .28);
   animation: earthquakePulse 1.5s infinite;
+}
+
+.earthquake-marker::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  background: currentColor;
+  opacity: .25;
+  animation: earthquakeSoftPulse 2.8s ease-in-out infinite;
+  z-index: -1;
+}
+
+.earthquake-marker.selected {
+  transform: scale(1.2);
+  transition: all .25s ease;
 }
 
 @keyframes earthquakePulse {
@@ -183,6 +201,25 @@ body {
   100% {
     transform: scale(2);
     opacity: 0;
+  }
+
+}
+
+@keyframes earthquakeSoftPulse {
+
+  0% {
+    transform: scale(1);
+    opacity: .20;
+  }
+
+  50% {
+    transform: scale(1.35);
+    opacity: .05;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: .20;
   }
 
 }
@@ -254,4 +291,38 @@ body {
         stroke-dashoffset: 0;
     }
 
+}
+
+@keyframes weather-breathe {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.weather-marker-wrapper {
+    animation: weather-breathe 3s ease-in-out infinite;
+}
+
+.seismograph-line {
+    stroke-dasharray: 520;
+    stroke-dashoffset: 520;
+    animation: seismicFlow 2.8s linear infinite;
+}
+
+@keyframes seismicFlow {
+    from {
+        stroke-dashoffset: 520;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
 }

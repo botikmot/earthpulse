@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import { LocationProvider } from "@/providers/LocationProvider";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const manrope = Manrope({
     subsets: ["latin"],
@@ -31,6 +32,11 @@ export default function RootLayout({
         <LocationProvider>
           {children}
         </LocationProvider>
+        <Toaster
+            position="top-right"
+            richColors
+            closeButton
+        />
       </body>
     </html>
   );

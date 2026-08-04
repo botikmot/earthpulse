@@ -4,7 +4,7 @@ import type { LucideIcon } from "lucide-react";
 type StatCardProps = {
     title: string;
     value: ReactNode;
-    subtitle?: string;
+    subtitle?: ReactNode;
     trend?: ReactNode;
     icon: LucideIcon;
     variant:

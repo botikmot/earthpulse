@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 type MetricHeroProps = {
-    icon: ReactNode;
+    icon?: ReactNode;
     label: string;
     value: string;
     badge?: ReactNode;
@@ -22,11 +22,13 @@ export function MetricHero({
     return (
 
         <div className="text-center">
-            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-sky-100 to-cyan-100 shadow-sm">
-                <div className="text-5xl">
-                    {icon}
+            {icon && (
+                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-sky-100 to-cyan-100 shadow-sm">
+                    <div className="text-5xl">
+                        {icon}
+                    </div>
                 </div>
-            </div>
+            )}
 
             <p className="text-base font-medium text-muted-foreground">
                 {label}

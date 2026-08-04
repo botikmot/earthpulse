@@ -5,9 +5,6 @@ import type { Earthquake } from "@/types/earthquake";
 import {
     Sheet,
     SheetContent,
-    //SheetHeader,
-    //SheetTitle,
-    //SheetDescription,
 } from "@/components/ui/sheet";
 import { MetricHero } from "@/components/display/MetricHero";
 import { StatusBadge } from "@/components/display/StatusBadge";
@@ -15,6 +12,7 @@ import { DetailRow } from "@/components/display/DetailRow";
 import { Clock3, Copy, Globe2, MapPin, MapPinned, Mountain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { formatEarthquakeTime } from "@/utils/earthquake";
+import { toast } from "sonner";
 
 type EarthquakeSheetProps = {
     earthquake: Earthquake | null;
@@ -35,12 +33,24 @@ export function EarthquakeSheet({
 
     const handleCopyCoordinates = async () => {
         if (!earthquake) return;
-        const coordinates =
-            `${earthquake.position[0]}, ${earthquake.position[1]}`;
 
-        await navigator.clipboard.writeText(
-            coordinates
-        );
+        try {
+            const coordinates = `${earthquake.position[0]}, ${earthquake.position[1]}`;
+
+            await navigator.clipboard.writeText(coordinates);
+
+            toast.success(
+                "Coordinates copied successfully!",
+                {
+                    description: coordinates,
+                }
+            );
+
+        } catch {
+            toast.error(
+                "Unable to copy coordinates."
+            );
+        }
 
     };
 
@@ -86,7 +96,6 @@ export function EarthquakeSheet({
                 <div className="h-full overflow-y-auto">
                     <div className="px-8 py-8">
                         <MetricHero
-                            icon="🌍"
                             label="Magnitude"
                             value={earthquake.magnitude.toFixed(1)}
                             badge={
@@ -164,7 +173,7 @@ export function EarthquakeSheet({
                         <div className="flex flex-col gap-3 sm:flex-row">
 
                             <Button
-                                className="flex-1"
+                                className="flex-1 cursor-pointer"
                                 onClick={() => handleOpenMap(earthquake.id)}
                             >
                                 <MapPinned className="mr-2 h-4 w-4" />
@@ -173,7 +182,7 @@ export function EarthquakeSheet({
 
                             <Button
                                 variant="outline"
-                                className="flex-1"
+                                className="flex-1 cursor-pointer"
                                 onClick={handleCopyCoordinates}
                             >
                                 <Copy className="mr-2 h-4 w-4" />
