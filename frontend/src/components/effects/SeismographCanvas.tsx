@@ -16,7 +16,7 @@ export function SeismographCanvas() {
         if (!ctx) return;
 
         //canvas.width = 300;
-        canvas.height = 120;
+        canvas.height = 100;
 
         let x = 0;
         let spikeFrames = 0;
