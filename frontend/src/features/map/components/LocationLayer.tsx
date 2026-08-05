@@ -5,6 +5,7 @@ import type { AirQuality } from "@/types/air-quality";
 import { LocationPopup } from "./LocationPopup";
 import { renderToStaticMarkup } from "react-dom/server";
 import React from "react";
+import { WeatherAnimation } from "@/features/weather/components/WeatherAnimation";
 
 type LocationLayerProps = {
     latitude: number;
@@ -28,8 +29,13 @@ export function LocationLayer({
 
     const icon = new L.DivIcon({
         className: "weather-marker",
-
-        html: `
+        html: renderToStaticMarkup(
+            <WeatherAnimation
+                weatherCode={weatherCode}
+                variant="marker"
+            />
+        )
+        /* html: `
             <div class="weather-marker-wrapper">
                 <div
                     style="
@@ -56,11 +62,11 @@ export function LocationLayer({
                     ${Math.round(temperature)}°
                 </div>
             </div>
-        `,
+        `, 
 
         iconSize: [70, 32],
 
-        iconAnchor: [35, 16],
+        iconAnchor: [35, 16],*/
     });
 
     return (

@@ -9,10 +9,12 @@ import { FogAnimation } from "@/components/effects/FogAnimation";
 
 type Props = {
     weatherCode: number;
+    variant?: "page" | "marker";
 };
 
 export function WeatherAnimation({
     weatherCode,
+    variant
 }: Props) {
 
     const type = getWeatherType(weatherCode);
@@ -20,25 +22,25 @@ export function WeatherAnimation({
     switch (type) {
 
         case "sunny":
-            return <SunnyAnimation />;
+            return <SunnyAnimation variant={variant} />;
 
         case "cloudy":
-            return <CloudyAnimation />;
+            return <CloudyAnimation variant={variant} />;
 
         case "rain":
-            return <RainAnimation />;
+            return <RainAnimation variant={variant} />;
 
         case "storm":
-            return <ThunderAnimation />;
+            return <ThunderAnimation variant={variant} />;
 
         case "snow":
-            return <SnowAnimation />;
+            return <SnowAnimation variant={variant} />;
 
         case "fog":
-            return <FogAnimation />;
+            return <FogAnimation variant={variant} />;
 
         default:
-            return <CloudyAnimation />;
+            return <CloudyAnimation variant={variant}/>;
 
     }
 

@@ -2,9 +2,21 @@
 
 import Image from "next/image";
 
-export function RainAnimation() {
+type Props = {
+    variant?: "page" | "marker";
+};
+
+export function RainAnimation({
+    variant,
+}: Props) {
+
+    const size = variant === 'page' ? 120 : 20
+    const size2 = variant === 'page' ? 100 : 20
+    const image1 = variant === 'page' ? 'left-0 top-0' : 'left-3 -top-1'
+    const rainwidth = variant === 'page' ? 'h-25 w-full' : 'w-[50px]'
+
     return (
-        <div className="relative h-25 w-full overflow-hidden rounded-xl">
+        <div className={`relative ${rainwidth} rounded-xl`}>
 
             {Array.from({ length: 45 }).map((_, i) => (
                 <span
@@ -22,16 +34,16 @@ export function RainAnimation() {
                 src="/images/weather/rain-cloud.png"
                 alt="Cloud"
                 className="absolute right-0 top-0 text-slate-300 animate-cloudSlowReverse"
-                width={120}
-                height={34}
+                width={size}
+                height={size}
             />
 
             <Image 
                 src="/images/weather/rain-cloud.png"
                 alt="Cloud"
-                className="absolute left-0 top-0 text-slate-300 animate-cloudSlow"
-                width={100}
-                height={34}
+                className={`absolute ${image1} text-slate-300 animate-cloudSlow`}
+                width={size2}
+                height={size2}
             />
 
         </div>

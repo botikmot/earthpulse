@@ -2,10 +2,23 @@
 
 import Image from "next/image";
 
-export function ThunderAnimation() {
+type Props = {
+    variant?: "page" | "marker";
+};
+
+export function ThunderAnimation({
+    variant,
+}: Props) {
+
+    const size = variant === 'page' ? 120 : 20
+    const size2 = variant === 'page' ? 100 : 20
+    const image1 = variant === 'page' ? 'left-0 top-0' : 'left-3 -top-1'
+    const image2 = variant === 'page' ? 'right-0 top-0' : 'left-0 top-0'
+    const thunderwidth = variant === 'page' ? 'h-26 w-full' : 'w-[50px]'
+
     return (
 
-        <div className="relative h-26 w-full">
+        <div className={`relative ${thunderwidth} rounded-xl`}>
 
             {Array.from({ length: 45 }).map((_, i) => (
                 <span
@@ -22,17 +35,17 @@ export function ThunderAnimation() {
             <Image 
                 src="/images/weather/storm-cloud.png"
                 alt="Cloud"
-                className="absolute right-0 top-0 text-slate-300 animate-cloudSlowReverse"
-                width={120}
-                height={34}
+                className={`absolute ${image2} text-slate-300 animate-cloudSlowReverse`}
+                width={size}
+                height={size}
             />
 
             <Image 
                 src="/images/weather/storm-cloud.png"
                 alt="Cloud"
-                className="absolute left-0 top-0 text-slate-300 animate-cloudSlow"
-                width={100}
-                height={34}
+                className={`absolute ${image1} text-slate-300 animate-cloudSlow`}
+                width={size2}
+                height={size2}
             />
 
             <div className="lightningFlash"/>

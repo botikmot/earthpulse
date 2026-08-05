@@ -76,6 +76,7 @@ export function WeatherContainer() {
                 animation={
                     <WeatherAnimation
                         weatherCode={weather.weatherCode}
+                        variant="page"
                     />
                 }
                 temperature={weather.temperature}

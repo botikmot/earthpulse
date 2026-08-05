@@ -7,7 +7,7 @@ export function WildfireAnimation() {
         <div className="relative flex h-25 w-full items-end justify-center overflow-hidden">
 
             {/* Smoke */}
-            <div className="absolute bottom-16 left-1/2 h-20 w-20 -translate-x-1/2">
+            <div className="absolute bottom-0 left-1/2 h-20 w-20 -translate-x-1/2">
                 <span className="absolute left-2 h-10 w-10 animate-smoke rounded-full bg-slate-300/30 blur-xl" />
                 <span
                     className="absolute left-8 top-4 h-8 w-8 animate-smoke rounded-full bg-slate-400/20 blur-lg"
@@ -58,16 +58,16 @@ export function WildfireAnimation() {
             
             
             {/* Embers */}
-            {Array.from({ length: 10 }).map((_, i) => (
+            {/* {Array.from({ length: 10 }).map((_, i) => (
                 <span
                     key={i}
-                    className="absolute bottom-8 h-1.5 w-1.5 rounded-full bg-amber-300 animate-ember"
+                    className="absolute bottom-0 h-1.5 w-1.5 rounded-full bg-gray-300 animate-ember"
                     style={{
                         left: `${20 + i * 6}%`,
                         animationDelay: `${i * 0.35}s`,
                     }}
                 />
-            ))}
+            ))} */}
         </div>
     );
 }
