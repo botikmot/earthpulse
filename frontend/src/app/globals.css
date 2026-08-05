@@ -582,3 +582,301 @@ body {
 .animate-cloudSlowReverse {
   animation: cloudMoveReverse 15s ease-in-out infinite;
 }
+
+@keyframes fireFlicker {
+  0%,100% {
+    transform: scale(1) rotate(-2deg);
+    opacity: 1;
+  }
+
+  25% {
+    transform: scale(1.06) rotate(2deg);
+  }
+
+  50% {
+    transform: scale(0.95) rotate(-1deg);
+  }
+
+  75% {
+    transform: scale(1.04) rotate(1deg);
+  }
+}
+
+.animate-fireFlicker {
+  animation: fireFlicker .9s ease-in-out infinite;
+}
+
+@keyframes smoke {
+  0% {
+    transform: translateY(0) scale(.8);
+    opacity: .45;
+  }
+
+  100% {
+    transform: translateY(-55px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-smoke {
+  animation: smoke 4s linear infinite;
+}
+
+@keyframes ember {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-90px) translateX(20px) scale(.2);
+    opacity: 0;
+  }
+}
+
+.animate-ember {
+  animation: ember 3s linear infinite;
+}
+
+
+/* =========================================
+   Air Quality Hero Animation
+========================================= */
+
+.wind-line{
+    position:absolute;
+    height:3px;
+    border-radius:999px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(16,185,129,.9),
+        transparent
+    );
+
+    animation:windMove 4s linear infinite;
+}
+
+.wind-1{
+    width:120px;
+    top:30px;
+    left:-120px;
+}
+
+.wind-2{
+    width:170px;
+    top:70px;
+    left:-170px;
+    animation-delay:1s;
+}
+
+.wind-3{
+    width:100px;
+    top:105px;
+    left:-100px;
+    animation-delay:2s;
+}
+
+.wind-4{
+    width:140px;
+    top:140px;
+    left:-140px;
+    animation-delay:.5s;
+}
+
+@keyframes windMove{
+
+    from{
+        transform:translateX(0);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    80%{
+        opacity:1;
+    }
+
+    to{
+        transform:translateX(420px);
+        opacity:0;
+    }
+
+}
+
+.air-particle{
+
+    position:absolute;
+
+    bottom:15px;
+
+    width:4px;
+    height:4px;
+
+    border-radius:999px;
+
+    background:#34d399;
+
+    box-shadow:0 0 10px rgba(52,211,153,.8);
+
+    animation:particleFloat 5s ease-in-out infinite;
+
+}
+
+@keyframes particleFloat{
+
+    0%{
+        transform:translateY(0) scale(.7);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translateY(-120px)
+            translateX(40px)
+            scale(1.3);
+
+        opacity:0;
+    }
+
+}
+
+/* ==========================================
+   Air Quality Wind Ribbon
+========================================== */
+
+.wind-path{
+
+    fill:none;
+
+    stroke-linecap:round;
+
+    stroke-width:4;
+
+    stroke:url(#windGradient);
+
+    stroke:#34d399;
+
+    opacity:.8;
+
+}
+
+.wind-path-1{
+
+    animation:windRibbon1 6s linear infinite;
+
+}
+
+.wind-path-2{
+
+    stroke-width:3;
+
+    opacity:.55;
+
+    animation:windRibbon2 8s linear infinite;
+
+}
+
+.wind-path-3{
+
+    stroke-width:2;
+
+    opacity:.35;
+
+    animation:windRibbon3 10s linear infinite;
+
+}
+
+@keyframes windRibbon1{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(180px);
+    }
+
+}
+
+@keyframes windRibbon2{
+
+    from{
+        transform:translateX(-40px);
+    }
+
+    to{
+        transform:translateX(160px);
+    }
+
+}
+
+@keyframes windRibbon3{
+
+    from{
+        transform:translateX(-70px);
+    }
+
+    to{
+        transform:translateX(140px);
+    }
+
+}
+
+/* Particles */
+
+.air-particle{
+
+    position:absolute;
+
+    bottom:20px;
+
+    width:3px;
+    height:3px;
+
+    border-radius:999px;
+
+    background:#34d399;
+
+    box-shadow:0 0 8px rgba(52,211,153,.7);
+
+    animation:particleFloat 5s ease-in-out infinite;
+
+}
+
+@keyframes particleFloat{
+
+    0%{
+
+        transform:
+            translateY(0)
+            translateX(0);
+
+        opacity:0;
+
+    }
+
+    20%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:
+            translateY(-100px)
+            translateX(60px);
+
+        opacity:0;
+
+    }
+
+}

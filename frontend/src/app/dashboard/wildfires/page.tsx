@@ -14,6 +14,8 @@ import { WildfireStats } from "@/features/wildfires/components/WildfireStats";
 import { WildfireSummaryBanner } from "@/features/wildfires/components/WildfireSummaryBanner";
 import { WildfireInsights } from "@/features/wildfires/components/WildfireInsights";
 import { WildfireTable } from "@/features/wildfires/components/WildfireTable";
+import { HeroSection } from "@/components/common/HeroSection";
+import { WildfireAnimation } from "@/components/effects/WildfireAnimation";
 
 export default function WildfiresPage() {
 
@@ -61,6 +63,28 @@ export default function WildfiresPage() {
 
                 }
 
+            />
+
+            <HeroSection
+                background="
+                    from-red-100
+                    via-orange-100
+                    to-red-500
+                    dark:from-red-950/30
+                    dark:via-orange-950/20
+                    dark:to-amber-950/20
+                "
+                title="Wildfire Monitoring"
+                subtitle="Real-Time Wildfire Intelligence"
+                description="
+                    Monitor active wildfire incidents, affected regions,
+                    burned areas, fire severity, and satellite-detected
+                    hotspots across the globe.
+                "
+                animation={
+                    <WildfireAnimation />
+                }
+                
             />
 
             <WildfireStats

@@ -4,6 +4,27 @@ import { Card } from "@/components/ui/card";
 import { MapPin } from "lucide-react";
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { Badge } from "../ui/badge";
+
+const STATUS_COLORS = {
+    GOOD: "bg-green-500",
+    MODERATE: "bg-yellow-500",
+    UNHEALTHY_SENSITIVE: "bg-orange-400",
+    UNHEALTHY: "bg-orange-600",
+    VERY_UNHEALTHY: "bg-red-600",
+    HAZARDOUS: "bg-purple-700",
+} as const;
+
+const STATUS_LABELS = {
+    GOOD: "Good",
+    MODERATE: "Moderate",
+    UNHEALTHY_SENSITIVE: "Unhealthy for Sensitive Groups",
+    UNHEALTHY: "Unhealthy",
+    VERY_UNHEALTHY: "Very Unhealthy",
+    HAZARDOUS: "Hazardous",
+} as const;
+
+type AirQualityStatus = keyof typeof STATUS_COLORS;
 
 type LocationAddress = {
     city?: string;
@@ -19,7 +40,7 @@ type HeroProps = {
     value?: number;
     temperature?: number;
     location?: LocationAddress;
-    status?: string;
+    status?: AirQualityStatus;
 }
 
 export function HeroSection({
@@ -33,6 +54,7 @@ export function HeroSection({
    location,
    status,
 }: HeroProps) {
+
     return (
     
             <Card className="mb-8 overflow-hidden">
@@ -81,12 +103,34 @@ export function HeroSection({
                                     </h2>
                                 )}
 
+                                {value && (
+                                    <div className="flex items-center gap-3 justify-end">
+                                        <h2 className="text-2xl font-bold tracking-tight text-right">
+                                            {value}
+                                        </h2>
+                                        {status && (
+                                            <Badge
+                                                className={
+                                                    STATUS_COLORS[status]
+                                                }
+                                            >
+                                                {
+                                                    STATUS_LABELS[status]
+                                                }
+                                            </Badge>
+                                        )}
+
+                                    </div>
+                                )}
+
                                 {location && (
                                     <div className="flex items-center gap-1 text-sm text-gray-800 justify-end">
                                         <MapPin className="h-4 w-4"/>
                                         {location.city}, {" "} {location.country}
                                     </div>
                                 )}
+
+
                             </div>
 
                         </div>
