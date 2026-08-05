@@ -4,7 +4,7 @@ export function CloudyAnimation(){
 
     return(
 
-        <div className="relative h-36 w-full">
+        <div className="relative h-25 w-full">
 
             <Image 
                 src="/images/weather/cloud.png"

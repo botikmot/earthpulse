@@ -5,7 +5,7 @@ import Image from "next/image";
 export function ThunderAnimation() {
     return (
 
-        <div className="relative h-36 w-full">
+        <div className="relative h-26 w-full">
 
             {Array.from({ length: 45 }).map((_, i) => (
                 <span

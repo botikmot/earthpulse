@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export function WildfireAnimation() {
     return (
-        <div className="relative flex h-40 w-full items-end justify-center overflow-hidden">
+        <div className="relative flex h-25 w-full items-end justify-center overflow-hidden">
 
             {/* Smoke */}
             <div className="absolute bottom-16 left-1/2 h-20 w-20 -translate-x-1/2">
@@ -25,26 +25,26 @@ export function WildfireAnimation() {
             {/* Main Flame */}
             <Image 
                 src="/images/animation/fire-flame.gif"
-                alt="Cloud"
+                alt="Fire"
                 className="absolute right-5 -bottom-2 text-slate-300"
-                width={100}
+                width={50}
                 height={34}
             />
 
             <Image 
                 src="/images/animation/fire-flame.gif"
-                alt="Cloud"
+                alt="Fire"
                 className="absolute right-0 -bottom-2 text-slate-300"
-                width={80}
+                width={50}
                 height={34}
             />
             
 
             <Image 
                 src="/images/animation/fire-flame.gif"
-                alt="Cloud"
+                alt="Fire"
                 className="absolute left-0 -bottom-2 text-slate-300"
-                width={100}
+                width={50}
                 height={34}
             />
 
@@ -52,7 +52,7 @@ export function WildfireAnimation() {
                 src="/images/animation/fire-flame.gif"
                 alt="Cloud"
                 className="absolute left-20 -bottom-2 text-slate-300"
-                width={80}
+                width={60}
                 height={34}
             />
             

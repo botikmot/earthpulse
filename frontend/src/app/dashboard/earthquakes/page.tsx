@@ -1,9 +1,6 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
-
 import { PageContainer } from "@/components/layout/PageContainer";
-import { PageHeader } from "@/components/layout/PageHeader";
 
 import { EarthquakeStats } from "@/features/earthquakes/components/EarthquakeStats";
 import { EarthquakeTable } from "@/features/earthquakes/components/EarthquakeTable";
@@ -19,7 +16,6 @@ export default function EarthquakePage() {
     const {
         earthquakes,
         loading,
-        refreshing,
         error,
         refetch,
     } = useEarthquakes();
@@ -39,26 +35,6 @@ export default function EarthquakePage() {
     return (
 
         <PageContainer>
-
-            <PageHeader
-                title="Earthquakes"
-                description="Monitor the latest seismic activity around the world."
-                badge={
-                    <div className="flex items-center gap-3">
-                        <Badge variant="destructive">
-                            LIVE
-                        </Badge>
-                            {refreshing && (
-                                <span className="text-xs text-muted-foreground flex items-center gap-2">
-                                    <span className="animate-spin">
-                                        🔄
-                                    </span>
-                                    Updating...
-                                </span>
-                            )}
-                        </div>
-                    }
-            />
 
             <HeroSection 
                 background="from-orange-50 via-amber-50 to-red-50 dark:from-orange-950/20 dark:via-red-950/10 dark:to-transparent"

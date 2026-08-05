@@ -26,12 +26,17 @@ export function createWildfireIcon(
 ) {
     return L.divIcon({
         className: "",
-        iconSize: [28, 28],
-        iconAnchor: [14, 14],
+        iconSize: [15, 30],
+        iconAnchor: [6, 6],
 
         html: `
             <div class="wildfire-marker ${selected ? "selected" : ""}">
-                ${FIRE_SVG}
+                <img
+                    src="/images/animation/fire-flame.gif"
+                    alt="Fire"
+                    width="15"
+                    height="30"
+                />
             </div>
         `,
     });

@@ -47,24 +47,6 @@ export default function WildfiresPage() {
 
         <PageContainer>
 
-            <PageHeader
-
-                title="Wildfires"
-
-                description="Monitor active wildfire events around the world."
-
-                badge={
-
-                    <Badge variant="destructive">
-
-                        LIVE
-
-                    </Badge>
-
-                }
-
-            />
-
             <HeroSection
                 background="
                     from-red-100

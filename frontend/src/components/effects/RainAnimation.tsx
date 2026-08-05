@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export function RainAnimation() {
     return (
-        <div className="relative h-28 w-full overflow-hidden rounded-xl">
+        <div className="relative h-25 w-full overflow-hidden rounded-xl">
 
             {Array.from({ length: 45 }).map((_, i) => (
                 <span

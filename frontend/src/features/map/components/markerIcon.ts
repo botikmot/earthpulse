@@ -22,8 +22,22 @@ export function createEarthquakeIcon(
     }
 
     return new L.DivIcon({
-
         className: "",
+        iconSize: [18, 18],
+        iconAnchor: [9, 9],
+        popupAnchor: [0, -10],
+        html: `
+            <div class="earthquake-marker ${selected ? "selected" : ""}">
+                <img
+                    src="/images/animation/pulse-loader.gif"
+                    alt="Fire"
+                    width="18"
+                    height="18"
+                />
+            </div>
+        `,
+
+        /* className: "",
 
         html: `
             <div class="
@@ -37,7 +51,7 @@ export function createEarthquakeIcon(
 
         iconAnchor: [9, 9],
 
-        popupAnchor: [0, -10],
+        popupAnchor: [0, -10], */
 
     });
 

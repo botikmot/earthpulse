@@ -5,7 +5,7 @@ import Image from "next/image";
 export function AirQualityAnimation() {
     return (
 
-        <div className="relative h-40 w-full overflow-hidden">
+        <div className="relative h-25 w-full overflow-hidden">
 
             {/* Soft Glow */}
             <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400/15 blur-3xl" />
