@@ -1,8 +1,14 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
+import { MapPin } from "lucide-react";
 import Image from "next/image";
 import type { ReactNode } from "react";
+
+type LocationAddress = {
+    city?: string;
+    country?: string;
+}
 
 type HeroProps = {
     background?: string;
@@ -10,6 +16,10 @@ type HeroProps = {
     subtitle?: string;
     description?: string;
     animation?: ReactNode;
+    value?: number;
+    temperature?: number;
+    location?: LocationAddress;
+    status?: string;
 }
 
 export function HeroSection({
@@ -18,6 +28,10 @@ export function HeroSection({
    subtitle,
    description,
    animation,
+   value,
+   temperature,
+   location,
+   status,
 }: HeroProps) {
     return (
     
@@ -56,10 +70,25 @@ export function HeroSection({
     
                         </div>
     
-                        <div className="mt-6 lg:mt-0 w-full lg:w-1/4 flex gap-6">
+                        <div className="relative mt-6 lg:mt-0 w-full lg:w-1/4 flex gap-6">
     
                             {animation}
-    
+
+                            <div className="absolute -bottom-4 right-0">
+                                {temperature && (
+                                    <h2 className="text-2xl font-bold tracking-tight text-right">
+                                        {temperature.toFixed(1)}°
+                                    </h2>
+                                )}
+
+                                {location && (
+                                    <div className="flex items-center gap-1 text-sm text-gray-800 justify-end">
+                                        <MapPin className="h-4 w-4"/>
+                                        {location.city}, {" "} {location.country}
+                                    </div>
+                                )}
+                            </div>
+
                         </div>
                     </div>
                 </div>

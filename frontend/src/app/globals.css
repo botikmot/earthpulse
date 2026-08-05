@@ -326,3 +326,259 @@ body {
         stroke-dashoffset: 0;
     }
 }
+
+/* @keyframes cloudMove{
+
+    from{
+        transform:translateX(-30px);
+    }
+
+    50%{
+        transform:translateX(10px);
+    }
+
+    to{
+        transform:translateX(-30px);
+    }
+
+} */
+
+/* ==============================
+   Weather Hero Animations
+================================= */
+
+@keyframes rain {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(140px);
+        opacity: 1;
+    }
+}
+
+.animate-rain {
+    animation: rain linear infinite;
+}
+
+@keyframes snow {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(140px) translateX(15px);
+        opacity: 1;
+    }
+}
+
+.animate-snow {
+    animation: snow linear infinite;
+}
+
+@keyframes thunder {
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+.animate-thunder{
+    animation:thunder 1.2s ease-in-out infinite;
+}
+
+@keyframes lightningFlash{
+
+    0%,90%,100%{
+        opacity:0;
+    }
+
+    91%{
+        opacity:.15;
+        background:white;
+    }
+
+    93%{
+        opacity:.35;
+    }
+
+    95%{
+        opacity:0;
+    }
+}
+
+.animate-lightning-flash{
+    animation:lightningFlash 2.5s infinite;
+}
+
+@keyframes fog{
+
+    0%{
+        transform:translateX(-10px);
+    }
+
+    50%{
+        transform:translateX(10px);
+    }
+
+    100%{
+        transform:translateX(-10px);
+    }
+}
+
+.animate-fog{
+    animation:fog 5s ease-in-out infinite;
+}
+
+.fog{
+    position:absolute;
+    left:-40%;
+    width:180%;
+    height:22px;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgb(255 255 255 /.45),
+        transparent
+    );
+
+    filter:blur(10px);
+
+    animation:fogMove 12s linear infinite;
+}
+
+.fog-1{
+    top:24px;
+}
+
+.fog-2{
+    top:60px;
+    animation-delay:-4s;
+}
+
+.fog-3{
+    top:94px;
+    animation-delay:-8s;
+}
+
+@keyframes fogMove{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(30%);
+    }
+
+}
+
+@keyframes thunder{
+
+    0%,100%{
+
+        transform:scale(1);
+
+    }
+
+    15%{
+
+        transform:scale(1.08);
+
+    }
+
+    18%{
+
+        transform:scale(.96);
+
+    }
+
+}
+
+.animate-thunder{
+
+    animation:thunder 2.8s infinite;
+
+}
+
+.lightningFlash{
+
+    position:absolute;
+
+    inset:0;
+
+    /* border-radius:20px; */
+
+    pointer-events:none;
+
+    animation:flash 2.8s infinite;
+
+}
+
+@keyframes flash{
+
+    0%,100%{
+
+        background:transparent;
+
+    }
+
+    15%{
+
+        background:
+            rgba(255,255,255,.25);
+
+    }
+
+    17%{
+
+        background:
+            transparent;
+
+    }
+
+    20%{
+
+        background:
+            rgba(255,255,255,.15);
+
+    }
+
+}
+
+@keyframes cloudMove {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(40px);
+  }
+}
+
+@keyframes cloudMoveReverse {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-40px);
+  }
+}
+
+.animate-cloudSlow {
+  animation: cloudMove 12s ease-in-out infinite;
+}
+
+.animate-cloudSlowReverse {
+  animation: cloudMoveReverse 15s ease-in-out infinite;
+}

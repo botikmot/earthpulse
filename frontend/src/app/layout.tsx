@@ -11,8 +11,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "EarthPulse",
-  description: "real-time Earth Monitoring Platform",
+  title: "ERRION",
+  description: "Understanding Earth's Signals.",
   icons: {
     icon: "/images/earthpulse_favicon3.png", // or /favicon.png
   },

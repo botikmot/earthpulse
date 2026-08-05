@@ -35,7 +35,7 @@ export function Dashboard() {
 
             <HeroSection 
                 background="from-blue-600/10 via-green-500/10 to-transparent"
-                title="EarthPulse"
+                title="ERRION"
                 subtitle="Real-Time Environmental Monitoring"
                 description="Monitor earthquakes, weather, wildfires, air quality, and the International Space Station from one unified dashboard."
                 animation={(

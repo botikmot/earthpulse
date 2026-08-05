@@ -4,13 +4,15 @@ import { Loading } from "@/components/ui/Loading";
 import { ErrorMessage } from "@/components/ui/ErrorMessage";
 import { useWeather } from "@/hooks/useWeather";
 import { WeatherStats } from "../components/WeatherStats";
-import { WeatherSummaryBanner } from "../components/WeatherSummaryBanner";
+//import { WeatherSummaryBanner } from "../components/WeatherSummaryBanner";
 import { WeatherForecastSection } from "../components/WeatherForecastSection";
-import { WeatherInsights } from "../components/WeatherInsights";
+//import { WeatherInsights } from "../components/WeatherInsights";
 import { WeatherSunCard } from "../components/WeatherSunCard";
 import { useLocationStore } from "@/stores/location.store";
 import { useWeatherStore } from "@/stores/weather.store";
 import { RelativeTime } from "@/components/common/RelativeTime";
+import { HeroSection } from "@/components/common/HeroSection";
+import { WeatherAnimation } from "../components/WeatherAnimation";
 
 export function WeatherContainer() {
 
@@ -66,6 +68,20 @@ export function WeatherContainer() {
     return (
 
         <>
+            <HeroSection
+                background="from-sky-50 via-cyan-50 to-blue-500 dark:from-sky-950/30 dark:via-cyan-950/20 dark:to-blue-950/20"
+                title="Weather Monitoring"
+                subtitle="Real-Time Weather Conditions"
+                description="Monitor temperature, humidity, wind, visibility, forecasts, and severe weather conditions across the globe."
+                animation={
+                    <WeatherAnimation
+                        weatherCode={weather.weatherCode}
+                    />
+                }
+                temperature={weather.temperature}
+                location={location ?? {city: 'Butuan', country: 'Philippines'}}
+            />
+
             <WeatherStats
                 weather={weather}
             />
@@ -92,18 +108,12 @@ export function WeatherContainer() {
                     </p>
                 </div>
 
-                <WeatherSummaryBanner
-                    weather={weather}
-                    location={location?.city ?? "Butuan"}
-                />
-
             </div>
 
             <WeatherForecastSection
                 forecast={weather.forecast}
             />
 
-            <WeatherInsights weather={weather}/>
             <WeatherSunCard
                 sunrise={weather.sunrise}
                 sunset={weather.sunset}

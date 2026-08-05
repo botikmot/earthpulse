@@ -1,10 +1,11 @@
 import {
     Sun,
-    Cloud,
     CloudSun,
+    Cloud,
+    CloudFog,
+    CloudDrizzle,
     CloudRain,
     CloudSnow,
-    CloudFog,
     CloudLightning,
     Globe2,
 } from "lucide-react";
@@ -12,50 +13,120 @@ import {
 import type { LucideIcon } from "lucide-react";
 
 export function getWeatherIcon(
-    weatherCode:number
+    weatherCode: number,
 ): LucideIcon {
 
-    if (weatherCode === 0)
-        return Sun;
+    switch (weatherCode) {
 
-    if ([1,2].includes(weatherCode))
-        return CloudSun;
+        // ☀ Clear Sky
+        case 0:
+            return Sun;
 
-    if (weatherCode === 3)
-        return Cloud;
+        // 🌤 Mainly Clear / Partly Cloudy
+        case 1:
+        case 2:
+            return CloudSun;
 
-    if ([45,48].includes(weatherCode))
-        return CloudFog;
+        // ☁ Overcast
+        case 3:
+            return Cloud;
 
-    if (
-        [
-            51,53,55,
-            56,57,
-            61,63,65,
-            66,67,
-            80,81,82,
-        ].includes(weatherCode)
-    )
-        return CloudRain;
+        // 🌫 Fog
+        case 45:
+        case 48:
+            return CloudFog;
 
-    if (
-        [
-            71,73,75,
-            77,
-            85,86,
-        ].includes(weatherCode)
-    )
-        return CloudSnow;
+        // 🌦 Drizzle
+        case 51:
+        case 53:
+        case 55:
+            return CloudDrizzle;
 
-    if (
-        [
-            95,
-            96,
-            99,
-        ].includes(weatherCode)
-    )
-        return CloudLightning;
+        // 🌨 Freezing Drizzle / Freezing Rain
+        case 56:
+        case 57:
+        case 66:
+        case 67:
+            return CloudSnow;
 
-    return Globe2;
+        // 🌧 Rain
+        case 61:
+        case 63:
+        case 65:
+        case 80:
+        case 81:
+        case 82:
+            return CloudRain;
+
+        // ❄ Snow
+        case 71:
+        case 73:
+        case 75:
+        case 77:
+        case 85:
+        case 86:
+            return CloudSnow;
+
+        // ⛈ Thunderstorm
+        case 95:
+        case 96:
+        case 99:
+            return CloudLightning;
+
+        default:
+            return Globe2;
+
+    }
+
+}
+
+export function getWeatherColor(
+    code: number,
+) {
+
+    switch (code) {
+
+        case 0:
+            return "text-yellow-500";
+
+        case 1:
+        case 2:
+            return "text-amber-500";
+
+        case 3:
+            return "text-slate-500";
+
+        case 45:
+        case 48:
+            return "text-gray-400";
+
+        case 51:
+        case 53:
+        case 55:
+        case 61:
+        case 63:
+        case 65:
+        case 80:
+        case 81:
+        case 82:
+            return "text-blue-500";
+
+        case 71:
+        case 73:
+        case 75:
+        case 77:
+        case 85:
+        case 86:
+            return "text-sky-400";
+
+        case 95:
+        case 96:
+        case 99:
+            return "text-violet-500";
+
+        default:
+            return "text-slate-500";
+
+    }
 
 }

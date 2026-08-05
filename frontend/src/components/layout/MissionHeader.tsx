@@ -25,7 +25,7 @@ export default function MissionHeader() {
                     <div>
 
                         <h1 className="text-lg font-semibold tracking-tight">
-                            EarthPulse Mission Control
+                            ERRION Mission Control
                         </h1>
 
                         <p className="text-xs text-muted-foreground">

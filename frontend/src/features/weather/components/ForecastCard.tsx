@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { createElement } from "react";
-import { getWeatherIcon } from "@/utils/weatherIcon";
+import { getWeatherIcon, getWeatherColor } from "@/utils/weatherIcon";
 
 type Props = {
     day: string;
@@ -19,6 +19,7 @@ export function ForecastCard({
 }: Props) {
 
     const icon = getWeatherIcon(weatherCode);
+    const color = getWeatherColor(weatherCode);
 
     return (
         <Card className="p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
@@ -32,6 +33,7 @@ export function ForecastCard({
                     className: `
                         h-10
                         w-10
+                        ${color}
                         text-sky-600
                         dark:text-sky-400
                     `,
