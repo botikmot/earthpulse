@@ -6,7 +6,6 @@ import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
 
 import { FullWorldMap } from "../components/FullWorldMap";
-import { LiveMapSummary } from "../components/LiveMapSummary";
 import { LiveMapStatus } from "../components/LiveMapStatus";
 
 import { useLocationStore } from "@/stores/location.store";
@@ -78,14 +77,6 @@ export function LiveMapContainer() {
             />
 
             <LiveMapStatus />
-
-            <LiveMapSummary
-                earthquakes={earthquakes.length}
-                weather={weather?.temperature}
-                wildfires={wildfires.length}
-                airQuality={airQuality?.aqi}
-                issOnline={!!iss}
-            />
 
             <FullWorldMap
                 selectedEarthquakeId={selectedEarthquakeId}

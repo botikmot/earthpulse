@@ -128,7 +128,7 @@ export function HeroSection({
                                 )}
 
                                 {location && (
-                                    <div className="flex items-center gap-1 text-sm text-gray-800 justify-end">
+                                    <div className="flex items-center gap-1 text-sm text-gray-800 dark:text-gray-400 justify-end">
                                         <MapPin className="h-4 w-4"/>
                                         {location.city}, {" "} {location.country}
                                     </div>

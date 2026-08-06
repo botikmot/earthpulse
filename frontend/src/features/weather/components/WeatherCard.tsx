@@ -5,7 +5,6 @@ import { WeatherHero } from "./WeatherHero";
 import { useSettingsStore } from "@/stores/settings.store";
 import { 
     formatWindSpeed,
-    formatVisibility,
  } from "@/utils/unit";
 
 type WeatherCardProps = {

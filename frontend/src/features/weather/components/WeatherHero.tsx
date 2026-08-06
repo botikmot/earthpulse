@@ -1,10 +1,11 @@
-import { getWeatherIcon } from "@/utils/weatherIcon";
+
 import { MapPin } from "lucide-react";
-import { createElement } from "react";
+
 import { useSettingsStore } from "@/stores/settings.store";
 import { 
     formatTemperature,
  } from "@/utils/unit";
+ import { WeatherAnimation } from "./WeatherAnimation";
 
 
 type WeatherHeroProps = {
@@ -24,29 +25,12 @@ export function WeatherHero({
         temperatureUnit,
     } = useSettingsStore();
 
-     const icon = getWeatherIcon(weatherCode);
-
     return (
 
         <div className="mb-8 flex flex-col items-center text-center">
 
-            <div
-                className="
-                    mb-4
-                    rounded-full
-                    bg-sky-100
-                    p-5
-                    dark:bg-sky-950
-                "
-            >
-                {createElement(icon, {
-                    className: `
-                        h-12
-                        w-12
-                        text-sky-600
-                        dark:text-sky-400
-                    `,
-                })}
+            <div className="w-1/2">
+                <WeatherAnimation weatherCode={weatherCode} variant="page"/>
             </div>
 
             <p className="text-lg font-medium text-muted-foreground">

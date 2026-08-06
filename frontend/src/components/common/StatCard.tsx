@@ -15,6 +15,7 @@ type StatCardProps = {
         | "air"
         | "iss"
         | "settings";
+    animation?: ReactNode;
 };
 
 const variants = {
@@ -48,6 +49,7 @@ export function StatCard({
     trend,
     icon: Icon,
     variant,
+    animation,
 }: StatCardProps) {
 
     const currentVariant = variants[variant];
@@ -84,12 +86,20 @@ export function StatCard({
                     )}
 
                 </div>
+                
+                {animation ? (
+                    <div className="w-[120px] h-[100px] overflow-hidden flex justify-end">
+                        {animation}
+                    </div>
+                ) : (
+                    <div
+                        className={`rounded-xl p-3 ${currentVariant.icon}`}
+                    >
+                        <Icon className="h-6 w-6" />
+                    </div>
+                )}
 
-                <div
-                    className={`rounded-xl p-3 ${currentVariant.icon}`}
-                >
-                    <Icon className="h-6 w-6" />
-                </div>
+                
 
             </div>
 

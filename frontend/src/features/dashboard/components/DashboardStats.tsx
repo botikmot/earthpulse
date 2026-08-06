@@ -7,6 +7,10 @@ import {
 
 import { StatCard } from "@/components/common/StatCard";
 import { useDashboardStats } from "@/hooks/useDashboardStats";
+import { SeismographCanvas } from "@/components/effects/SeismographCanvas";
+import { WeatherAnimation } from "@/features/weather/components/WeatherAnimation";
+import { AirQualityAnimationCard } from "@/components/effects/AirQualityAnimationCard";
+import { WildfireAnimation } from "@/components/effects/WildfireAnimation";
 
 export function DashboardStats() {
 
@@ -29,6 +33,9 @@ export function DashboardStats() {
                     subtitle="Recorded Events"
                     icon={Mountain}
                     variant="earthquake"
+                    animation={
+                        <SeismographCanvas />
+                    }
                 />
 
                 <StatCard
@@ -37,6 +44,12 @@ export function DashboardStats() {
                     subtitle="Active Alerts"
                     icon={CloudSun}
                     variant="weather"
+                    animation={
+                        <WeatherAnimation 
+                            weatherCode={1}
+                            variant="page"
+                        />
+                    }
                 />
 
                 <StatCard
@@ -45,6 +58,9 @@ export function DashboardStats() {
                     subtitle="Active Fires"
                     icon={Flame}
                     variant="wildfire"
+                    animation={
+                        <WildfireAnimation />
+                    }
                 />
 
                 <StatCard
@@ -53,6 +69,9 @@ export function DashboardStats() {
                     subtitle="Current AQI"
                     icon={Wind}
                     variant="air"
+                    animation={
+                        <AirQualityAnimationCard />
+                    }
                 />
 
             </div>

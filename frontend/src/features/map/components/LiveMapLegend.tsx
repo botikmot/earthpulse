@@ -1,6 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-//import { useLiveMapStore } from "@/stores/liveMap.store";
-import { CloudSun, Flame } from "lucide-react";
+import Image from "next/image";
 import { useSettingsStore } from "@/stores/settings.store";
 
 export function LiveMapLegend() {
@@ -45,16 +44,11 @@ export function LiveMapLegend() {
                             toggleLayer("earthquake")
                         }
                     >
-                        <span
-                            className="
-                                h-3
-                                w-3
-                                rounded-full
-                                border-2
-                                border-white
-                                bg-orange-500
-                                shadow
-                            "
+                        <Image
+                            src="/images/animation/pulse-loader.gif"
+                            alt="Pulse"
+                            width="18"
+                            height="18"
                         />
                         Earthquakes
                     </Badge>
@@ -81,7 +75,12 @@ export function LiveMapLegend() {
                             toggleLayer("weather")
                         }
                     >
-                        <CloudSun className="h-4 w-4 text-sky-400" />
+                        <Image
+                            src="/images/weather/cloud.png"
+                            alt="Cloud"
+                            width="18"
+                            height="18"
+                        />
 
                         Weather
                     </Badge>
@@ -107,7 +106,12 @@ export function LiveMapLegend() {
                             toggleLayer("wildfire")
                         }
                     >
-                        <Flame className="h-4 w-4 text-red-400" />
+                        <Image
+                            src="/images/animation/fire-flame.gif"
+                            alt="Fire"
+                            width="12"
+                            height="12"
+                        />
                         Wildfires
                     </Badge>
                 </div>
