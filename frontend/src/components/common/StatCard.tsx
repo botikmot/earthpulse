@@ -13,7 +13,8 @@ type StatCardProps = {
         | "earthquake"
         | "wildfire"
         | "air"
-        | "iss";
+        | "iss"
+        | "settings";
 };
 
 const variants = {
@@ -34,6 +35,9 @@ const variants = {
     },
     iss: {
         icon: "bg-violet-100 text-violet-600 dark:bg-violet-950 dark:text-violet-400",
+    },
+    settings: {
+        icon: "bg-fuchsia-100 text-fuchsia-600 dark:bg-fuchsia-950 dark:text-fuchsia-400",
     },
 };
 

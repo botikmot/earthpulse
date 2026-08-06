@@ -1,6 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { createElement } from "react";
 import { getWeatherIcon, getWeatherColor } from "@/utils/weatherIcon";
+import { useSettingsStore } from "@/stores/settings.store";
+import { formatTemperature } from "@/utils/unit";
 
 type Props = {
     day: string;
@@ -10,6 +12,7 @@ type Props = {
     weatherCode: number;
 };
 
+
 export function ForecastCard({
     day,
     max,
@@ -17,6 +20,10 @@ export function ForecastCard({
     condition,
     weatherCode,
 }: Props) {
+
+    const {
+        temperatureUnit,
+    } = useSettingsStore();
 
     const icon = getWeatherIcon(weatherCode);
     const color = getWeatherColor(weatherCode);
@@ -43,11 +50,17 @@ export function ForecastCard({
             <div className="space-y-1">
 
                 <p className="text-xl font-bold">
-                    {max.toFixed(0)}°
+                    {formatTemperature(
+                        max,
+                        temperatureUnit
+                    )}
                 </p>
 
                 <p className="text-sm text-muted-foreground">
-                    {min.toFixed(0)}°
+                    {formatTemperature(
+                        min,
+                        temperatureUnit
+                    )}
                 </p>
 
             </div>

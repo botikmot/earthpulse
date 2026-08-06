@@ -1,14 +1,14 @@
 import { Badge } from "@/components/ui/badge";
-import { useLiveMapStore } from "@/stores/liveMap.store";
-//import { MapStyleSwitcher } from "./MapStyleSwitcher";
+//import { useLiveMapStore } from "@/stores/liveMap.store";
 import { CloudSun, Flame } from "lucide-react";
+import { useSettingsStore } from "@/stores/settings.store";
 
 export function LiveMapLegend() {
 
     const {
-        layers,
+        mapLayers,
         toggleLayer,
-    } = useLiveMapStore();
+    } = useSettingsStore();
 
     return (
 
@@ -25,7 +25,7 @@ export function LiveMapLegend() {
 
                     <Badge
                         variant={
-                            layers.earthquake
+                            mapLayers.earthquake
                                 ? "default"
                                 : "outline"
                         }
@@ -36,7 +36,7 @@ export function LiveMapLegend() {
                             duration-200
                             hover:scale-105
                             ${
-                                !layers.earthquake
+                                !mapLayers.earthquake
                                     ? "opacity-40"
                                     : ""
                             }
@@ -61,7 +61,7 @@ export function LiveMapLegend() {
 
                     <Badge
                         variant={
-                            layers.weather
+                            mapLayers.weather
                                 ? "default"
                                 : "outline"
                         }
@@ -72,7 +72,7 @@ export function LiveMapLegend() {
                             duration-200
                             hover:scale-105
                             ${
-                                !layers.weather
+                                !mapLayers.weather
                                     ? "opacity-40"
                                     : ""
                             }
@@ -88,7 +88,7 @@ export function LiveMapLegend() {
 
                     <Badge
                         variant={
-                            layers.wildfire
+                            mapLayers.wildfire
                                 ? "default"
                                 : "outline"
                         }
@@ -99,7 +99,7 @@ export function LiveMapLegend() {
                             duration-200
                             hover:scale-105
                             ${
-                            !layers.wildfire
+                            !mapLayers.wildfire
                                 ? "opacity-40"
                                 : ""
                         }`}

@@ -2,6 +2,7 @@
 
 import { Marker, Popup } from "react-leaflet";
 import L from "leaflet";
+import { renderToStaticMarkup } from "react-dom/server";
 
 import type { ISS } from "@/types/iss";
 
@@ -15,25 +16,11 @@ export function ISSLayer({
 
     const icon = new L.DivIcon({
         className: "iss-marker",
-        html: `
-            <div
-                style="
-                    background:#7c3aed;
-                    color:white;
-                    border-radius:9999px;
-                    padding:6px 10px;
-                    font-size:13px;
-                    font-weight:700;
-                    border:2px solid white;
-                    box-shadow:0 3px 10px rgba(0,0,0,.35);
-                    white-space:nowrap;
-                "
-            >
-                🛰 ISS
+        html: renderToStaticMarkup(
+            <div className="iss-satellite text-xl">
+                🛰️
             </div>
-        `,
-        iconSize: [70, 34],
-        iconAnchor: [35, 17],
+        )
 
     });
 

@@ -8,8 +8,14 @@ import {
 } from "lucide-react";
 
 import { StatCard } from "@/components/common/StatCard";
-
 import type { Weather } from "@/types/weather";
+import { useSettingsStore } from "@/stores/settings.store";
+import { 
+    formatTemperature,
+    formatWindSpeed,
+    formatVisibility,
+ } from "@/utils/unit";
+
 
 import {
     getHumidityDescription,
@@ -25,6 +31,10 @@ export function WeatherStats({
     weather,
 }: Props) {
 
+    const {
+        temperatureUnit,
+        distanceUnit,
+    } = useSettingsStore();
 
     return (
 
@@ -32,8 +42,11 @@ export function WeatherStats({
 
             <StatCard
                 title="Temperature"
-                value={`${weather.temperature.toFixed(1)}°`}
-                subtitle={`Feels like ${weather.feelsLike.toFixed(1)}°`}
+                value={formatTemperature(
+                    weather.temperature,
+                    temperatureUnit
+                )}
+                subtitle={`Feels like ${formatTemperature(weather.feelsLike, temperatureUnit)}`}
                 icon={Thermometer}
                 variant="weather"
             />
@@ -48,7 +61,10 @@ export function WeatherStats({
 
             <StatCard
                 title="Wind Speed"
-                value={`${weather.windSpeed.toFixed(1)} km/h`}
+                value={formatWindSpeed(
+                    weather.windSpeed,
+                    distanceUnit
+                )}
                 subtitle={getWindDescription(weather.windSpeed)}
                 icon={Wind}
                 variant="weather"
@@ -56,7 +72,10 @@ export function WeatherStats({
 
             <StatCard
                 title="Visibility"
-                value={`${(weather.visibility / 1000).toFixed(1)} km`}
+                value={formatVisibility(
+                    weather.visibility,
+                    distanceUnit
+                )}
                 subtitle={getVisibilityDescription(weather.visibility)}
                 icon={Eye}
                 variant="weather"

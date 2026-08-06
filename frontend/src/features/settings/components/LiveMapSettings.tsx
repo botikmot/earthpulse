@@ -1,6 +1,13 @@
 "use client";
 
 import {
+    CloudSun,
+    Activity,
+    Flame,
+    Map,
+} from "lucide-react";
+
+import {
     Card,
     CardContent,
     CardDescription,
@@ -9,9 +16,46 @@ import {
 } from "@/components/ui/card";
 
 import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { Map } from "lucide-react";
+
 import { useSettingsStore } from "@/stores/settings.store";
+
+const layers = [
+    {
+        key: "weather",
+        label: "Weather",
+        description: "Display live weather conditions.",
+        icon: CloudSun,
+        color: "text-sky-500",
+    },
+    {
+        key: "earthquake",
+        label: "Earthquakes",
+        description: "Show recent seismic activity.",
+        icon: Activity,
+        color: "text-orange-500",
+    },
+    /* {
+        key: "airQuality",
+        label: "Air Quality",
+        description: "Display AQI monitoring layer.",
+        icon: Wind,
+        color: "text-emerald-500",
+    }, */
+    {
+        key: "wildfire",
+        label: "Wildfires",
+        description: "Show active wildfire hotspots.",
+        icon: Flame,
+        color: "text-red-500",
+    },
+    /* {
+        key: "iss",
+        label: "ISS Tracker",
+        description: "Display live ISS position.",
+        icon: Satellite,
+        color: "text-violet-500",
+    }, */
+] as const;
 
 export function LiveMapSettings() {
 
@@ -25,89 +69,99 @@ export function LiveMapSettings() {
         <Card>
 
             <CardHeader>
+
                 <CardTitle className="flex items-center gap-2">
+
                     <Map className="h-5 w-5" />
+
                     Live Map
+
                 </CardTitle>
 
                 <CardDescription>
-                    Enable or disable map layers.
+
+                    Control which layers appear on the live world map.
+
                 </CardDescription>
+
             </CardHeader>
 
-            <CardContent className="space-y-5">
+            <CardContent>
 
-                <LayerSwitch
-                    label="Weather"
-                    checked={mapLayers.weather}
-                    onCheckedChange={() =>
-                        toggleLayer("weather")
-                    }
-                />
+                <div className="space-y-4">
 
-                <LayerSwitch
-                    label="Air Quality"
-                    checked={mapLayers.airQuality}
-                    onCheckedChange={() =>
-                        toggleLayer("airQuality")
-                    }
-                />
+                    {layers.map((layer) => {
 
-                <LayerSwitch
-                    label="Earthquakes"
-                    checked={mapLayers.earthquake}
-                    onCheckedChange={() =>
-                        toggleLayer("earthquake")
-                    }
-                />
+                        const Icon = layer.icon;
 
-                <LayerSwitch
-                    label="Wildfires"
-                    checked={mapLayers.wildfire}
-                    onCheckedChange={() =>
-                        toggleLayer("wildfire")
-                    }
-                />
+                        return (
 
-                <LayerSwitch
-                    label="ISS Tracker"
-                    checked={mapLayers.iss}
-                    onCheckedChange={() =>
-                        toggleLayer("iss")
-                    }
-                />
+                            <div
+                                key={layer.key}
+                                className="
+                                    flex
+                                    items-center
+                                    justify-between
+                                    rounded-xl
+                                    border
+                                    p-4
+                                    transition-all
+                                    duration-300
+                                    hover:-translate-y-1
+                                    hover:border-primary/40
+                                    hover:shadow-sm
+                                "
+                            >
+
+                                <div className="flex items-center gap-4">
+
+                                    <div className="rounded-xl bg-muted p-3">
+
+                                        <Icon
+                                            className={`h-5 w-5 ${layer.color}`}
+                                        />
+
+                                    </div>
+
+                                    <div>
+
+                                        <h4 className="font-medium">
+
+                                            {layer.label}
+
+                                        </h4>
+
+                                        <p className="text-sm text-muted-foreground">
+
+                                            {layer.description}
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <Switch
+                                    checked={
+                                        mapLayers[layer.key]
+                                    }
+                                    onCheckedChange={() =>
+                                        toggleLayer(layer.key)
+                                    }
+                                />
+
+                            </div>
+
+                        );
+
+                    })}
+
+                </div>
 
             </CardContent>
 
         </Card>
 
-    );
-
-}
-
-type LayerSwitchProps = {
-    label: string;
-    checked: boolean;
-    onCheckedChange: () => void;
-};
-
-function LayerSwitch({
-    label,
-    checked,
-    onCheckedChange,
-}: LayerSwitchProps) {
-
-    return (
-        <div className="flex items-center justify-between">
-            <Label>
-                {label}
-            </Label>
-
-            <Switch
-                checked={checked}
-                onCheckedChange={onCheckedChange}
-            />
-        </div>
     );
 
 }

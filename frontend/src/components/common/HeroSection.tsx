@@ -5,6 +5,8 @@ import { MapPin } from "lucide-react";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { Badge } from "../ui/badge";
+import { useSettingsStore } from "@/stores/settings.store";
+import { formatTemperature } from "@/utils/unit";
 
 const STATUS_COLORS = {
     GOOD: "bg-green-500",
@@ -55,6 +57,8 @@ export function HeroSection({
    status,
 }: HeroProps) {
 
+    const { temperatureUnit } = useSettingsStore();
+
     return (
     
             <Card className="mb-8 overflow-hidden">
@@ -99,7 +103,7 @@ export function HeroSection({
                             <div className="absolute -bottom-4 right-0">
                                 {temperature && (
                                     <h2 className="text-2xl font-bold tracking-tight text-right">
-                                        {temperature.toFixed(1)}°
+                                        {formatTemperature(temperature, temperatureUnit)}
                                     </h2>
                                 )}
 

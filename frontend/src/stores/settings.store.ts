@@ -1,4 +1,6 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { CACHE } from "@/constants/cache";
 
 export type AppearanceMode =
     | "system"
@@ -21,11 +23,19 @@ type MapLayers = {
     iss: boolean;
 };
 
+type RefreshIntervals = {
+    weather: number;
+    earthquakes: number;
+    wildfires: number;
+    airQuality: number;
+    iss: number;
+};
+
 type SettingsState = {
     appearance: AppearanceMode;
     temperatureUnit: TemperatureUnit;
     distanceUnit: DistanceUnit;
-    autoRefresh: boolean;
+    refreshIntervals: RefreshIntervals;
     defaultMapZoom: number;
     mapLayers: MapLayers;
     setAppearance: (
@@ -40,8 +50,9 @@ type SettingsState = {
         unit: DistanceUnit
     ) => void;
 
-    setAutoRefresh: (
-        enabled: boolean
+    setRefreshInterval: (
+        module: keyof RefreshIntervals,
+        value: number
     ) => void;
 
     setDefaultMapZoom: (
@@ -55,11 +66,19 @@ type SettingsState = {
 };
 
 export const useSettingsStore =
-create<SettingsState>((set) => ({
+create<SettingsState>()(
+    persist(
+        (set) => ({
     appearance: "system",
     temperatureUnit: "C",
     distanceUnit: "km",
-    autoRefresh: true,
+    refreshIntervals: {
+        weather: CACHE.WEATHER,
+        earthquakes: CACHE.EARTHQUAKES,
+        wildfires: CACHE.WILDFIRES,
+        airQuality: CACHE.AIR_QUALITY,
+        iss: CACHE.ISS,
+    },
     defaultMapZoom: 6,
     mapLayers: {
         earthquake: true,
@@ -90,12 +109,16 @@ create<SettingsState>((set) => ({
             distanceUnit,
         }),
 
-    setAutoRefresh: (
-        autoRefresh
+    setRefreshInterval: (
+        module,
+        value
     ) =>
-        set({
-            autoRefresh,
-        }),
+        set((state) => ({
+            refreshIntervals: {
+                ...state.refreshIntervals,
+                [module]: value,
+            },
+        })),
 
     setDefaultMapZoom: (
         defaultMapZoom
@@ -115,4 +138,9 @@ create<SettingsState>((set) => ({
             },
         })),
 
-}));
+    }),
+        {
+            name: "earthpulse-settings",
+        }
+    )
+);

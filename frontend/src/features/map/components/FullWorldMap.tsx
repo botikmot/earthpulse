@@ -4,7 +4,8 @@ import type { Earthquake } from "@/types/earthquake";
 import type { Wildfire } from "@/types/wildfire";
 import type { AirQuality } from "@/types/air-quality";
 import type { ISS } from "@/types/iss";
-import { useLiveMapStore } from "@/stores/liveMap.store";
+//import { useLiveMapStore } from "@/stores/liveMap.store";
+import { useSettingsStore } from "@/stores/settings.store";
 import { MapToolbar } from "./MapToolbar";
 
 type Props = {
@@ -36,8 +37,8 @@ export function FullWorldMap({
 }: Props) {
 
     const layers =
-        useLiveMapStore(
-            (state) => state.layers
+        useSettingsStore(
+            (state) => state.mapLayers
         );
 
     const selectedEarthquake =

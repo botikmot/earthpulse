@@ -36,7 +36,7 @@ export function ISSTrackerAnimation() {
 
             <div className="iss-orbit">
 
-                <div className="iss-satellite">
+                <div className="iss-satellite text-lg">
                     🛰️
                 </div>
 

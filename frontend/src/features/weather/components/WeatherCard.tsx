@@ -2,6 +2,11 @@ import type { Weather } from "@/types/weather";
 import { BaseCard } from "@/components/ui/BaseCard";
 import { WeatherDetailRow } from "./WeatherDetailRow";
 import { WeatherHero } from "./WeatherHero";
+import { useSettingsStore } from "@/stores/settings.store";
+import { 
+    formatWindSpeed,
+    formatVisibility,
+ } from "@/utils/unit";
 
 type WeatherCardProps = {
     weather: Weather;
@@ -12,6 +17,10 @@ export function WeatherCard({
     weather,
     city
 }: WeatherCardProps) {
+
+    const {
+        distanceUnit,
+    } = useSettingsStore();
 
     return (
         <BaseCard
@@ -33,7 +42,7 @@ export function WeatherCard({
 
                 <WeatherDetailRow
                     label="Wind Speed"
-                    value={`${weather.windSpeed} km/h`}
+                    value={`${formatWindSpeed(weather.windSpeed, distanceUnit)}`}
                 />
 
                 <WeatherDetailRow

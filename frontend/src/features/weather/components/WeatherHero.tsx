@@ -1,6 +1,10 @@
 import { getWeatherIcon } from "@/utils/weatherIcon";
 import { MapPin } from "lucide-react";
 import { createElement } from "react";
+import { useSettingsStore } from "@/stores/settings.store";
+import { 
+    formatTemperature,
+ } from "@/utils/unit";
 
 
 type WeatherHeroProps = {
@@ -15,7 +19,11 @@ export function WeatherHero({
     location,
     weatherCode,
 }: WeatherHeroProps) {
-    
+
+    const {
+        temperatureUnit,
+    } = useSettingsStore();
+
      const icon = getWeatherIcon(weatherCode);
 
     return (
@@ -46,7 +54,7 @@ export function WeatherHero({
             </p>
 
             <h2 className="mt-2 text-6xl font-bold tracking-tight">
-                {temperature.toFixed(1)}°
+                {formatTemperature(temperature, temperatureUnit)}
             </h2>
 
                         

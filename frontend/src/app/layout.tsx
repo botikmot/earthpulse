@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import { LocationProvider } from "@/providers/LocationProvider";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 const manrope = Manrope({
     subsets: ["latin"],
@@ -26,12 +27,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <LocationProvider>
-          {children}
-        </LocationProvider>
+        <ThemeProvider>
+          <LocationProvider>
+            {children}
+          </LocationProvider>
+        </ThemeProvider>
         <Toaster
             position="top-right"
             richColors
