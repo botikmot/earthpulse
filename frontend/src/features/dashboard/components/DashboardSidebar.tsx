@@ -3,7 +3,13 @@
 import { navigationItems } from "@/constants/navigation";
 import { SidebarItem } from "./SidebarItem";
 
-export default function DashboardSidebar() {
+type DashboardSidebarProps = {
+    onNavigate?: () => void;
+};
+
+export default function DashboardSidebar({
+    onNavigate,
+}: DashboardSidebarProps) {
     
   return (
       <div className="flex h-full flex-col">
@@ -17,6 +23,7 @@ export default function DashboardSidebar() {
                 <SidebarItem
                     key={item.href}
                     item={item}
+                    onNavigate={onNavigate}
                 />
             ))}
           </div>

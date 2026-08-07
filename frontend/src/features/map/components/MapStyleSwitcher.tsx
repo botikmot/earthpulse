@@ -21,9 +21,32 @@ export function MapStyleSwitcher() {
 
     return (
 
-        <div className="flex items-center gap-3 rounded-xl border bg-background/40 backdrop-blur-md shadow-lg p-3">
+        <div
+            className="
+                flex
+                items-center
+                gap-2
+                rounded-xl
+                border
+                bg-background/40
+                p-2
+                shadow-lg
+                backdrop-blur-md
 
-            <span className="text-xs font-semibold">
+                sm:gap-3
+                sm:p-3
+            "
+        >
+
+            <span
+                className="
+                    hidden
+                    text-xs
+                    font-semibold
+
+                    sm:block
+                "
+            >
                 Map Style
             </span>
 
@@ -34,28 +57,43 @@ export function MapStyleSwitcher() {
                 }
             >
 
-                <SelectTrigger className="w-[170px]">
+                <SelectTrigger
+                    className="
+                        h-8
+                        w-[120px]
+                        text-xs
+
+                        sm:h-9
+                        sm:w-[170px]
+                        sm:text-sm
+                    "
+                >
                     <SelectValue />
                 </SelectTrigger>
 
                 <SelectContent className="z-[99999]">
+
                     <SelectItem value="street">
                         Street
                     </SelectItem>
+
                     <SelectItem value="satellite">
                         Satellite
                     </SelectItem>
+
                     <SelectItem value="terrain">
                         Terrain
                     </SelectItem>
+
                     <SelectItem value="dark">
                         Dark
                     </SelectItem>
+
                 </SelectContent>
+
             </Select>
 
         </div>
 
     );
-
 }

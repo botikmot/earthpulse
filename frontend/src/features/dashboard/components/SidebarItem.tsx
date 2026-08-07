@@ -7,10 +7,12 @@ import type { NavigationItem } from "@/types/navigation";
 
 type SidebarItemProps = {
     item: NavigationItem;
+    onNavigate?: () => void;
 };
 
 export function SidebarItem({
     item,
+    onNavigate,
 }: SidebarItemProps) {
 
     const pathname = usePathname();
@@ -23,6 +25,7 @@ export function SidebarItem({
 
         <Link
             href={item.href}
+            onClick={onNavigate}
             className={`
                 group flex items-center gap-3 rounded-lg px-3 py-2.5
                 text-sm font-medium transition-all duration-200

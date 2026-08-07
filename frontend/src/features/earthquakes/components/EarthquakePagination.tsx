@@ -29,35 +29,73 @@ export function EarthquakePagination({
 
     return (
 
-        <div className="mt-6 flex items-center justify-between">
+        <div
+            className="
+                mt-6
+                flex
+                flex-col
+                gap-4
 
-            <p className="text-sm text-muted-foreground">
+                sm:flex-row
+                sm:items-center
+                sm:justify-between
+            "
+        >
+
+            {/* Result count */}
+
+            <p
+                className="
+                    text-center
+                    text-xs
+                    text-muted-foreground
+
+                    sm:text-left
+                    sm:text-sm
+                "
+            >
 
                 Showing
 
-                <span className="mx-1 font-semibold">
-
+                <span className="mx-1 font-semibold text-foreground">
                     {start}-{end}
-
                 </span>
 
                 of
 
-                <span className="mx-1 font-semibold">
-
+                <span className="mx-1 font-semibold text-foreground">
                     {totalItems}
-
                 </span>
 
                 earthquakes
 
             </p>
 
-            <div className="flex items-center gap-3">
+            {/* Pagination controls */}
+
+            <div
+                className="
+                    flex
+                    items-center
+                    justify-center
+                    gap-2
+
+                    sm:gap-3
+                "
+            >
 
                 <Button
                     variant="outline"
                     size="sm"
+                    className="
+                        h-8
+                        px-2.5
+                        text-xs
+
+                        sm:h-9
+                        sm:px-3
+                        sm:text-sm
+                    "
                     disabled={currentPage === 1}
                     onClick={() =>
                         onPageChange(currentPage - 1)
@@ -66,16 +104,33 @@ export function EarthquakePagination({
                     Previous
                 </Button>
 
-                <span className="text-sm font-medium">
+                <span
+                    className="
+                        whitespace-nowrap
+                        text-xs
+                        font-medium
 
+                        sm:text-sm
+                    "
+                >
                     Page {currentPage} of {totalPages}
-
                 </span>
 
                 <Button
                     variant="outline"
                     size="sm"
-                    disabled={currentPage === totalPages}
+                    className="
+                        h-8
+                        px-2.5
+                        text-xs
+
+                        sm:h-9
+                        sm:px-3
+                        sm:text-sm
+                    "
+                    disabled={
+                        currentPage === totalPages
+                    }
                     onClick={() =>
                         onPageChange(currentPage + 1)
                     }
@@ -88,5 +143,4 @@ export function EarthquakePagination({
         </div>
 
     );
-
 }
