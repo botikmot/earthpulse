@@ -1,107 +1,198 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import {
     ArrowRight,
     Rocket,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-
 export function LandingCTA() {
-
     return (
+        <section
+            className="
+                relative
+                overflow-hidden
+                bg-[#030712]
+                py-24
+                text-white
+            "
+        >
+            {/* glow */}
 
-        <section className="py-28">
+            <div
+                className="
+                    pointer-events-none
+                    absolute
+                    left-1/2
+                    top-1/2
+                    h-[420px]
+                    w-[850px]
+                    -translate-x-1/2
+                    -translate-y-1/2
+                    rounded-full
+                    bg-cyan-500/10
+                    blur-[130px]
+                "
+            />
 
-            <div className="mx-auto max-w-7xl px-6">
+            <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
                 <div
                     className="
                         relative
                         overflow-hidden
-                        rounded-[36px]
+                        rounded-[32px]
                         border
-                        bg-gradient-to-br
-                        from-sky-950
-                        via-cyan-950
-                        to-blue-950
-                        p-16
+                        border-white/10
+                        bg-[#07111f]/90
+                        px-6
+                        py-16
                         text-center
-                        shadow-2xl
+                        shadow-[0_25px_80px_rgba(0,0,0,.35)]
+                        backdrop-blur-xl
+
+                        sm:px-10
+                        lg:px-16
+                        lg:py-20
                     "
                 >
+                    {/* inner glow */}
 
-                    {/* glow */}
+                    <div
+                        className="
+                            pointer-events-none
+                            absolute
+                            left-1/2
+                            top-0
+                            h-[260px]
+                            w-[500px]
+                            -translate-x-1/2
+                            rounded-full
+                            bg-sky-500/10
+                            blur-[90px]
+                        "
+                    />
 
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,.12),transparent_60%)]" />
+                    <div className="relative z-10">
 
-                    <div className="relative">
+                        <span
+                            className="
+                                inline-flex
+                                items-center
+                                gap-2
+                                rounded-full
+                                border
+                                border-cyan-400/20
+                                bg-cyan-400/5
+                                px-4
+                                py-1.5
+                                text-xs
+                                font-medium
+                                text-cyan-300
+                            "
+                        >
+                            <Rocket className="h-3.5 w-3.5" />
+                            Mission Control Ready
+                        </span>
 
-                        <Image
-                            src="/images/earthpulse_logo2.png"
-                            alt="EarthPulse"
-                            width={80}
-                            height={80}
-                            className="mx-auto mb-8"
-                        />
-
-                        <h2 className="text-5xl font-bold text-white">
-
-                            Ready to Explore Earth?
-
+                        <h2
+                            className="
+                                mx-auto
+                                mt-6
+                                max-w-3xl
+                                text-3xl
+                                font-bold
+                                tracking-tight
+                                sm:text-4xl
+                                lg:text-5xl
+                            "
+                        >
+                            Ready to explore
+                            <span className="block text-cyan-400">
+                                our planet in real-time?
+                            </span>
                         </h2>
 
-                        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-
-                            Launch the ERRION Mission Control and
-                            monitor global environmental activity in
-                            real time.
-
+                        <p
+                            className="
+                                mx-auto
+                                mt-5
+                                max-w-2xl
+                                text-sm
+                                leading-7
+                                text-slate-400
+                                sm:text-base
+                            "
+                        >
+                            Launch ERRION Mission Control and explore live
+                            environmental data, global activity, and real-time
+                            monitoring from one unified platform.
                         </p>
 
-                        <div className="mt-12 flex flex-wrap justify-center gap-5">
-
-                            <Button
-                                size="lg"
+                        <div
+                            className="
+                                mt-9
+                                flex
+                                flex-col
+                                justify-center
+                                gap-3
+                                sm:flex-row
+                            "
+                        >
+                            <Link
+                                href="/dashboard"
+                                className="
+                                    inline-flex
+                                    h-12
+                                    items-center
+                                    justify-center
+                                    gap-2
+                                    rounded-lg
+                                    bg-white
+                                    px-6
+                                    text-sm
+                                    font-semibold
+                                    text-slate-950
+                                    transition-all
+                                    hover:-translate-y-0.5
+                                    hover:bg-slate-100
+                                "
                             >
+                                Launch Mission Control
 
-                                <Link href="/dashboard">
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
 
-                                    <Rocket className="mr-2 h-5 w-5"/>
-
-                                    Launch Mission Control
-
-                                    <ArrowRight className="ml-2 h-4 w-4"/>
-
-                                </Link>
-
-                            </Button>
-
-                            <Button
-                                variant="secondary"
-                                size="lg"
+                            <Link
+                                href="/dashboard/live-map"
+                                className="
+                                    inline-flex
+                                    h-12
+                                    items-center
+                                    justify-center
+                                    rounded-lg
+                                    border
+                                    border-white/10
+                                    bg-white/[0.04]
+                                    px-6
+                                    text-sm
+                                    font-medium
+                                    text-white
+                                    backdrop-blur
+                                    transition-all
+                                    hover:-translate-y-0.5
+                                    hover:border-white/20
+                                    hover:bg-white/[0.07]
+                                "
                             >
-
-                                <Link href="#modules">
-
-                                    Explore Features
-
-                                </Link>
-
-                            </Button>
-
+                                Explore Live Map
+                            </Link>
                         </div>
 
                     </div>
-
                 </div>
 
             </div>
-
         </section>
-
     );
-
 }

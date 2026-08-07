@@ -1,155 +1,235 @@
 "use client";
 
 import {
-    Activity,
     CloudSun,
     Flame,
     Gauge,
+    Mountain,
     Satellite,
 } from "lucide-react";
 
-const timeline = [
+const activities = [
     {
-        icon: Activity,
-        color: "text-orange-500",
         title: "Earthquake Detected",
-        location: "Japan",
-        time: "09:42 UTC",
+        description: "Magnitude 5.8 near Fiji",
+        time: "5 min ago",
+        icon: Mountain,
+        color: "text-orange-400",
+        glow: "bg-orange-400",
     },
     {
-        icon: Satellite,
-        color: "text-violet-500",
-        title: "ISS Passed Over",
-        location: "Philippines",
-        time: "09:40 UTC",
-    },
-    {
-        icon: Flame,
-        color: "text-red-500",
-        title: "Wildfire Updated",
-        location: "California",
-        time: "09:35 UTC",
-    },
-    {
-        icon: Gauge,
-        color: "text-emerald-500",
-        title: "AQI Refreshed",
-        location: "Manila",
-        time: "09:31 UTC",
-    },
-    {
+        title: "Weather Updated",
+        description: "27°C in Manila",
+        time: "12 min ago",
         icon: CloudSun,
-        color: "text-sky-500",
-        title: "Weather Forecast Updated",
-        location: "Singapore",
-        time: "09:25 UTC",
+        color: "text-sky-400",
+        glow: "bg-sky-400",
+    },
+    {
+        title: "Wildfire Reported",
+        description: "Nevada, United States",
+        time: "16 min ago",
+        icon: Flame,
+        color: "text-red-400",
+        glow: "bg-red-400",
+    },
+    {
+        title: "Air Quality Updated",
+        description: "AQI level 12",
+        time: "18 min ago",
+        icon: Gauge,
+        color: "text-emerald-400",
+        glow: "bg-emerald-400",
+    },
+    {
+        title: "ISS Position Updated",
+        description: "Orbiting above the Pacific Ocean",
+        time: "23 min ago",
+        icon: Satellite,
+        color: "text-violet-400",
+        glow: "bg-violet-400",
     },
 ];
 
 export function LandingTimeline() {
-
     return (
+        <section
+            className="
+                relative
+                overflow-hidden
+                bg-[#07101c]
+                py-28
+                text-white
+            "
+        >
+            <div className="mx-auto max-w-5xl px-5">
 
-        <section className="py-28">
+                {/* header */}
 
-            <div className="mx-auto max-w-6xl px-6">
+                <div className="mb-16 text-center">
 
-                <div className="mb-14 text-center">
-
-                    <span className="rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
-
+                    <span
+                        className="
+                            inline-flex
+                            rounded-full
+                            border
+                            border-white/10
+                            bg-white/[0.04]
+                            px-4
+                            py-1.5
+                            text-xs
+                            font-medium
+                            text-cyan-300
+                        "
+                    >
                         Mission Timeline
-
                     </span>
 
-                    <h2 className="mt-6 text-4xl font-bold">
-
+                    <h2
+                        className="
+                            mt-6
+                            text-4xl
+                            font-bold
+                        "
+                    >
                         Recent Global Activity
-
                     </h2>
 
-                    <p className="mt-5 text-lg text-muted-foreground">
-
-                        Stay informed with the latest environmental events
-                        monitored across Earth.
-
+                    <p
+                        className="
+                            mt-4
+                            text-slate-400
+                        "
+                    >
+                        Stay informed with the latest
+                        environmental events from around the world.
                     </p>
 
                 </div>
 
+                {/* timeline */}
+
                 <div className="relative">
 
-                    <div className="absolute left-7 top-0 bottom-0 w-px bg-border" />
+                    {/* center line */}
 
-                    <div className="space-y-8">
+                    <div
+                        className="
+                            absolute
+                            bottom-0
+                            left-6
+                            top-0
+                            w-px
+                            bg-white/10
+                        "
+                    />
 
-                        {timeline.map((item, index) => {
+                    <div className="space-y-5">
+
+                        {activities.map((item) => {
 
                             const Icon = item.icon;
 
                             return (
-
                                 <div
-                                    key={index}
-                                    className="relative flex gap-6"
+                                    key={item.title}
+                                    className="
+                                        relative
+                                        ml-14
+                                        rounded-2xl
+                                        border
+                                        border-white/10
+                                        bg-white/[0.03]
+                                        p-5
+                                        backdrop-blur-xl
+                                        transition-all
+                                        duration-300
+                                        hover:border-white/20
+                                        hover:bg-white/[0.05]
+                                    "
                                 >
+
+                                    {/* timeline icon */}
 
                                     <div
                                         className="
-                                            relative
-                                            z-10
+                                            absolute
+                                            -left-[52px]
+                                            top-1/2
                                             flex
-                                            h-14
-                                            w-14
+                                            h-10
+                                            w-10
+                                            -translate-y-1/2
                                             items-center
                                             justify-center
                                             rounded-full
                                             border
-                                            bg-background
-                                            shadow
+                                            border-white/10
+                                            bg-[#071521]
                                         "
                                     >
 
+                                        <div
+                                            className={`
+                                                absolute
+                                                h-2
+                                                w-2
+                                                rounded-full
+                                                ${item.glow}
+                                            `}
+                                        />
+
                                         <Icon
-                                            className={`h-6 w-6 ${item.color}`}
+                                            className={`h-4 w-4 ${item.color}`}
                                         />
 
                                     </div>
 
-                                    <div className="flex-1 rounded-2xl border bg-card p-6 transition-all duration-300 hover:shadow-md">
+                                    {/* content */}
 
-                                        <div className="flex items-center justify-between">
+                                    <div
+                                        className="
+                                            flex
+                                            flex-col
+                                            gap-2
 
-                                            <div>
+                                            sm:flex-row
+                                            sm:items-center
+                                            sm:justify-between
+                                        "
+                                    >
 
-                                                <h3 className="font-semibold">
+                                        <div>
 
-                                                    {item.title}
+                                            <h3 className="font-medium">
+                                                {item.title}
+                                            </h3>
 
-                                                </h3>
-
-                                                <p className="text-sm text-muted-foreground">
-
-                                                    {item.location}
-
-                                                </p>
-
-                                            </div>
-
-                                            <span className="text-xs text-muted-foreground">
-
-                                                {item.time}
-
-                                            </span>
+                                            <p
+                                                className="
+                                                    mt-1
+                                                    text-sm
+                                                    text-slate-400
+                                                "
+                                            >
+                                                {item.description}
+                                            </p>
 
                                         </div>
+
+                                        <span
+                                            className="
+                                                text-xs
+                                                text-slate-500
+                                            "
+                                        >
+                                            {item.time}
+                                        </span>
 
                                     </div>
 
                                 </div>
-
                             );
-
                         })}
 
                     </div>
@@ -159,7 +239,5 @@ export function LandingTimeline() {
             </div>
 
         </section>
-
     );
-
 }

@@ -11,133 +11,214 @@ const features = [
         icon: Globe2,
         title: "Unified Earth Monitoring",
         description:
-            "Access weather, earthquakes, wildfires, air quality, and ISS tracking from a single modern mission control platform.",
-        color: "text-sky-500",
+            "Monitor weather, earthquakes, wildfires, air quality, and the International Space Station from one unified platform.",
+        color: "text-cyan-400",
+        glow: "bg-cyan-400/10",
     },
     {
         icon: Activity,
         title: "Real-Time Intelligence",
         description:
-            "Powered by trusted global data providers to deliver continuously updated environmental information and live monitoring.",
-        color: "text-emerald-500",
+            "Stay updated with continuously refreshed environmental data powered by trusted global monitoring services.",
+        color: "text-emerald-400",
+        glow: "bg-emerald-400/10",
     },
     {
         icon: ShieldCheck,
         title: "Built for Awareness",
         description:
-            "Designed for researchers, students, responders, and everyday users who need reliable Earth monitoring at a glance.",
-        color: "text-orange-500",
+            "Designed to make complex Earth activity easier to understand through clear visuals, live maps, and focused insights.",
+        color: "text-orange-400",
+        glow: "bg-orange-400/10",
     },
 ];
 
 export function LandingFeatures() {
     return (
+        <section
+            id="about"
+            className="
+                relative
+                overflow-hidden
+                bg-[#07101c]
+                py-28
+                text-white
+            "
+        >
+            {/* background accents */}
 
-        <section className="py-28">
+            <div
+                className="
+                    pointer-events-none
+                    absolute
+                    left-[-180px]
+                    top-[10%]
+                    h-[420px]
+                    w-[420px]
+                    rounded-full
+                    bg-cyan-500/5
+                    blur-[120px]
+                "
+            />
 
-            <div className="mx-auto max-w-7xl px-6">
+            <div
+                className="
+                    pointer-events-none
+                    absolute
+                    bottom-[-180px]
+                    right-[-120px]
+                    h-[500px]
+                    w-[500px]
+                    rounded-full
+                    bg-blue-500/5
+                    blur-[130px]
+                "
+            />
 
-                <div className="mb-16 text-center">
+            <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+
+                {/* Header */}
+
+                <div className="mx-auto mb-16 max-w-3xl text-center">
 
                     <span
                         className="
+                            inline-flex
                             rounded-full
-                            bg-primary/10
+                            border
+                            border-white/10
+                            bg-white/[0.04]
                             px-4
                             py-1.5
-                            text-sm
+                            text-xs
                             font-medium
-                            text-primary
+                            text-cyan-300
                         "
                     >
                         Why ERRION
                     </span>
 
-                    <h2 className="mt-6 text-4xl font-bold tracking-tight">
-
+                    <h2
+                        className="
+                            mt-6
+                            text-3xl
+                            font-bold
+                            tracking-tight
+                            sm:text-4xl
+                            lg:text-5xl
+                        "
+                    >
                         One Platform.
-                        <br />
-                        Every Earth Signal.
-
+                        <span className="block text-cyan-400">
+                            Every Earth Signal.
+                        </span>
                     </h2>
 
-                    <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-muted-foreground">
-
-                        ERRION brings together multiple global monitoring
-                        systems into one beautiful mission control interface,
-                        helping users understand what is happening across our
-                        planet in real time.
-
+                    <p
+                        className="
+                            mx-auto
+                            mt-5
+                            max-w-2xl
+                            text-sm
+                            leading-7
+                            text-slate-400
+                            sm:text-base
+                        "
+                    >
+                        ERRION brings multiple global monitoring systems
+                        together into one clear and accessible mission
+                        control experience.
                     </p>
 
                 </div>
 
-                <div className="grid gap-8 lg:grid-cols-3">
+                {/* Feature cards */}
+
+                <div className="grid gap-5 lg:grid-cols-3">
 
                     {features.map((feature) => {
 
                         const Icon = feature.icon;
 
                         return (
-
                             <div
                                 key={feature.title}
                                 className="
                                     group
+                                    relative
+                                    overflow-hidden
                                     rounded-3xl
                                     border
-                                    bg-card
+                                    border-white/10
+                                    bg-white/[0.025]
                                     p-8
                                     transition-all
                                     duration-300
-                                    hover:-translate-y-2
-                                    hover:border-primary/30
-                                    hover:shadow-xl
+                                    hover:-translate-y-1.5
+                                    hover:border-white/20
+                                    hover:bg-white/[0.045]
+                                    hover:shadow-[0_20px_60px_rgba(0,0,0,.25)]
                                 "
                             >
 
                                 <div
-                                    className="
-                                        mb-6
-                                        flex
-                                        h-16
-                                        w-16
-                                        items-center
-                                        justify-center
-                                        rounded-2xl
-                                        bg-muted
-                                    "
-                                >
+                                    className={`
+                                        absolute
+                                        -right-10
+                                        -top-10
+                                        h-32
+                                        w-32
+                                        rounded-full
+                                        blur-3xl
+                                        ${feature.glow}
+                                    `}
+                                />
 
-                                    <Icon
-                                        className={`h-8 w-8 ${feature.color}`}
-                                    />
+                                <div className="relative z-10">
+
+                                    <div
+                                        className="
+                                            mb-7
+                                            flex
+                                            h-14
+                                            w-14
+                                            items-center
+                                            justify-center
+                                            rounded-2xl
+                                            border
+                                            border-white/10
+                                            bg-white/[0.04]
+                                        "
+                                    >
+                                        <Icon
+                                            className={`h-7 w-7 ${feature.color}`}
+                                        />
+                                    </div>
+
+                                    <h3 className="text-xl font-semibold">
+                                        {feature.title}
+                                    </h3>
+
+                                    <p
+                                        className="
+                                            mt-4
+                                            text-sm
+                                            leading-7
+                                            text-slate-400
+                                        "
+                                    >
+                                        {feature.description}
+                                    </p>
 
                                 </div>
 
-                                <h3 className="text-2xl font-bold">
-
-                                    {feature.title}
-
-                                </h3>
-
-                                <p className="mt-4 leading-7 text-muted-foreground">
-
-                                    {feature.description}
-
-                                </p>
-
                             </div>
-
                         );
-
                     })}
 
                 </div>
 
             </div>
-
         </section>
-
     );
 }

@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   icons: {
     icon: "/images/earthpulse_favicon3.png", // or /favicon.png
   },
+
+  openGraph: {
+      title: "ERRION",
+      description: "Understanding Earth's Signals.",
+      images: ["/images/og-image.png"],
+  },
 };
 
 export default function RootLayout({

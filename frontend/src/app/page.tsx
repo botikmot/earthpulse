@@ -6,6 +6,7 @@ import { LandingMapPreview } from "@/components/landing/LandingMapPreview";
 import { LandingTimeline } from "@/components/landing/LandingTimeline";
 import { LandingCTA } from "@/components/landing/LandingCTA";
 import { LandingFooter } from "@/components/landing/LandingFooter";
+//import { SpaceHero } from "@/components/landing/SpaceHero";
 
 export default function HomePage() {
   return (

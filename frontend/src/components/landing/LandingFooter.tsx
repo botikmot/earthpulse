@@ -1,142 +1,172 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 import {
-    Globe,
-    Heart,
+    Globe2,
 } from "lucide-react";
 
+const modules = [
+    {
+        label: "Weather",
+        href: "/dashboard/weather",
+    },
+    {
+        label: "Earthquakes",
+        href: "/dashboard/earthquake",
+    },
+    {
+        label: "Wildfires",
+        href: "/dashboard/wildfire",
+    },
+    {
+        label: "Air Quality",
+        href: "/dashboard/air-quality",
+    },
+    {
+        label: "ISS Tracker",
+        href: "/dashboard/iss",
+    },
+];
+
 export function LandingFooter() {
-
     return (
+        <footer
+            id="resources"
+            className="
+                border-t
+                border-white/10
+                bg-[#01050d]
+                text-white
+            "
+        >
+            <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-10">
 
-        <footer className="border-t">
+                <div
+                    className="
+                        grid
+                        gap-10
+                        md:grid-cols-2
+                        lg:grid-cols-[1.5fr_1fr_1fr]
+                    "
+                >
 
-            <div className="mx-auto max-w-7xl px-6 py-16">
-
-                <div className="grid gap-10 lg:grid-cols-3">
-
-                    {/* Brand */}
+                    {/* brand */}
 
                     <div>
 
-                        <div className="flex items-center gap-4">
-
+                        <Link
+                            href="/"
+                            className="inline-flex items-center gap-3"
+                        >
                             <Image
                                 src="/images/earthpulse_logo2.png"
                                 alt="ERRION"
-                                width={56}
-                                height={56}
+                                width={48}
+                                height={48}
+                                className="h-11 w-11 object-contain"
                             />
 
                             <div>
-
-                                <h3 className="text-xl font-bold">
-
+                                <p className="text-lg font-bold tracking-wide">
                                     ERRION
-
-                                </h3>
-
-                                <p className="text-sm text-muted-foreground">
-
-                                    Understanding Earth&apos;s Signals
-
                                 </p>
 
+                                <p className="text-xs text-cyan-300">
+                                    Understanding Earth&apos;s Signals
+                                </p>
                             </div>
+                        </Link>
 
-                        </div>
-
-                        <p className="mt-6 max-w-sm text-sm leading-7 text-muted-foreground">
-
-                            A unified environmental monitoring platform
-                            providing real-time information about our
-                            planet through trusted global data sources.
-
+                        <p
+                            className="
+                                mt-5
+                                max-w-md
+                                text-sm
+                                leading-7
+                                text-slate-400
+                            "
+                        >
+                            A unified Earth monitoring platform for weather,
+                            earthquakes, wildfires, air quality, and
+                            International Space Station tracking.
                         </p>
 
                     </div>
 
-                    {/* Modules */}
+                    {/* modules */}
 
                     <div>
 
-                        <h4 className="mb-5 font-semibold">
-
-                            Modules
-
+                        <h4 className="text-sm font-semibold text-white">
+                            Monitoring
                         </h4>
 
-                        <div className="space-y-3 text-sm">
+                        <div className="mt-5 space-y-3">
 
-                            <Link href="/dashboard/weather" className="block hover:text-primary">
-
-                                Weather
-
-                            </Link>
-
-                            <Link href="/dashboard/earthquake" className="block hover:text-primary">
-
-                                Earthquakes
-
-                            </Link>
-
-                            <Link href="/dashboard/wildfire" className="block hover:text-primary">
-
-                                Wildfires
-
-                            </Link>
-
-                            <Link href="/dashboard/air-quality" className="block hover:text-primary">
-
-                                Air Quality
-
-                            </Link>
-
-                            <Link href="/dashboard/iss" className="block hover:text-primary">
-
-                                ISS Tracker
-
-                            </Link>
+                            {modules.map((item) => (
+                                <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    className="
+                                        block
+                                        text-sm
+                                        text-slate-400
+                                        transition-colors
+                                        hover:text-cyan-300
+                                    "
+                                >
+                                    {item.label}
+                                </Link>
+                            ))}
 
                         </div>
 
                     </div>
 
-                    {/* Resources */}
+                    {/* resources */}
 
                     <div>
 
-                        <h4 className="mb-5 font-semibold">
-
+                        <h4 className="text-sm font-semibold text-white">
                             Resources
-
                         </h4>
 
-                        <div className="space-y-3 text-sm">
+                        <div className="mt-5 space-y-3">
+
+                            <Link
+                                href="/dashboard"
+                                className="
+                                    flex
+                                    items-center
+                                    gap-2
+                                    text-sm
+                                    text-slate-400
+                                    transition-colors
+                                    hover:text-cyan-300
+                                "
+                            >
+                                <Globe2 className="h-4 w-4" />
+                                Mission Control
+                            </Link>
 
                             <a
                                 href="https://github.com"
                                 target="_blank"
-                                className="flex items-center gap-2 hover:text-primary"
+                                rel="noreferrer"
+                                className="
+                                    flex
+                                    items-center
+                                    gap-2
+                                    text-sm
+                                    text-slate-400
+                                    transition-colors
+                                    hover:text-cyan-300
+                                "
                             >
-
-                                 GitHub
-
-                            </a>
-
-                            <a
-                                href="https://open-meteo.com/"
-                                target="_blank"
-                                className="flex items-center gap-2 hover:text-primary"
-                            >
-
-                                <Globe className="h-4 w-4"/>
-
-                                API Providers
-
+                                
+                                GitHub
                             </a>
 
                         </div>
@@ -145,30 +175,33 @@ export function LandingFooter() {
 
                 </div>
 
-                <div className="mt-14 flex flex-col gap-3 border-t pt-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+                <div
+                    className="
+                        mt-12
+                        flex
+                        flex-col
+                        gap-3
+                        border-t
+                        border-white/10
+                        pt-6
+                        text-xs
+                        text-slate-500
 
-                    <span>
-
+                        sm:flex-row
+                        sm:items-center
+                        sm:justify-between
+                    "
+                >
+                    <p>
                         © 2026 ERRION. All rights reserved.
+                    </p>
 
-                    </span>
-
-                    <span className="flex items-center gap-2">
-
-                        Built with
-
-                        <Heart className="h-4 w-4 fill-current text-red-500"/>
-
-                        using Next.js & NestJS
-
-                    </span>
-
+                    <p>
+                        Understanding Earth&apos;s Signals.
+                    </p>
                 </div>
 
             </div>
-
         </footer>
-
     );
-
 }

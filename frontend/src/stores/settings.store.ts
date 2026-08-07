@@ -69,7 +69,7 @@ export const useSettingsStore =
 create<SettingsState>()(
     persist(
         (set) => ({
-    appearance: "system",
+    appearance: "dark",
     temperatureUnit: "C",
     distanceUnit: "km",
     refreshIntervals: {

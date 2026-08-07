@@ -15,156 +15,242 @@ const modules = [
     {
         title: "Weather Monitoring",
         description:
-            "Track current weather, forecasts, humidity, wind speed, visibility and atmospheric conditions in real time.",
+            "Track current weather, forecasts, humidity, wind speed, visibility, and atmospheric conditions in real time.",
         icon: CloudSun,
-        color: "text-sky-500",
-        background:
-            "from-sky-50 to-blue-100 dark:from-sky-950/20 dark:to-blue-950/20",
+        color: "text-sky-400",
+        glow: "from-sky-500/20 via-cyan-500/10 to-transparent",
         href: "/dashboard/weather",
     },
     {
         title: "Earthquake Monitoring",
         description:
-            "Monitor global seismic activity with live magnitude, depth, coordinates and event history.",
+            "Monitor global seismic activity with live magnitude, depth, coordinates, and recent event history.",
         icon: Mountain,
-        color: "text-orange-500",
-        background:
-            "from-orange-50 to-amber-100 dark:from-orange-950/20 dark:to-amber-950/20",
+        color: "text-orange-400",
+        glow: "from-orange-500/20 via-amber-500/10 to-transparent",
         href: "/dashboard/earthquake",
     },
     {
         title: "Wildfire Detection",
         description:
-            "Observe active wildfire incidents, affected areas and detection sources from NASA EONET.",
+            "Observe active wildfire incidents, affected regions, satellite detections, and event activity.",
         icon: Flame,
-        color: "text-red-500",
-        background:
-            "from-red-50 to-orange-100 dark:from-red-950/20 dark:to-orange-950/20",
+        color: "text-red-400",
+        glow: "from-red-500/20 via-orange-500/10 to-transparent",
         href: "/dashboard/wildfire",
     },
     {
         title: "Air Quality",
         description:
-            "Monitor PM2.5, PM10, AQI and environmental pollutants with real-time air quality data.",
+            "Monitor AQI, particulate matter, atmospheric pollutants, and real-time air quality conditions.",
         icon: Gauge,
-        color: "text-emerald-500",
-        background:
-            "from-emerald-50 to-green-100 dark:from-emerald-950/20 dark:to-green-950/20",
+        color: "text-emerald-400",
+        glow: "from-emerald-500/20 via-teal-500/10 to-transparent",
         href: "/dashboard/air-quality",
     },
     {
         title: "ISS Tracker",
         description:
-            "Track the International Space Station's live position, velocity and orbital information.",
+            "Track the International Space Station's live position, altitude, speed, and orbital information.",
         icon: Satellite,
-        color: "text-violet-500",
-        background:
-            "from-violet-50 to-indigo-100 dark:from-violet-950/20 dark:to-indigo-950/20",
+        color: "text-violet-400",
+        glow: "from-violet-500/20 via-indigo-500/10 to-transparent",
         href: "/dashboard/iss",
     },
 ];
 
 export function LandingModules() {
     return (
-        <section className="py-24">
+        <section
+            id="modules"
+            className="
+                relative
+                overflow-hidden
+                bg-[#030712]
+                py-28
+                text-white
+            "
+        >
+            {/* background glow */}
 
-            <div className="mx-auto max-w-7xl px-6">
+            <div
+                className="
+                    pointer-events-none
+                    absolute
+                    left-1/2
+                    top-0
+                    h-[420px]
+                    w-[900px]
+                    -translate-x-1/2
+                    rounded-full
+                    bg-cyan-500/5
+                    blur-[120px]
+                "
+            />
 
-                <div className="mb-14 text-center">
+            <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-                    <h2 className="text-4xl font-bold">
+                {/* Header */}
 
+                <div className="mx-auto mb-16 max-w-3xl text-center">
+
+                    <span
+                        className="
+                            inline-flex
+                            rounded-full
+                            border
+                            border-white/10
+                            bg-white/[0.03]
+                            px-4
+                            py-1.5
+                            text-xs
+                            font-medium
+                            text-cyan-300
+                            backdrop-blur
+                        "
+                    >
+                        Core Monitoring Modules
+                    </span>
+
+                    <h2
+                        className="
+                            mt-6
+                            text-3xl
+                            font-bold
+                            tracking-tight
+                            sm:text-4xl
+                            lg:text-5xl
+                        "
+                    >
                         Explore Every Module
-
                     </h2>
 
-                    <p className="mt-4 text-muted-foreground max-w-3xl mx-auto">
-
-                        ERRION combines multiple environmental
-                        monitoring systems into one modern mission control
-                        platform.
-
+                    <p
+                        className="
+                            mx-auto
+                            mt-5
+                            max-w-2xl
+                            text-sm
+                            leading-7
+                            text-slate-400
+                            sm:text-base
+                        "
+                    >
+                        ERRION brings multiple real-time Earth monitoring
+                        systems into one unified mission control platform.
                     </p>
 
                 </div>
 
-                <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+                {/* Cards */}
+
+                <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
 
                     {modules.map((module) => {
 
                         const Icon = module.icon;
 
                         return (
-
                             <Link
                                 key={module.title}
                                 href={module.href}
                                 className="
                                     group
+                                    relative
                                     overflow-hidden
                                     rounded-3xl
                                     border
-                                    bg-card
+                                    border-white/10
+                                    bg-white/[0.03]
+                                    p-7
+                                    backdrop-blur-xl
                                     transition-all
                                     duration-300
-                                    hover:-translate-y-2
-                                    hover:shadow-xl
+                                    hover:-translate-y-1.5
+                                    hover:border-white/20
+                                    hover:bg-white/[0.05]
+                                    hover:shadow-[0_20px_60px_rgba(0,0,0,.30)]
                                 "
                             >
 
+                                {/* module glow */}
+
                                 <div
                                     className={`
-                                        h-44
+                                        pointer-events-none
+                                        absolute
+                                        inset-0
                                         bg-gradient-to-br
-                                        ${module.background}
-                                        flex
-                                        items-center
-                                        justify-center
+                                        opacity-70
+                                        ${module.glow}
                                     `}
-                                >
+                                />
 
-                                    <Icon
-                                        className={`
-                                            h-24
-                                            w-24
-                                            ${module.color}
-                                            transition-transform
-                                            duration-500
-                                            group-hover:scale-110
-                                            group-hover:rotate-6
-                                        `}
-                                    />
+                                <div className="relative z-10">
 
-                                </div>
+                                    <div
+                                        className="
+                                            mb-8
+                                            flex
+                                            h-14
+                                            w-14
+                                            items-center
+                                            justify-center
+                                            rounded-2xl
+                                            border
+                                            border-white/10
+                                            bg-white/[0.05]
+                                        "
+                                    >
+                                        <Icon
+                                            className={`h-7 w-7 ${module.color}`}
+                                        />
+                                    </div>
 
-                                <div className="space-y-4 p-8">
-
-                                    <h3 className="text-2xl font-bold">
-
+                                    <h3 className="text-xl font-semibold">
                                         {module.title}
-
                                     </h3>
 
-                                    <p className="text-muted-foreground leading-7">
-
+                                    <p
+                                        className="
+                                            mt-3
+                                            min-h-[84px]
+                                            text-sm
+                                            leading-7
+                                            text-slate-400
+                                        "
+                                    >
                                         {module.description}
-
                                     </p>
 
-                                    <div className="flex items-center font-medium text-primary">
-
+                                    <div
+                                        className="
+                                            mt-7
+                                            flex
+                                            items-center
+                                            gap-2
+                                            text-sm
+                                            font-medium
+                                            text-white
+                                        "
+                                    >
                                         Open Module
 
-                                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-2" />
-
+                                        <ArrowRight
+                                            className="
+                                                h-4
+                                                w-4
+                                                transition-transform
+                                                duration-300
+                                                group-hover:translate-x-1.5
+                                            "
+                                        />
                                     </div>
 
                                 </div>
 
                             </Link>
-
                         );
-
                     })}
 
                 </div>

@@ -90,37 +90,53 @@ body {
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+    /* Main background */
+    --background: oklch(0.15 0.02 255);
+    --foreground: oklch(0.985 0 0);
+
+    /* Cards */
+    --card: oklch(0.19 0.025 255);
+    --card-foreground: oklch(0.985 0 0);
+
+    /* Popovers */
+    --popover: oklch(0.19 0.025 255);
+    --popover-foreground: oklch(0.985 0 0);
+
+    /* Primary */
+    --primary: oklch(0.78 0.12 220);
+    --primary-foreground: oklch(0.205 0 0);
+
+    /* Secondary */
+    --secondary: oklch(0.24 0.025 255);
+    --secondary-foreground: oklch(0.985 0 0);
+
+    /* Muted */
+    --muted: oklch(0.24 0.025 255);
+    --muted-foreground: oklch(0.74 0.01 255);
+
+    /* Accent */
+    --accent: oklch(0.24 0.025 255);
+    --accent-foreground: oklch(0.985 0 0);
+
+    /* Borders */
+    --border: oklch(1 0 0 / 0.08);
+    --input: oklch(1 0 0 / 0.12);
+
+    /* Ring */
+    --ring: oklch(0.78 0.12 220);
+
+    /* Sidebar */
+    --sidebar: oklch(0.18 0.025 255);
+    --sidebar-foreground: oklch(0.985 0 0);
+
+    --sidebar-primary: oklch(0.78 0.12 220);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+
+    --sidebar-accent: oklch(0.24 0.025 255);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+
+    --sidebar-border: oklch(1 0 0 / 0.08);
+    --sidebar-ring: oklch(0.78 0.12 220);
 }
 
 @layer base {
@@ -1035,5 +1051,181 @@ body {
 .animate-spin-slow {
 
     animation: spin-slow 80s linear infinite;
+
+}
+
+/* =========================================================
+   ERRION LANDING - SPACE BACKGROUND
+========================================================= */
+
+.errion-stars {
+    position: absolute;
+    inset: -20%;
+    pointer-events: none;
+}
+
+.errion-stars-small {
+    opacity: .85;
+
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.95) 0 1px, transparent 1.4px),
+        radial-gradient(circle, rgba(125,211,252,.9) 0 1px, transparent 1.5px);
+
+    background-position:
+        0 0,
+        52px 83px;
+
+    background-size:
+        125px 125px,
+        190px 190px;
+
+    animation:
+        errionStarDrift 90s linear infinite;
+}
+
+.errion-stars-medium {
+    opacity: .8;
+
+    background-image:
+        radial-gradient(circle, white 0 1.4px, transparent 1.8px),
+        radial-gradient(circle, rgba(147,197,253,.95) 0 1.2px, transparent 1.7px);
+
+    background-position:
+        35px 18px,
+        120px 74px;
+
+    background-size:
+        260px 260px,
+        340px 340px;
+
+    animation:
+        errionStarDrift 135s linear infinite reverse;
+}
+
+.errion-stars-large {
+    opacity: .75;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,1) 0 2px,
+            rgba(125,211,252,.45) 2.5px,
+            transparent 6px
+        );
+
+    background-position:
+        160px 120px;
+
+    background-size:
+        510px 510px;
+
+    animation:
+        errionTwinkle 4s ease-in-out infinite;
+}
+
+
+@keyframes errionStarDrift {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(140px, 70px, 0);
+    }
+}
+
+
+@keyframes errionTwinkle {
+    0%,
+    100% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   EARTH ROTATION
+========================================================= */
+
+.landing-earth-spin {
+    animation:
+        landingEarthRotate
+        90s
+        linear
+        infinite;
+}
+
+@keyframes landingEarthRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   ISS FLIGHT
+========================================================= */
+
+.landing-iss-flight {
+    animation:
+        landingISSFlight
+        14s
+        ease-in-out
+        infinite;
+}
+
+@keyframes landingISSFlight {
+    0% {
+        transform:
+            translate(-120px, 50px)
+            rotate(-8deg)
+            scale(.88);
+
+        opacity: .45;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    50% {
+        transform:
+            translate(30px, -10px)
+            rotate(2deg)
+            scale(1);
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(170px, -65px)
+            rotate(8deg)
+            scale(.9);
+
+        opacity: .35;
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .errion-stars-small,
+    .errion-stars-medium,
+    .errion-stars-large,
+    .landing-earth-spin,
+    .landing-iss-flight {
+        animation: none;
+    }
 
 }
