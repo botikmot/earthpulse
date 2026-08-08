@@ -36,7 +36,7 @@ const features = [
 export function LandingFeatures() {
     return (
         <section
-            id="about"
+            id="features"
             className="
                 relative
                 overflow-hidden

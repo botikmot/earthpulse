@@ -44,8 +44,10 @@ export function useDashboardActivity() {
             icon: Mountain,
             color: "bg-orange-500",
             title: "Earthquake Detected",
-            description: `Magnitude ${earthquakes[0].magnitude}`,
+            description: `Magnitude ${earthquakes[0].magnitude} near ${earthquakes[0].location}`,
             time: new Date(earthquakes[0].time).toISOString(),
+            glow: "bg-orange-400",
+            textColor: "text-orange-400",
         });
 
     }
@@ -57,8 +59,10 @@ export function useDashboardActivity() {
             icon: CloudSun,
             color: "bg-blue-500",
             title: "Weather Updated",
-            description: weather.condition,
+            description: `${weather.temperature}°C in ${location?.city}`,
             time: new Date().toISOString(),
+            glow: "bg-sky-400",
+            textColor: "text-sky-400",
         });
 
     }
@@ -69,9 +73,11 @@ export function useDashboardActivity() {
             id: "wildfire",
             icon: Flame,
             color: "bg-red-500",
-            title: "Wildfire Alert",
-            description: `${wildfires.length} Active Fires`,
+            title: "Wildfire Reported",
+            description: `${wildfires[0].area} ${wildfires[0].areaUnit} ${wildfires[0].title}`,
             time: new Date(wildfires[0].date).toISOString(),
+            glow: "bg-red-400",
+            textColor: "text-red-400",
         });
 
     }
@@ -83,8 +89,10 @@ export function useDashboardActivity() {
             icon: Wind,
             color: "bg-green-500",
             title: "Air Quality Updated",
-            description: `AQI ${airQuality.aqi}`,
+            description: `AQI level ${airQuality.aqi}`,
             time: new Date(airQuality.updatedAt).toISOString(),
+            glow: "bg-emerald-400",
+            textColor: "text-emerald-400",
         });
 
     }

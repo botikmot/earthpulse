@@ -28,7 +28,7 @@ const modules = [
         icon: Mountain,
         color: "text-orange-400",
         glow: "from-orange-500/20 via-amber-500/10 to-transparent",
-        href: "/dashboard/earthquake",
+        href: "/dashboard/earthquakes",
     },
     {
         title: "Wildfire Detection",
@@ -37,7 +37,7 @@ const modules = [
         icon: Flame,
         color: "text-red-400",
         glow: "from-red-500/20 via-orange-500/10 to-transparent",
-        href: "/dashboard/wildfire",
+        href: "/dashboard/wildfires",
     },
     {
         title: "Air Quality",
@@ -66,7 +66,6 @@ export function LandingModules() {
             className="
                 relative
                 overflow-hidden
-                bg-[#030712]
                 py-28
                 text-white
             "

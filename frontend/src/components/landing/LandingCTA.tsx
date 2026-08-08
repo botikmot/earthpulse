@@ -164,7 +164,7 @@ export function LandingCTA() {
                             </Link>
 
                             <Link
-                                href="/dashboard/live-map"
+                                href="/dashboard/map"
                                 className="
                                     inline-flex
                                     h-12

@@ -13,12 +13,63 @@ import {
 import { Button } from "@/components/ui/button";
 import WorldMapLoader from "@/features/map/components/WorldMapLoader";
 import { useLiveMapStore } from "@/stores/liveMap.store";
+import { useDashboardStats } from "@/hooks/useDashboardStats";
+import type { LucideIcon } from "lucide-react";
+import { useEarthquakes } from "@/hooks/useEarthquakes";
+import { useLocationStore } from "@/stores/location.store";
+import { useWeather } from "@/hooks/useWeather";
+import { useWildfires } from "@/hooks/useWildfires";
+import { useAirQuality } from "@/hooks/useAirQuality";
+import { useISS } from "@/hooks/useISS";
 
 export function LandingMapPreview() {
+
+    const location =
+            useLocationStore(
+                (state) => state.location
+            );
+
+    const { weather } =
+            useWeather({
+                latitude: location?.latitude,
+                longitude: location?.longitude,
+                enabled: !!location,
+            });
 
     const layers = useLiveMapStore(
         (state) => state.layers
     );
+    const { earthquakes } = useEarthquakes();
+
+    const { wildfires } = useWildfires();
+
+    const {
+            earthquakesCount,
+            temperature,
+            wildfiresCount,
+            airQualityIndex,
+        } = useDashboardStats();
+
+    const { airQuality } =
+            useAirQuality({
+                latitude: location?.latitude,
+                longitude: location?.longitude,
+                city: location?.city,
+                country: location?.country,
+                enabled: !!location,
+            });
+    
+    const { iss } = useISS();
+
+    const weatherMarker =
+            weather && location
+                ? {
+                    latitude: location.latitude,
+                    longitude: location.longitude,
+                    city: location.city,
+                    temperature: weather.temperature,
+                    weatherCode: weather.weatherCode,
+                } : undefined;
 
     return (
         <section
@@ -141,6 +192,11 @@ export function LandingMapPreview() {
                         <WorldMapLoader
                             className="h-full"
                             layers={layers}
+                            markers={earthquakes}
+                            weather={weatherMarker}
+                            wildfires={wildfires}
+                            airQuality={airQuality}
+                            iss={iss}
                         />
 
                         {/* top fade */}
@@ -205,28 +261,28 @@ export function LandingMapPreview() {
                                 <MapStatus
                                     icon={Activity}
                                     label="Earthquakes"
-                                    value="227"
+                                    value={`${earthquakesCount}`}
                                     color="text-orange-400"
                                 />
 
                                 <MapStatus
                                     icon={CloudSun}
                                     label="Weather"
-                                    value="27°C"
+                                    value={`${temperature}°C`}
                                     color="text-sky-400"
                                 />
 
                                 <MapStatus
                                     icon={Flame}
                                     label="Wildfires"
-                                    value="191"
+                                    value={`${wildfiresCount}`}
                                     color="text-red-400"
                                 />
 
                                 <MapStatus
                                     icon={Gauge}
                                     label="Air Quality"
-                                    value="AQI 12"
+                                    value={`AQI ${airQualityIndex}`}
                                     color="text-emerald-400"
                                 />
 
@@ -275,7 +331,7 @@ export function LandingMapPreview() {
                             hover:bg-[#0b1d2d]
                         "
                     >
-                        <Link href="/dashboard/live-map">
+                        <Link href="/dashboard/map" className="flex items-center">
 
                             Open Full Live Map
 
@@ -293,7 +349,7 @@ export function LandingMapPreview() {
 }
 
 type MapStatusProps = {
-    icon: React.ElementType;
+    icon: LucideIcon;
     label: string;
     value: string;
     color: string;

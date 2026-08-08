@@ -81,7 +81,7 @@ export function LandingHeader() {
                     "
                 >
                     <Link
-                        href="#modules"
+                        href="#features"
                         className="
                             text-sm
                             text-slate-300
@@ -105,7 +105,7 @@ export function LandingHeader() {
                     </Link>
 
                     <Link
-                        href="#about"
+                        href="#timeline"
                         className="
                             text-sm
                             text-slate-300
@@ -113,7 +113,7 @@ export function LandingHeader() {
                             hover:text-white
                         "
                     >
-                        About
+                        Activity
                     </Link>
 
                     <Link

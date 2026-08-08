@@ -2,6 +2,7 @@ import { useEarthquakes } from "@/hooks/useEarthquakes";
 import { useWildfires } from "@/hooks/useWildfires";
 import { useAirQuality } from "@/hooks/useAirQuality";
 import { useLocationStore } from "@/stores/location.store";
+import { useWeatherStore } from "@/stores/weather.store";
 
 export function useDashboardStats() {
 
@@ -12,6 +13,8 @@ export function useDashboardStats() {
     const {
         earthquakes,
     } = useEarthquakes();
+
+    const { weather } = useWeatherStore();
 
     const {
         wildfires,
@@ -28,6 +31,7 @@ export function useDashboardStats() {
     });
 
     return {
+        temperature: weather?.temperature,
 
         earthquakesCount:
             earthquakes.length,

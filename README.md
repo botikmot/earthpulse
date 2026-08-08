@@ -1,4 +1,4 @@
-# 🌍 EarthPulse
+# 🌍 ERRION
 
 Real-time Natural Disaster Monitoring Platform
 

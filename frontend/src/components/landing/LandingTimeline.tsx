@@ -1,59 +1,15 @@
 "use client";
 
-import {
-    CloudSun,
-    Flame,
-    Gauge,
-    Mountain,
-    Satellite,
-} from "lucide-react";
-
-const activities = [
-    {
-        title: "Earthquake Detected",
-        description: "Magnitude 5.8 near Fiji",
-        time: "5 min ago",
-        icon: Mountain,
-        color: "text-orange-400",
-        glow: "bg-orange-400",
-    },
-    {
-        title: "Weather Updated",
-        description: "27°C in Manila",
-        time: "12 min ago",
-        icon: CloudSun,
-        color: "text-sky-400",
-        glow: "bg-sky-400",
-    },
-    {
-        title: "Wildfire Reported",
-        description: "Nevada, United States",
-        time: "16 min ago",
-        icon: Flame,
-        color: "text-red-400",
-        glow: "bg-red-400",
-    },
-    {
-        title: "Air Quality Updated",
-        description: "AQI level 12",
-        time: "18 min ago",
-        icon: Gauge,
-        color: "text-emerald-400",
-        glow: "bg-emerald-400",
-    },
-    {
-        title: "ISS Position Updated",
-        description: "Orbiting above the Pacific Ocean",
-        time: "23 min ago",
-        icon: Satellite,
-        color: "text-violet-400",
-        glow: "bg-violet-400",
-    },
-];
+import { useDashboardActivity } from "@/hooks/useDashboardActivity";
+import { getRelativeTime } from "@/lib/date";
 
 export function LandingTimeline() {
+
+    const activities = useDashboardActivity();
+
     return (
         <section
+            id="timeline"
             className="
                 relative
                 overflow-hidden
@@ -180,7 +136,7 @@ export function LandingTimeline() {
                                         />
 
                                         <Icon
-                                            className={`h-4 w-4 ${item.color}`}
+                                            className={`h-4 w-4 ${item.textColor}`}
                                         />
 
                                     </div>
@@ -223,7 +179,7 @@ export function LandingTimeline() {
                                                 text-slate-500
                                             "
                                         >
-                                            {item.time}
+                                            {getRelativeTime(item.time)}
                                         </span>
 
                                     </div>

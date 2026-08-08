@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import {
     Globe2,
+    Mail,
 } from "lucide-react";
 
 const modules = [
@@ -14,11 +15,11 @@ const modules = [
     },
     {
         label: "Earthquakes",
-        href: "/dashboard/earthquake",
+        href: "/dashboard/earthquakes",
     },
     {
         label: "Wildfires",
-        href: "/dashboard/wildfire",
+        href: "/dashboard/wildfires",
     },
     {
         label: "Air Quality",
@@ -48,11 +49,11 @@ export function LandingFooter() {
                         grid
                         gap-10
                         md:grid-cols-2
-                        lg:grid-cols-[1.5fr_1fr_1fr]
+                        lg:grid-cols-[1.6fr_1fr_1fr_1.2fr]
                     "
                 >
 
-                    {/* brand */}
+                    {/* Brand */}
 
                     <div>
 
@@ -69,6 +70,7 @@ export function LandingFooter() {
                             />
 
                             <div>
+
                                 <p className="text-lg font-bold tracking-wide">
                                     ERRION
                                 </p>
@@ -76,7 +78,9 @@ export function LandingFooter() {
                                 <p className="text-xs text-cyan-300">
                                     Understanding Earth&apos;s Signals
                                 </p>
+
                             </div>
+
                         </Link>
 
                         <p
@@ -95,7 +99,8 @@ export function LandingFooter() {
 
                     </div>
 
-                    {/* modules */}
+
+                    {/* Monitoring */}
 
                     <div>
 
@@ -125,7 +130,8 @@ export function LandingFooter() {
 
                     </div>
 
-                    {/* resources */}
+
+                    {/* Resources */}
 
                     <div>
 
@@ -148,24 +154,22 @@ export function LandingFooter() {
                                 "
                             >
                                 <Globe2 className="h-4 w-4" />
+
                                 Mission Control
                             </Link>
 
                             <a
-                                href="https://github.com"
+                                href="https://github.com/botikmot/earthpulse"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="
-                                    flex
-                                    items-center
-                                    gap-2
+                                    block
                                     text-sm
                                     text-slate-400
                                     transition-colors
                                     hover:text-cyan-300
                                 "
                             >
-                                
                                 GitHub
                             </a>
 
@@ -173,7 +177,52 @@ export function LandingFooter() {
 
                     </div>
 
+
+                    {/* Contact */}
+
+                    <div>
+
+                        <h4 className="text-sm font-semibold text-white">
+                            Contact
+                        </h4>
+
+                        <p
+                            className="
+                                mt-5
+                                text-sm
+                                leading-6
+                                text-slate-400
+                            "
+                        >
+                            Have questions, feedback, or suggestions?
+                            I&apos;d be glad to hear from you.
+                        </p>
+
+                        <a
+                            href="mailto:your-email@example.com"
+                            className="
+                                mt-4
+                                inline-flex
+                                items-center
+                                gap-2
+                                text-sm
+                                font-medium
+                                text-cyan-300
+                                transition-colors
+                                hover:text-cyan-200
+                            "
+                        >
+                            <Mail className="h-4 w-4" />
+
+                            nxtasq@gmail.com
+                        </a>
+
+                    </div>
+
                 </div>
+
+
+                {/* Bottom */}
 
                 <div
                     className="
@@ -192,6 +241,7 @@ export function LandingFooter() {
                         sm:justify-between
                     "
                 >
+
                     <p>
                         © 2026 ERRION. All rights reserved.
                     </p>
@@ -199,6 +249,7 @@ export function LandingFooter() {
                     <p>
                         Understanding Earth&apos;s Signals.
                     </p>
+
                 </div>
 
             </div>
