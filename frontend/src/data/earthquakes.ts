@@ -7,6 +7,7 @@ export const earthquakes: Earthquake[] = [
     magnitude: 5.8,
     depth: 15,
     position: [7.1907, 125.4553],
+    time: 123213,
   },
   {
     id: '2',
@@ -14,5 +15,6 @@ export const earthquakes: Earthquake[] = [
     magnitude: 6.1,
     depth: 22,
     position: [14.5995, 120.9842],
+    time: 123213,
   },
 ];

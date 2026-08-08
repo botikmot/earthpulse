@@ -20,6 +20,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
+import type { LucideIcon } from "lucide-react";
 
 import Image from "next/image";
 
@@ -284,7 +285,7 @@ export function AboutSettings() {
 }
 
 type InfoItemProps = {
-    icon: React.ElementType;
+    icon: LucideIcon;
     label: string;
     value: string;
 };

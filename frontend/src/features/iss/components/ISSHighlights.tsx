@@ -1,6 +1,7 @@
 "use client";
 
 import type { ISS } from "@/types/iss";
+import type { LucideIcon } from "lucide-react";
 
 import {
     Clock3,
@@ -124,7 +125,7 @@ export function ISSHighlights({
 }
 
 type HighlightItemProps = {
-    icon: React.ElementType;
+    icon: LucideIcon;
     title: string;
     value: string;
 };

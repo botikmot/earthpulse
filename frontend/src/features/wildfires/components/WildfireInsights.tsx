@@ -8,6 +8,7 @@ import {
     Flame,
     BarChart3,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 type Props = {
     wildfires: Wildfire[];
@@ -110,7 +111,7 @@ export function WildfireInsights({
 
 type InsightCardProps = {
 
-    icon: React.ElementType;
+    icon: LucideIcon;
 
     title: string;
 

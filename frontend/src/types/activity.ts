@@ -9,5 +9,5 @@ export interface Activity {
         | "blue"
         | "red"
         | "green";
-    icon: LucideIcon;
+    icon?: LucideIcon;
 }
